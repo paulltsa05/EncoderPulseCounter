@@ -3,6 +3,7 @@
  mcc_generated_files/adc.c  \
 mcc_generated_files/mcc.h  \
 mcc_generated_files/adc.h  \
+mcc_generated_files/ext_int.h  \
 mcc_generated_files/ccp1.h  \
 mcc_generated_files/ccp2.h  \
 mcc_generated_files/interrupt_manager.h  \

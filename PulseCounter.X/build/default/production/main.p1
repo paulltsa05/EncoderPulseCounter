@@ -1,7 +1,15 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"74 mcc_generated_files/mcc.h
+"75 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
+"234 mcc_generated_files/tmr3.h
+[v _TMR3_WriteTimer `(v ~T0 @X0 0 ef1`ui ]
+"160
+[v _TMR3_StopTimer `(v ~T0 @X0 0 ef ]
+"234 mcc_generated_files/tmr5.h
+[v _TMR5_WriteTimer `(v ~T0 @X0 0 ef1`ui ]
+"160
+[v _TMR5_StopTimer `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -7308,8 +7316,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 192: extern unsigned char __resetbits;
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
-[; ;pin_manager.h: 276: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 288: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -7349,25 +7357,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
 [; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
 [; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
-[; ;adc.h: 71: typedef uint16_t adc_result_t;
-[; ;adc.h: 76: typedef struct
-[; ;adc.h: 77: {
-[; ;adc.h: 78: adc_result_t adcResult1;
-[; ;adc.h: 79: adc_result_t adcResult2;
-[; ;adc.h: 80: } adc_sync_double_result_t;
-[; ;adc.h: 94: typedef enum
-[; ;adc.h: 95: {
-[; ;adc.h: 96: channel_AVSS = 0x3C,
-[; ;adc.h: 97: channel_Temp = 0x3D,
-[; ;adc.h: 98: channel_DAC1 = 0x3E,
-[; ;adc.h: 99: channel_FVR = 0x3F
-[; ;adc.h: 100: } adc_channel_t;
-[; ;adc.h: 135: void ADC_Initialize(void);
-[; ;adc.h: 165: void ADC_SelectChannel(adc_channel_t channel);
-[; ;adc.h: 192: void ADC_StartConversion();
-[; ;adc.h: 224: bool ADC_IsConversionDone();
-[; ;adc.h: 257: adc_result_t ADC_GetConversionResult(void);
-[; ;adc.h: 287: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;tmr3.h: 99: void TMR3_Initialize(void);
 [; ;tmr3.h: 128: void TMR3_StartTimer(void);
 [; ;tmr3.h: 160: void TMR3_StopTimer(void);
@@ -7377,13 +7366,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
 [; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
 [; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
-[; ;eusart.h: 76: extern volatile uint8_t eusartTxBufferRemaining;
-[; ;eusart.h: 77: extern volatile uint8_t eusartRxCount;
-[; ;eusart.h: 105: void EUSART_Initialize(void);
-[; ;eusart.h: 154: uint8_t EUSART_Read(void);
-[; ;eusart.h: 179: void EUSART_Write(uint8_t txData);
-[; ;eusart.h: 200: void EUSART_Transmit_ISR(void);
-[; ;eusart.h: 221: void EUSART_Receive_ISR(void);
 [; ;ccp1.h: 78: typedef union CCPR1Reg_tag
 [; ;ccp1.h: 79: {
 [; ;ccp1.h: 80: struct
@@ -7414,9 +7396,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
-[; ;mcc.h: 74: void SYSTEM_Initialize(void);
-[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 100: void WDT_Initialize(void);
+[; ;eusart.h: 94: void EUSART_Initialize(void);
+[; ;eusart.h: 114: uint8_t EUSART_Read(void);
+[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;adc.h: 71: typedef uint16_t adc_result_t;
+[; ;adc.h: 76: typedef struct
+[; ;adc.h: 77: {
+[; ;adc.h: 78: adc_result_t adcResult1;
+[; ;adc.h: 79: adc_result_t adcResult2;
+[; ;adc.h: 80: } adc_sync_double_result_t;
+[; ;adc.h: 94: typedef enum
+[; ;adc.h: 95: {
+[; ;adc.h: 96: TEMP_ANA2 = 0x2,
+[; ;adc.h: 97: channel_AVSS = 0x3C,
+[; ;adc.h: 98: channel_Temp = 0x3D,
+[; ;adc.h: 99: channel_DAC1 = 0x3E,
+[; ;adc.h: 100: channel_FVR = 0x3F
+[; ;adc.h: 101: } adc_channel_t;
+[; ;adc.h: 136: void ADC_Initialize(void);
+[; ;adc.h: 166: void ADC_SelectChannel(adc_channel_t channel);
+[; ;adc.h: 193: void ADC_StartConversion();
+[; ;adc.h: 225: bool ADC_IsConversionDone();
+[; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
+[; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT_ISR(void);
+[; ;ext_int.h: 296: void INT_CallBack(void);
+[; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
+[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void WDT_Initialize(void);
 "51 main.c
 [v _main `(v ~T0 @X0 1 ef ]
 "52
@@ -7428,20 +7439,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 54: SYSTEM_Initialize();
 "54
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 71: while (1)
+[; ;main.c: 70: TMR3_WriteTimer(0);
+"70
+[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 71: TMR3_StopTimer();
 "71
-[e :U 933 ]
-[; ;main.c: 72: {
+[e ( _TMR3_StopTimer ..  ]
+[; ;main.c: 72: TMR5_WriteTimer(0);
 "72
+[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 73: TMR5_StopTimer();
+"73
+[e ( _TMR5_StopTimer ..  ]
+[; ;main.c: 75: while (1)
+"75
+[e :U 933 ]
+[; ;main.c: 76: {
+"76
 {
-"74
+"78
 }
 [e :U 932 ]
-"71
+"75
 [e $U 933  ]
 [e :U 934 ]
-[; ;main.c: 74: }
-[; ;main.c: 75: }
-"75
+[; ;main.c: 78: }
+[; ;main.c: 79: }
+"79
 [e :UE 931 ]
 }

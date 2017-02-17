@@ -9677,10 +9677,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 276 "mcc_generated_files/pin_manager.h"
+# 344 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 288
+# 356
 void PIN_MANAGER_IOC(void);
 
 # 13 "/opt/microchip/xc8/v1.41/include/stdint.h"
@@ -9803,43 +9803,6 @@ uint8_t TMR5_CheckGateValueStatus(void);
 # 386
 bool TMR5_HasOverflowOccured(void);
 
-# 71 "mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-# 76
-typedef struct
-{
-adc_result_t adcResult1;
-adc_result_t adcResult2;
-} adc_sync_double_result_t;
-
-# 94
-typedef enum
-{
-channel_AVSS = 0x3C,
-channel_Temp = 0x3D,
-channel_DAC1 = 0x3E,
-channel_FVR = 0x3F
-} adc_channel_t;
-
-# 135
-void ADC_Initialize(void);
-
-# 165
-void ADC_SelectChannel(adc_channel_t channel);
-
-# 192
-void ADC_StartConversion();
-
-# 224
-bool ADC_IsConversionDone();
-
-# 257
-adc_result_t ADC_GetConversionResult(void);
-
-# 287
-adc_result_t ADC_GetConversion(adc_channel_t channel);
-
 # 99 "mcc_generated_files/tmr3.h"
 void TMR3_Initialize(void);
 
@@ -9866,25 +9829,6 @@ uint8_t TMR3_CheckGateValueStatus(void);
 
 # 386
 bool TMR3_HasOverflowOccured(void);
-
-# 76 "mcc_generated_files/eusart.h"
-extern volatile uint8_t eusartTxBufferRemaining;
-extern volatile uint8_t eusartRxCount;
-
-# 105
-void EUSART_Initialize(void);
-
-# 154
-uint8_t EUSART_Read(void);
-
-# 179
-void EUSART_Write(uint8_t txData);
-
-# 200
-void EUSART_Transmit_ISR(void);
-
-# 221
-void EUSART_Receive_ISR(void);
 
 # 78 "mcc_generated_files/ccp1.h"
 typedef union CCPR1Reg_tag
@@ -9932,26 +9876,87 @@ void CCP2_CaptureISR(void);
 # 158
 void CCP2_CallBack(uint16_t capturedValue);
 
-# 74 "mcc_generated_files/mcc.h"
+# 94 "mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+
+# 114
+uint8_t EUSART_Read(void);
+
+# 134
+void EUSART_Write(uint8_t txData);
+
+# 71 "mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+# 76
+typedef struct
+{
+adc_result_t adcResult1;
+adc_result_t adcResult2;
+} adc_sync_double_result_t;
+
+# 94
+typedef enum
+{
+TEMP_ANA2 = 0x2,
+channel_AVSS = 0x3C,
+channel_Temp = 0x3D,
+channel_DAC1 = 0x3E,
+channel_FVR = 0x3F
+} adc_channel_t;
+
+# 136
+void ADC_Initialize(void);
+
+# 166
+void ADC_SelectChannel(adc_channel_t channel);
+
+# 193
+void ADC_StartConversion();
+
+# 225
+bool ADC_IsConversionDone();
+
+# 258
+adc_result_t ADC_GetConversionResult(void);
+
+# 288
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+
+# 272
+void INT_ISR(void);
+
+# 296
+void INT_CallBack(void);
+
+# 319
+void INT_SetInterruptHandler(void* InterruptHandler);
+
+# 343
+extern void (*INT_InterruptHandler)(void);
+
+# 367
+void INT_DefaultInterruptHandler(void);
+
+# 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 87
+# 88
 void OSCILLATOR_Initialize(void);
 
-# 100
+# 101
 void WDT_Initialize(void);
 
 # 51 "mcc_generated_files/interrupt_manager.c"
 void interrupt INTERRUPT_InterruptManager (void)
 {
 
-if(INTCONbits.PEIE == 1 && PIE1bits.TXIE == 1 && PIR1bits.TXIF == 1)
+if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
 {
-EUSART_Transmit_ISR();
-}
-else if(INTCONbits.PEIE == 1 && PIE1bits.RCIE == 1 && PIR1bits.RCIF == 1)
-{
-EUSART_Receive_ISR();
+INT_ISR();
 }
 else if(INTCONbits.PEIE == 1 && PIE4bits.CCP2IE == 1 && PIR4bits.CCP2IF == 1)
 {

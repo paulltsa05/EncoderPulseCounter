@@ -67,6 +67,10 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
+    TMR3_WriteTimer(0);//reset TMR3
+    TMR3_StopTimer();//Stop TMR3
+    TMR5_WriteTimer(0);//reset TMR5
+    TMR5_StopTimer();//Stop TMR5
 
     while (1)
     {

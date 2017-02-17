@@ -1,34 +1,31 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"3701 /opt/microchip/xc8/v1.41/include/pic16f18344.h
-[v _BAUD1CON `Vuc ~T0 @X0 0 e@415 ]
-"3343
-[v _RC1STA `Vuc ~T0 @X0 0 e@413 ]
-"3522
-[v _TX1STA `Vuc ~T0 @X0 0 e@414 ]
-"3221
-[v _SP1BRGL `Vuc ~T0 @X0 0 e@411 ]
-"3290
-[v _SP1BRGH `Vuc ~T0 @X0 0 e@412 ]
-"553
-[s S36 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S36 . TMR1IF TMR2IF BCL1IF SSP1IF TXIF RCIF ADIF TMR1GIF ]
-"552
-[u S35 `S36 1 ]
-[n S35 . . ]
-"564
-[v _PIR1bits `VS35 ~T0 @X0 0 e@17 ]
-"3358
-[s S179 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S179 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"3357
-[u S178 `S179 1 ]
-[n S178 . . ]
-"3369
-[v _RC1STAbits `VS178 ~T0 @X0 0 e@413 ]
-"3109
-[v _RC1REG `Vuc ~T0 @X0 0 e@409 ]
-"3162
-[v _TX1REG `Vuc ~T0 @X0 0 e@410 ]
+[v F7661 `(v ~T0 @X0 0 tf ]
+"521 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+[s S34 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S34 . INTF . IOCIF TMR0IF ]
+"520
+[u S33 `S34 1 ]
+[n S33 . . ]
+"528
+[v _PIR0bits `VS33 ~T0 @X0 0 e@16 ]
+"296 mcc_generated_files/ext_int.h
+[v _INT_CallBack `(v ~T0 @X0 0 ef ]
+"341 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+[s S26 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S26 . INTEDG . PEIE GIE ]
+"340
+[u S25 `S26 1 ]
+[n S25 . . ]
+"348
+[v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
+"1751
+[s S89 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S89 . INTE . IOCIE TMR0IE ]
+"1750
+[u S88 `S89 1 ]
+[n S88 . . ]
+"1758
+[v _PIE0bits `VS88 ~T0 @X0 0 e@144 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -7335,140 +7332,103 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 192: extern unsigned char __resetbits;
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
-[; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;stdint.h: 13: typedef signed char int8_t;
-[; ;stdint.h: 20: typedef signed int int16_t;
-[; ;stdint.h: 28: typedef signed short long int int24_t;
-[; ;stdint.h: 36: typedef signed long int int32_t;
-[; ;stdint.h: 43: typedef unsigned char uint8_t;
-[; ;stdint.h: 49: typedef unsigned int uint16_t;
-[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
-[; ;stdint.h: 63: typedef unsigned long int uint32_t;
-[; ;stdint.h: 71: typedef signed char int_least8_t;
-[; ;stdint.h: 78: typedef signed int int_least16_t;
-[; ;stdint.h: 90: typedef signed short long int int_least24_t;
-[; ;stdint.h: 98: typedef signed long int int_least32_t;
-[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
-[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
-[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
-[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
-[; ;stdint.h: 137: typedef signed char int_fast8_t;
-[; ;stdint.h: 144: typedef signed int int_fast16_t;
-[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
-[; ;stdint.h: 164: typedef signed long int int_fast32_t;
-[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
-[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
-[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
-[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
-[; ;stdint.h: 200: typedef int32_t intmax_t;
-[; ;stdint.h: 205: typedef uint32_t uintmax_t;
-[; ;stdint.h: 210: typedef int16_t intptr_t;
-[; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;eusart.h: 94: void EUSART_Initialize(void);
-[; ;eusart.h: 114: uint8_t EUSART_Read(void);
-[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
-"55 mcc_generated_files/eusart.c
-[v _EUSART_Initialize `(v ~T0 @X0 1 ef ]
-"56
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT_ISR(void);
+[; ;ext_int.h: 296: void INT_CallBack(void);
+[; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
+[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
+"38 mcc_generated_files/ext_int.c
+[v _INT_InterruptHandler `*F7661 ~T0 @X0 1 e ]
+[; ;ext_int.c: 38: void (*INT_InterruptHandler)(void);
+"43
+[v _INT_ISR `(v ~T0 @X0 1 ef ]
+"44
 {
-[; ;eusart.c: 55: void EUSART_Initialize(void)
-[; ;eusart.c: 56: {
-[e :U _EUSART_Initialize ]
+[; ;ext_int.c: 43: void INT_ISR(void)
+[; ;ext_int.c: 44: {
+[e :U _INT_ISR ]
 [f ]
-[; ;eusart.c: 60: BAUD1CON = 0x08;
-"60
-[e = _BAUD1CON -> -> 8 `i `uc ]
-[; ;eusart.c: 63: RC1STA = 0x90;
-"63
-[e = _RC1STA -> -> 144 `i `uc ]
-[; ;eusart.c: 66: TX1STA = 0x04;
-"66
-[e = _TX1STA -> -> 4 `i `uc ]
-[; ;eusart.c: 69: SP1BRGL = 0xA0;
-"69
-[e = _SP1BRGL -> -> 160 `i `uc ]
-[; ;eusart.c: 72: SP1BRGH = 0x01;
-"72
-[e = _SP1BRGH -> -> 1 `i `uc ]
-[; ;eusart.c: 74: }
-"74
+[; ;ext_int.c: 49: (PIR0bits.INTF = 0);
+"49
+[e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
+[; ;ext_int.c: 52: INT_CallBack();
+"52
+[e ( _INT_CallBack ..  ]
+[; ;ext_int.c: 53: }
+"53
 [e :UE 924 ]
 }
-"77
-[v _EUSART_Read `(uc ~T0 @X0 1 ef ]
-"78
+"58
+[v _INT_CallBack `(v ~T0 @X0 1 ef ]
+"59
 {
-[; ;eusart.c: 77: uint8_t EUSART_Read(void)
-[; ;eusart.c: 78: {
-[e :U _EUSART_Read ]
+[; ;ext_int.c: 58: void INT_CallBack(void)
+[; ;ext_int.c: 59: {
+[e :U _INT_CallBack ]
 [f ]
-[; ;eusart.c: 80: while(!PIR1bits.RCIF)
-"80
-[e $U 926  ]
-[e :U 927 ]
-[; ;eusart.c: 81: {
-"81
+[; ;ext_int.c: 61: if(INT_InterruptHandler)
+"61
+[e $ ! != _INT_InterruptHandler -> -> 0 `i `*F7661 926  ]
+[; ;ext_int.c: 62: {
+"62
 {
-"82
+[; ;ext_int.c: 63: INT_InterruptHandler();
+"63
+[e ( *U _INT_InterruptHandler ..  ]
+"64
 }
 [e :U 926 ]
-"80
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 927  ]
-[e :U 928 ]
-[; ;eusart.c: 82: }
-[; ;eusart.c: 85: if(1 == RC1STAbits.OERR)
-"85
-[e $ ! == -> 1 `i -> . . _RC1STAbits 0 1 `i 929  ]
-[; ;eusart.c: 86: {
-"86
-{
-[; ;eusart.c: 89: RC1STAbits.CREN = 0;
-"89
-[e = . . _RC1STAbits 0 4 -> -> 0 `i `uc ]
-[; ;eusart.c: 90: RC1STAbits.CREN = 1;
-"90
-[e = . . _RC1STAbits 0 4 -> -> 1 `i `uc ]
-"91
-}
-[e :U 929 ]
-[; ;eusart.c: 91: }
-[; ;eusart.c: 93: return RC1REG;
-"93
-[e ) _RC1REG ]
-[e $UE 925  ]
-[; ;eusart.c: 94: }
-"94
+[; ;ext_int.c: 64: }
+[; ;ext_int.c: 65: }
+"65
 [e :UE 925 ]
 }
-"96
-[v _EUSART_Write `(v ~T0 @X0 1 ef1`uc ]
-"97
+"70
+[v _INT_SetInterruptHandler `(v ~T0 @X0 1 ef1`*v ]
 {
-[; ;eusart.c: 96: void EUSART_Write(uint8_t txData)
-[; ;eusart.c: 97: {
-[e :U _EUSART_Write ]
-"96
-[v _txData `uc ~T0 @X0 1 r1 ]
-"97
+[; ;ext_int.c: 70: void INT_SetInterruptHandler(void* InterruptHandler){
+[e :U _INT_SetInterruptHandler ]
+[v _InterruptHandler `*v ~T0 @X0 1 r1 ]
 [f ]
-[; ;eusart.c: 98: while(0 == PIR1bits.TXIF)
-"98
-[e $U 931  ]
-[e :U 932 ]
-[; ;eusart.c: 99: {
-"99
-{
-"100
+[; ;ext_int.c: 71: INT_InterruptHandler = InterruptHandler;
+"71
+[e = _INT_InterruptHandler -> _InterruptHandler `*F7661 ]
+[; ;ext_int.c: 72: }
+"72
+[e :UE 927 ]
 }
-[e :U 931 ]
-"98
-[e $ == -> 0 `i -> . . _PIR1bits 0 4 `i 932  ]
-[e :U 933 ]
-[; ;eusart.c: 100: }
-[; ;eusart.c: 102: TX1REG = txData;
+"77
+[v _INT_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
+{
+[; ;ext_int.c: 77: void INT_DefaultInterruptHandler(void){
+[e :U _INT_DefaultInterruptHandler ]
+[f ]
+[; ;ext_int.c: 80: }
+"80
+[e :UE 928 ]
+}
+"90
+[v _EXT_INT_Initialize `(v ~T0 @X0 1 ef ]
+"91
+{
+[; ;ext_int.c: 90: void EXT_INT_Initialize(void)
+[; ;ext_int.c: 91: {
+[e :U _EXT_INT_Initialize ]
+[f ]
+[; ;ext_int.c: 99: (PIR0bits.INTF = 0);
+"99
+[e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
+[; ;ext_int.c: 100: (INTCONbits.INTEDG = 1);
+"100
+[e = . . _INTCONbits 0 0 -> -> 1 `i `uc ]
+[; ;ext_int.c: 102: INT_SetInterruptHandler(INT_DefaultInterruptHandler);
 "102
-[e = _TX1REG _txData ]
-[; ;eusart.c: 103: }
+[e ( _INT_SetInterruptHandler (1 -> &U _INT_DefaultInterruptHandler `*v ]
+[; ;ext_int.c: 103: (PIE0bits.INTE = 1);
 "103
-[e :UE 930 ]
+[e = . . _PIE0bits 0 0 -> -> 1 `i `uc ]
+[; ;ext_int.c: 109: }
+"109
+[e :UE 929 ]
 }

@@ -63,6 +63,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S663 . . . ]
 "12886
 [v _RXPPSbits `VS663 ~T0 @X0 0 e@3620 ]
+"12059
+[s S616 :5 `uc 1 ]
+[n S616 . INTPPS ]
+"12062
+[s S617 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S617 . INTPPS0 INTPPS1 INTPPS2 INTPPS3 INTPPS4 ]
+"12058
+[u S615 `S616 1 `S617 1 ]
+[n S615 . . . ]
+"12070
+[v _INTPPSbits `VS615 ~T0 @X0 0 e@3600 ]
 "12263
 [s S628 :5 `uc 1 ]
 [n S628 . CCP1PPS ]
@@ -7391,8 +7402,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 192: extern unsigned char __resetbits;
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
-[; ;pin_manager.h: 276: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 288: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
 [; ;stdbool.h: 12: typedef unsigned char bool;
 "51 mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 1 ef ]
@@ -7414,30 +7425,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 63: TRISA = 0x37;
 "63
 [e = _TRISA -> -> 55 `i `uc ]
-[; ;pin_manager.c: 64: TRISB = 0x90;
+[; ;pin_manager.c: 64: TRISB = 0x10;
 "64
-[e = _TRISB -> -> 144 `i `uc ]
-[; ;pin_manager.c: 65: TRISC = 0xB0;
+[e = _TRISB -> -> 16 `i `uc ]
+[; ;pin_manager.c: 65: TRISC = 0x30;
 "65
-[e = _TRISC -> -> 176 `i `uc ]
+[e = _TRISC -> -> 48 `i `uc ]
 [; ;pin_manager.c: 70: ANSELC = 0x80;
 "70
 [e = _ANSELC -> -> 128 `i `uc ]
-[; ;pin_manager.c: 71: ANSELB = 0x80;
+[; ;pin_manager.c: 71: ANSELB = 0x00;
 "71
-[e = _ANSELB -> -> 128 `i `uc ]
-[; ;pin_manager.c: 72: ANSELA = 0x33;
+[e = _ANSELB -> -> 0 `i `uc ]
+[; ;pin_manager.c: 72: ANSELA = 0x17;
 "72
-[e = _ANSELA -> -> 51 `i `uc ]
-[; ;pin_manager.c: 77: WPUB = 0x40;
+[e = _ANSELA -> -> 23 `i `uc ]
+[; ;pin_manager.c: 77: WPUB = 0x80;
 "77
-[e = _WPUB -> -> 64 `i `uc ]
+[e = _WPUB -> -> 128 `i `uc ]
 [; ;pin_manager.c: 78: WPUA = 0x00;
 "78
 [e = _WPUA -> -> 0 `i `uc ]
-[; ;pin_manager.c: 79: WPUC = 0x7F;
+[; ;pin_manager.c: 79: WPUC = 0xFF;
 "79
-[e = _WPUC -> -> 127 `i `uc ]
+[e = _WPUC -> -> 255 `i `uc ]
 [; ;pin_manager.c: 84: ODCONA = 0x00;
 "84
 [e = _ODCONA -> -> 0 `i `uc ]
@@ -7469,37 +7480,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 100: RXPPSbits.RXPPS = 0x0C;
 "100
 [e = . . _RXPPSbits 0 0 -> -> 12 `i `uc ]
-[; ;pin_manager.c: 101: CCP1PPSbits.CCP1PPS = 0x15;
+[; ;pin_manager.c: 101: INTPPSbits.INTPPS = 0x05;
 "101
-[e = . . _CCP1PPSbits 0 0 -> -> 21 `i `uc ]
-[; ;pin_manager.c: 102: RB5PPSbits.RB5PPS = 0x14;
+[e = . . _INTPPSbits 0 0 -> -> 5 `i `uc ]
+[; ;pin_manager.c: 102: CCP1PPSbits.CCP1PPS = 0x15;
 "102
+[e = . . _CCP1PPSbits 0 0 -> -> 21 `i `uc ]
+[; ;pin_manager.c: 103: RB5PPSbits.RB5PPS = 0x14;
+"103
 [e = . . _RB5PPSbits 0 0 -> -> 20 `i `uc ]
-[; ;pin_manager.c: 104: PPSLOCK = 0x55;
-"104
-[e = _PPSLOCK -> -> 85 `i `uc ]
-[; ;pin_manager.c: 105: PPSLOCK = 0xAA;
+[; ;pin_manager.c: 105: PPSLOCK = 0x55;
 "105
-[e = _PPSLOCK -> -> 170 `i `uc ]
-[; ;pin_manager.c: 106: PPSLOCKbits.PPSLOCKED = 0x01;
+[e = _PPSLOCK -> -> 85 `i `uc ]
+[; ;pin_manager.c: 106: PPSLOCK = 0xAA;
 "106
+[e = _PPSLOCK -> -> 170 `i `uc ]
+[; ;pin_manager.c: 107: PPSLOCKbits.PPSLOCKED = 0x01;
+"107
 [e = . . _PPSLOCKbits 0 0 -> -> 1 `i `uc ]
-[; ;pin_manager.c: 108: GIE = state;
-"108
-[e = _GIE -> _state `b ]
-[; ;pin_manager.c: 109: }
+[; ;pin_manager.c: 109: GIE = state;
 "109
+[e = _GIE -> _state `b ]
+[; ;pin_manager.c: 110: }
+"110
 [e :UE 924 ]
 }
-"111
-[v _PIN_MANAGER_IOC `(v ~T0 @X0 1 ef ]
 "112
+[v _PIN_MANAGER_IOC `(v ~T0 @X0 1 ef ]
+"113
 {
-[; ;pin_manager.c: 111: void PIN_MANAGER_IOC(void)
-[; ;pin_manager.c: 112: {
+[; ;pin_manager.c: 112: void PIN_MANAGER_IOC(void)
+[; ;pin_manager.c: 113: {
 [e :U _PIN_MANAGER_IOC ]
 [f ]
-[; ;pin_manager.c: 114: }
-"114
+[; ;pin_manager.c: 115: }
+"115
 [e :UE 925 ]
 }
