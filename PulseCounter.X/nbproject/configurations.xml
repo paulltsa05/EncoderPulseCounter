@@ -18,6 +18,9 @@
         <itemPath>mcc_generated_files/adc.h</itemPath>
         <itemPath>mcc_generated_files/ext_int.h</itemPath>
       </logicalFolder>
+      <itemPath>crc16.h</itemPath>
+      <itemPath>ModbusMaster.h</itemPath>
+      <itemPath>word.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -41,6 +44,7 @@
         <itemPath>mcc_generated_files/ext_int.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
+      <itemPath>ModbusMaster.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
