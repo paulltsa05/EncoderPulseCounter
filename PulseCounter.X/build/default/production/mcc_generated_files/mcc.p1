@@ -1,9 +1,9 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "344 mcc_generated_files/pin_manager.h
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
-"88 mcc_generated_files/mcc.h
+"89 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
-"101
+"102
 [v _WDT_Initialize `(v ~T0 @X0 0 ef ]
 "121 mcc_generated_files/ccp2.h
 [v _CCP2_Initialize `(v ~T0 @X0 0 ef ]
@@ -17,6 +17,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR5_Initialize `(v ~T0 @X0 0 ef ]
 "250 mcc_generated_files/ext_int.h
 [v _EXT_INT_Initialize `(v ~T0 @X0 0 ef ]
+"105 mcc_generated_files/tmr0.h
+[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
 "94 mcc_generated_files/eusart.h
 [v _EUSART_Initialize `(v ~T0 @X0 0 ef ]
 "11654 /opt/microchip/xc8/v1.41/include/pic16f18344.h
@@ -7440,6 +7442,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp1.h: 121: void CCP1_Initialize(void);
 [; ;ccp1.h: 137: void CCP1_CaptureISR(void);
 [; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
+[; ;ccp1.h: 159: void EncA_PulseEdgeEvent(uint16_t capturedValue);
 [; ;ccp2.h: 78: typedef union CCPR2Reg_tag
 [; ;ccp2.h: 79: {
 [; ;ccp2.h: 80: struct
@@ -7455,9 +7458,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
+[; ;ccp2.h: 159: void EncB_PulseEdgeEvent(uint16_t capturedValue);
 [; ;eusart.h: 94: void EUSART_Initialize(void);
 [; ;eusart.h: 114: uint8_t EUSART_Read(void);
 [; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;tmr0.h: 105: void TMR0_Initialize(void);
+[; ;tmr0.h: 134: void TMR0_StartTimer(void);
+[; ;tmr0.h: 166: void TMR0_StopTimer(void);
+[; ;tmr0.h: 202: uint16_t TMR0_Read16bitTimer(void);
+[; ;tmr0.h: 241: void TMR0_Write16bitTimer(uint16_t timerVal);
+[; ;tmr0.h: 277: void TMR0_Reload16bit(void);
+[; ;tmr0.h: 295: void TMR0_ISR(void);
+[; ;tmr0.h: 313: void TMR0_CallBack(void);
+[; ;tmr0.h: 331: void TMR0_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr0.h: 349: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 367: void TMR0_DefaultInterruptHandler(void);
+[; ;tmr0.h: 370: uint32_t millis(void);
+[; ;tmr0.h: 372: void millisReset(void);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -7484,9 +7501,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
 [; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
 [; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;mcc.h: 75: void SYSTEM_Initialize(void);
-[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 101: void WDT_Initialize(void);
+[; ;mcc.h: 76: void SYSTEM_Initialize(void);
+[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 102: void WDT_Initialize(void);
 "76 mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
 "77
@@ -7522,66 +7539,69 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 87: EXT_INT_Initialize();
 "87
 [e ( _EXT_INT_Initialize ..  ]
-[; ;mcc.c: 88: EUSART_Initialize();
+[; ;mcc.c: 88: TMR0_Initialize();
 "88
-[e ( _EUSART_Initialize ..  ]
-[; ;mcc.c: 89: }
+[e ( _TMR0_Initialize ..  ]
+[; ;mcc.c: 89: EUSART_Initialize();
 "89
+[e ( _EUSART_Initialize ..  ]
+[; ;mcc.c: 90: }
+"90
 [e :UE 931 ]
 }
-"91
-[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
 "92
+[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
+"93
 {
-[; ;mcc.c: 91: void OSCILLATOR_Initialize(void)
-[; ;mcc.c: 92: {
+[; ;mcc.c: 92: void OSCILLATOR_Initialize(void)
+[; ;mcc.c: 93: {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-[; ;mcc.c: 94: OSCCON1 = 0x00;
-"94
+[; ;mcc.c: 95: OSCCON1 = 0x00;
+"95
 [e = _OSCCON1 -> -> 0 `i `uc ]
-[; ;mcc.c: 96: OSCCON3 = 0x00;
-"96
+[; ;mcc.c: 97: OSCCON3 = 0x00;
+"97
 [e = _OSCCON3 -> -> 0 `i `uc ]
-[; ;mcc.c: 98: OSCEN = 0x00;
-"98
+[; ;mcc.c: 99: OSCEN = 0x00;
+"99
 [e = _OSCEN -> -> 0 `i `uc ]
-[; ;mcc.c: 100: OSCFRQ = 0x06;
-"100
+[; ;mcc.c: 101: OSCFRQ = 0x06;
+"101
 [e = _OSCFRQ -> -> 6 `i `uc ]
-[; ;mcc.c: 102: OSCTUNE = 0x00;
-"102
+[; ;mcc.c: 103: OSCTUNE = 0x00;
+"103
 [e = _OSCTUNE -> -> 0 `i `uc ]
-[; ;mcc.c: 106: while(PLLR == 0)
-"106
+[; ;mcc.c: 107: while(PLLR == 0)
+"107
 [e $U 933  ]
 [e :U 934 ]
-[; ;mcc.c: 107: {
-"107
-{
+[; ;mcc.c: 108: {
 "108
+{
+"109
 }
 [e :U 933 ]
-"106
+"107
 [e $ == -> _PLLR `i -> 0 `i 934  ]
 [e :U 935 ]
-[; ;mcc.c: 108: }
 [; ;mcc.c: 109: }
-"109
+[; ;mcc.c: 110: }
+"110
 [e :UE 932 ]
 }
-"111
-[v _WDT_Initialize `(v ~T0 @X0 1 ef ]
 "112
+[v _WDT_Initialize `(v ~T0 @X0 1 ef ]
+"113
 {
-[; ;mcc.c: 111: void WDT_Initialize(void)
-[; ;mcc.c: 112: {
+[; ;mcc.c: 112: void WDT_Initialize(void)
+[; ;mcc.c: 113: {
 [e :U _WDT_Initialize ]
 [f ]
-[; ;mcc.c: 114: WDTCON = 0x16;
-"114
-[e = _WDTCON -> -> 22 `i `uc ]
-[; ;mcc.c: 115: }
+[; ;mcc.c: 115: WDTCON = 0x16;
 "115
+[e = _WDTCON -> -> 22 `i `uc ]
+[; ;mcc.c: 116: }
+"116
 [e :UE 936 ]
 }

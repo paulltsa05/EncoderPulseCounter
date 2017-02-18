@@ -45,6 +45,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S924 CCPR2Reg_tag . . ]
 "158
 [v _CCP2_CallBack `(v ~T0 @X0 0 ef1`ui ]
+"159
+[v _EncB_PulseEdgeEvent `(v ~T0 @X0 0 ef1`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -7395,78 +7397,82 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
-"57 mcc_generated_files/ccp2.c
+[; ;ccp2.h: 159: void EncB_PulseEdgeEvent(uint16_t capturedValue);
+"58 mcc_generated_files/ccp2.c
 [v _CCP2_Initialize `(v ~T0 @X0 1 ef ]
-"58
+"59
 {
-[; ;ccp2.c: 57: void CCP2_Initialize(void)
-[; ;ccp2.c: 58: {
+[; ;ccp2.c: 58: void CCP2_Initialize(void)
+[; ;ccp2.c: 59: {
 [e :U _CCP2_Initialize ]
 [f ]
-[; ;ccp2.c: 62: CCP2CON = 0x83;
-"62
+[; ;ccp2.c: 63: CCP2CON = 0x83;
+"63
 [e = _CCP2CON -> -> 131 `i `uc ]
-[; ;ccp2.c: 65: CCP2CAP = 0x00;
-"65
+[; ;ccp2.c: 66: CCP2CAP = 0x00;
+"66
 [e = _CCP2CAP -> -> 0 `i `uc ]
-[; ;ccp2.c: 68: CCPR2H = 0x00;
-"68
+[; ;ccp2.c: 69: CCPR2H = 0x00;
+"69
 [e = _CCPR2H -> -> 0 `i `uc ]
-[; ;ccp2.c: 71: CCPR2L = 0x00;
-"71
+[; ;ccp2.c: 72: CCPR2L = 0x00;
+"72
 [e = _CCPR2L -> -> 0 `i `uc ]
-[; ;ccp2.c: 74: CCPTMRSbits.C2TSEL = 0x3;
-"74
+[; ;ccp2.c: 75: CCPTMRSbits.C2TSEL = 0x3;
+"75
 [e = . . _CCPTMRSbits 0 1 -> -> 3 `i `uc ]
-[; ;ccp2.c: 77: PIR4bits.CCP2IF = 0;
-"77
+[; ;ccp2.c: 78: PIR4bits.CCP2IF = 0;
+"78
 [e = . . _PIR4bits 0 1 -> -> 0 `i `uc ]
-[; ;ccp2.c: 80: PIE4bits.CCP2IE = 1;
-"80
-[e = . . _PIE4bits 0 1 -> -> 1 `i `uc ]
-[; ;ccp2.c: 81: }
+[; ;ccp2.c: 81: PIE4bits.CCP2IE = 1;
 "81
+[e = . . _PIE4bits 0 1 -> -> 1 `i `uc ]
+[; ;ccp2.c: 82: }
+"82
 [e :UE 927 ]
 }
-"83
-[v _CCP2_CaptureISR `(v ~T0 @X0 1 ef ]
 "84
+[v _CCP2_CaptureISR `(v ~T0 @X0 1 ef ]
+"85
 {
-[; ;ccp2.c: 83: void CCP2_CaptureISR(void)
-[; ;ccp2.c: 84: {
+[; ;ccp2.c: 84: void CCP2_CaptureISR(void)
+[; ;ccp2.c: 85: {
 [e :U _CCP2_CaptureISR ]
 [f ]
-"85
+"86
 [v _module `S924 ~T0 @X0 1 a ]
-[; ;ccp2.c: 85: CCP_PERIOD_REG_T module;
-[; ;ccp2.c: 88: PIR4bits.CCP2IF = 0;
-"88
+[; ;ccp2.c: 86: CCP_PERIOD_REG_T module;
+[; ;ccp2.c: 89: PIR4bits.CCP2IF = 0;
+"89
 [e = . . _PIR4bits 0 1 -> -> 0 `i `uc ]
-[; ;ccp2.c: 91: module.ccpr2l = CCPR2L;
-"91
-[e = . . _module 0 0 _CCPR2L ]
-[; ;ccp2.c: 92: module.ccpr2h = CCPR2H;
+[; ;ccp2.c: 92: module.ccpr2l = CCPR2L;
 "92
+[e = . . _module 0 0 _CCPR2L ]
+[; ;ccp2.c: 93: module.ccpr2h = CCPR2H;
+"93
 [e = . . _module 0 1 _CCPR2H ]
-[; ;ccp2.c: 95: CCP2_CallBack(module.ccpr2_16Bit);
-"95
-[e ( _CCP2_CallBack (1 . . _module 1 0 ]
-[; ;ccp2.c: 96: }
+[; ;ccp2.c: 96: CCP2_CallBack(module.ccpr2_16Bit);
 "96
+[e ( _CCP2_CallBack (1 . . _module 1 0 ]
+[; ;ccp2.c: 97: EncB_PulseEdgeEvent(module.ccpr2_16Bit);
+"97
+[e ( _EncB_PulseEdgeEvent (1 . . _module 1 0 ]
+[; ;ccp2.c: 98: }
+"98
 [e :UE 928 ]
 }
-"98
+"100
 [v _CCP2_CallBack `(v ~T0 @X0 1 ef1`ui ]
-"99
-{
-[; ;ccp2.c: 98: void CCP2_CallBack(uint16_t capturedValue)
-[; ;ccp2.c: 99: {
-[e :U _CCP2_CallBack ]
-"98
-[v _capturedValue `ui ~T0 @X0 1 r1 ]
-"99
-[f ]
-[; ;ccp2.c: 101: }
 "101
+{
+[; ;ccp2.c: 100: void CCP2_CallBack(uint16_t capturedValue)
+[; ;ccp2.c: 101: {
+[e :U _CCP2_CallBack ]
+"100
+[v _capturedValue `ui ~T0 @X0 1 r1 ]
+"101
+[f ]
+[; ;ccp2.c: 104: }
+"104
 [e :UE 929 ]
 }

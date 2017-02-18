@@ -15,47 +15,47 @@ extern "C" {
 /** @ingroup util_word
     Return low word of a 32-bit integer.
 
-    @param uint32_t ww (0x00000000..0xFFFFFFFF)
+    @param unsigned long ww (0x00000000..0xFFFFFFFF)
     @return low word of input (0x0000..0xFFFF)
 */
-static inline uint16_t lowWord(uint32_t ww)
+static unsigned int lowWord(unsigned long ww)
 {
-  return (uint16_t) ((ww) & 0xFFFF);
+  return (unsigned int) ((ww) & 0xFFFF);
 }
 
 
 /** @ingroup util_word
     Return high word of a 32-bit integer.
 
-    @param uint32_t ww (0x00000000..0xFFFFFFFF)
+    @param unsigned long ww (0x00000000..0xFFFFFFFF)
     @return high word of input (0x0000..0xFFFF)
 */
-static inline uint16_t highWord(uint32_t ww)
+static unsigned int highWord(unsigned long ww)
 {
-  return (uint16_t) ((ww) >> 16);
+  return (unsigned int) ((ww) >> 16);
 }
 
-static inline uint8_t highByte(uint16_t ww)
+static unsigned char highByte(unsigned int ww)
 {
-  return (uint8_t) ((ww) >> 8);
+  return (unsigned char) ((ww) >> 8);
 }
 
-static inline uint8_t lowByte(uint16_t ww)
+static unsigned char lowByte(unsigned int ww)
 {
-  return (uint8_t) ((ww) & 0xFF);
+  return (unsigned char) ((ww) & 0xFF);
 }
 
-static inline bool bitRead(uint8_t ww,uint8_t pos)
+
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+
+static unsigned int word(unsigned char highByte,unsigned char lowByte)
 {
-    return (bool) (((ww)>>pos) & 0x01);
+    return (unsigned int) ((((unsigned int) highByte)<<8) & 0xFF00) | (((unsigned int) lowByte)&0x00FF);
 }
 
-//void bitWrite(uint16_t *dest,uint8_t index,bool bitval)
-//{
-////    if(bitval)
-////        *(dest)&=
-//    return *(dest);
-//}
 
 #ifdef	__cplusplus
 }

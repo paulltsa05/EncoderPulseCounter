@@ -9852,6 +9852,7 @@ void CCP1_CaptureISR(void);
 
 # 158
 void CCP1_CallBack(uint16_t capturedValue);
+void EncA_PulseEdgeEvent(uint16_t capturedValue);
 
 # 78 "mcc_generated_files/ccp2.h"
 typedef union CCPR2Reg_tag
@@ -9875,6 +9876,7 @@ void CCP2_CaptureISR(void);
 
 # 158
 void CCP2_CallBack(uint16_t capturedValue);
+void EncB_PulseEdgeEvent(uint16_t capturedValue);
 
 # 94 "mcc_generated_files/eusart.h"
 void EUSART_Initialize(void);
@@ -9884,6 +9886,44 @@ uint8_t EUSART_Read(void);
 
 # 134
 void EUSART_Write(uint8_t txData);
+
+# 105 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 134
+void TMR0_StartTimer(void);
+
+# 166
+void TMR0_StopTimer(void);
+
+# 202
+uint16_t TMR0_Read16bitTimer(void);
+
+# 241
+void TMR0_Write16bitTimer(uint16_t timerVal);
+
+# 277
+void TMR0_Reload16bit(void);
+
+# 295
+void TMR0_ISR(void);
+
+# 313
+void TMR0_CallBack(void);
+
+# 331
+void TMR0_SetInterruptHandler(void *InterruptHandler);
+
+# 349
+extern void (*TMR0_InterruptHandler)(void);
+
+# 367
+void TMR0_DefaultInterruptHandler(void);
+
+
+uint32_t millis(void);
+
+void millisReset(void);
 
 # 71 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -9941,30 +9981,196 @@ extern void (*INT_InterruptHandler)(void);
 # 367
 void INT_DefaultInterruptHandler(void);
 
-# 75 "mcc_generated_files/mcc.h"
+# 76 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 88
+# 89
 void OSCILLATOR_Initialize(void);
 
-# 101
+# 102
 void WDT_Initialize(void);
 
-# 51 "main.c"
+# 30 "ModbusManager.h"
+unsigned char EncPulseCntResult;
+unsigned int EncPulseOpState;
+
+
+unsigned int MBreadNoOfPulseCnt;
+unsigned int MBreadPulseTimeoutSec;
+unsigned int MBread_EPC_Ctrl;
+
+
+void ModbusMasterSetup(void);
+void MB_UpdateEPCParameter(void);
+void MB_getEPC_PLC_Control(void);
+void MB_SendEncPulseOpState(void);
+void MB_SendEncPulseCntResult(void);
+
+# 19 "main.h"
+void EncINX_PulseRisingEvent();
+
+void Timer0_tick10msecFunc();
+
+# 21 "LED_Ctrl.h"
+extern char LedONStatusBusy(void);
+
+extern char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
+extern void LedON_Control_10msec(void);
+
+# 54 "main.c"
+unsigned int OldEncPulseOpState=0;
+
+void EPC_StateMachineControlLoop();
+
 void main(void)
 {
 
 SYSTEM_Initialize();
 
-# 70
+# 67
+(INTCONbits.GIE = 1);
+
+
+(INTCONbits.PEIE = 1);
+
+# 77
 TMR3_WriteTimer(0);
 TMR3_StopTimer();
 TMR5_WriteTimer(0);
 TMR5_StopTimer();
 
+ModbusMasterSetup();
+EncPulseOpState=0;
+
 while (1)
 {
 
+
 }
+}
+
+void EPC_StateMachineControlLoop()
+{
+switch (EncPulseOpState)
+{
+case 0 : if(EncPulseOpState != OldEncPulseOpState)
+{
+
+
+}
+else
+{
+
+}
+
+OldEncPulseOpState=EncPulseOpState;
+break;
+case 1 : if(EncPulseOpState != OldEncPulseOpState)
+{
+
+
+}
+else
+{
+
+}
+
+OldEncPulseOpState=EncPulseOpState;
+
+break;
+case 2 : if(EncPulseOpState != OldEncPulseOpState)
+{
+
+
+}
+else
+{
+
+}
+
+OldEncPulseOpState=EncPulseOpState;
+
+break;
+case 3 : if(EncPulseOpState != OldEncPulseOpState)
+{
+
+
+}
+else
+{
+
+}
+
+OldEncPulseOpState=EncPulseOpState;
+
+break;
+case 4 : if(EncPulseOpState != OldEncPulseOpState)
+{
+
+
+}
+else
+{
+
+}
+
+OldEncPulseOpState=EncPulseOpState;
+
+break;
+case 16 : if(EncPulseOpState != OldEncPulseOpState)
+{
+
+
+}
+else
+{
+
+}
+
+OldEncPulseOpState=EncPulseOpState;
+
+break;
+default: break;
+}
+}
+
+
+void EncA_PulseEdgeEvent(uint16_t capturedValue)
+{
+TMR3_WriteTimer(0);
+TMR3_StartTimer();
+if(PORTCbits.RC5)
+{
+
+}
+else
+{
+
+}
+
+}
+void EncB_PulseEdgeEvent(uint16_t capturedValue)
+{
+TMR5_WriteTimer(0);
+TMR5_StartTimer();
+if(PORTCbits.RC4)
+{
+
+}
+else
+{
+
+}
+
+}
+
+void EncINX_PulseRisingEvent()
+{
+
+}
+
+void Timer0_tick10msecFunc()
+{
+LedON_Control_10msec();
 }
 

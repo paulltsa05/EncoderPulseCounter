@@ -9789,8 +9789,9 @@ void CCP1_CaptureISR(void);
 
 # 158
 void CCP1_CallBack(uint16_t capturedValue);
+void EncA_PulseEdgeEvent(uint16_t capturedValue);
 
-# 57 "mcc_generated_files/ccp1.c"
+# 58 "mcc_generated_files/ccp1.c"
 void CCP1_Initialize(void)
 {
 
@@ -9830,10 +9831,13 @@ module.ccpr1h = CCPR1H;
 
 
 CCP1_CallBack(module.ccpr1_16Bit);
+
 }
 
 void CCP1_CallBack(uint16_t capturedValue)
 {
+
+
 
 }
 

@@ -85,6 +85,7 @@ void SYSTEM_Initialize(void)
     CCP1_Initialize();
     TMR5_Initialize();
     EXT_INT_Initialize();
+    TMR0_Initialize();
     EUSART_Initialize();
 }
 

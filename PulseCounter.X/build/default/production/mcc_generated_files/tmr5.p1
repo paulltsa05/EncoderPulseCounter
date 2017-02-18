@@ -7398,18 +7398,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr5.c: 64: {
 [e :U _TMR5_Initialize ]
 [f ]
-[; ;tmr5.c: 68: T5CON = 0x70;
+[; ;tmr5.c: 68: T5CON = 0x30;
 "68
-[e = _T5CON -> -> 112 `i `uc ]
+[e = _T5CON -> -> 48 `i `uc ]
 [; ;tmr5.c: 71: T5GCON = 0x00;
 "71
 [e = _T5GCON -> -> 0 `i `uc ]
 [; ;tmr5.c: 74: TMR5H = 0xFF;
 "74
 [e = _TMR5H -> -> 255 `i `uc ]
-[; ;tmr5.c: 77: TMR5L = 0xD8;
+[; ;tmr5.c: 77: TMR5L = 0xF6;
 "77
-[e = _TMR5L -> -> 216 `i `uc ]
+[e = _TMR5L -> -> 246 `i `uc ]
 [; ;tmr5.c: 80: timer5ReloadVal=(TMR5H << 8) | TMR5L;
 "80
 [e = _timer5ReloadVal -> | << -> _TMR5H `i -> 8 `i -> _TMR5L `i `ui ]

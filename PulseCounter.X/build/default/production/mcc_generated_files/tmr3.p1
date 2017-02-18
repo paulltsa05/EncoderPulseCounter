@@ -7398,18 +7398,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr3.c: 64: {
 [e :U _TMR3_Initialize ]
 [f ]
-[; ;tmr3.c: 68: T3CON = 0x70;
+[; ;tmr3.c: 68: T3CON = 0x30;
 "68
-[e = _T3CON -> -> 112 `i `uc ]
+[e = _T3CON -> -> 48 `i `uc ]
 [; ;tmr3.c: 71: T3GCON = 0x00;
 "71
 [e = _T3GCON -> -> 0 `i `uc ]
 [; ;tmr3.c: 74: TMR3H = 0xFF;
 "74
 [e = _TMR3H -> -> 255 `i `uc ]
-[; ;tmr3.c: 77: TMR3L = 0xD8;
+[; ;tmr3.c: 77: TMR3L = 0xF6;
 "77
-[e = _TMR3L -> -> 216 `i `uc ]
+[e = _TMR3L -> -> 246 `i `uc ]
 [; ;tmr3.c: 80: timer3ReloadVal=(TMR3H << 8) | TMR3L;
 "80
 [e = _timer3ReloadVal -> | << -> _TMR3H `i -> 8 `i -> _TMR3L `i `ui ]

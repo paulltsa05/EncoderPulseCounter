@@ -50,6 +50,7 @@
 #include <xc.h>
 #include "ccp1.h"
 
+
 /**
   Section: Capture Module APIs:
 */
@@ -93,11 +94,14 @@ void CCP1_CaptureISR(void)
     
     // Return 16bit captured value
     CCP1_CallBack(module.ccpr1_16Bit);
+//    EncA_PulseEdgeEvent(module.ccpr1_16Bit);
 }
 
 void CCP1_CallBack(uint16_t capturedValue)
 {
     // Add your code here
+    
+    
 }
 /**
  End of File

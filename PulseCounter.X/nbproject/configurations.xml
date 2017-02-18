@@ -17,10 +17,14 @@
         <itemPath>mcc_generated_files/eusart.h</itemPath>
         <itemPath>mcc_generated_files/adc.h</itemPath>
         <itemPath>mcc_generated_files/ext_int.h</itemPath>
+        <itemPath>mcc_generated_files/tmr0.h</itemPath>
       </logicalFolder>
       <itemPath>crc16.h</itemPath>
       <itemPath>ModbusMaster.h</itemPath>
       <itemPath>word.h</itemPath>
+      <itemPath>ModbusManager.h</itemPath>
+      <itemPath>main.h</itemPath>
+      <itemPath>LED_Ctrl.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -42,9 +46,12 @@
         <itemPath>mcc_generated_files/eusart.c</itemPath>
         <itemPath>mcc_generated_files/adc.c</itemPath>
         <itemPath>mcc_generated_files/ext_int.c</itemPath>
+        <itemPath>mcc_generated_files/tmr0.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>ModbusMaster.c</itemPath>
+      <itemPath>ModbusManager.c</itemPath>
+      <itemPath>LED_Ctrl.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

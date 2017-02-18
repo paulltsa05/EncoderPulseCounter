@@ -64,8 +64,8 @@ void TMR5_Initialize(void)
 {
     //Set the Timer to the options selected in the GUI
 
-    //T5CKPS 1:8; T5SOSC T5CKI_enabled; T5SYNC synchronize; TMR5CS FOSC; TMR5ON off; 
-    T5CON = 0x70;
+    //T5CKPS 1:8; T5SOSC T5CKI_enabled; T5SYNC synchronize; TMR5CS FOSC/4; TMR5ON off; 
+    T5CON = 0x30;
 
     //T5GSS T5G; TMR5GE disabled; T5GTM disabled; T5GPOL low; T5GGO_nDONE done; T5GSPM disabled; 
     T5GCON = 0x00;
@@ -73,8 +73,8 @@ void TMR5_Initialize(void)
     //TMR5H 255; 
     TMR5H = 0xFF;
 
-    //TMR5L 216; 
-    TMR5L = 0xD8;
+    //TMR5L 246; 
+    TMR5L = 0xF6;
 
     // Load the TMR value to reload variable
     timer5ReloadVal=(TMR5H << 8) | TMR5L;

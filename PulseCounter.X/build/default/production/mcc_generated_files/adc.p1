@@ -7421,6 +7421,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp1.h: 121: void CCP1_Initialize(void);
 [; ;ccp1.h: 137: void CCP1_CaptureISR(void);
 [; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
+[; ;ccp1.h: 159: void EncA_PulseEdgeEvent(uint16_t capturedValue);
 [; ;ccp2.h: 78: typedef union CCPR2Reg_tag
 [; ;ccp2.h: 79: {
 [; ;ccp2.h: 80: struct
@@ -7436,18 +7437,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
+[; ;ccp2.h: 159: void EncB_PulseEdgeEvent(uint16_t capturedValue);
 [; ;eusart.h: 94: void EUSART_Initialize(void);
 [; ;eusart.h: 114: uint8_t EUSART_Read(void);
 [; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;tmr0.h: 105: void TMR0_Initialize(void);
+[; ;tmr0.h: 134: void TMR0_StartTimer(void);
+[; ;tmr0.h: 166: void TMR0_StopTimer(void);
+[; ;tmr0.h: 202: uint16_t TMR0_Read16bitTimer(void);
+[; ;tmr0.h: 241: void TMR0_Write16bitTimer(uint16_t timerVal);
+[; ;tmr0.h: 277: void TMR0_Reload16bit(void);
+[; ;tmr0.h: 295: void TMR0_ISR(void);
+[; ;tmr0.h: 313: void TMR0_CallBack(void);
+[; ;tmr0.h: 331: void TMR0_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr0.h: 349: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 367: void TMR0_DefaultInterruptHandler(void);
+[; ;tmr0.h: 370: uint32_t millis(void);
+[; ;tmr0.h: 372: void millisReset(void);
 [; ;ext_int.h: 250: void EXT_INT_Initialize(void);
 [; ;ext_int.h: 272: void INT_ISR(void);
 [; ;ext_int.h: 296: void INT_CallBack(void);
 [; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
 [; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
 [; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;mcc.h: 75: void SYSTEM_Initialize(void);
-[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 101: void WDT_Initialize(void);
+[; ;mcc.h: 76: void SYSTEM_Initialize(void);
+[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 102: void WDT_Initialize(void);
 "64 mcc_generated_files/adc.c
 [v _ADC_Initialize `(v ~T0 @X0 1 ef ]
 "65

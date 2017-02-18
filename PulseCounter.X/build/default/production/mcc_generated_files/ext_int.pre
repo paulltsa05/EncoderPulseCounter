@@ -9692,10 +9692,15 @@ extern void (*INT_InterruptHandler)(void);
 # 367
 void INT_DefaultInterruptHandler(void);
 
-# 38 "mcc_generated_files/ext_int.c"
+# 19 "mcc_generated_files/../main.h"
+void EncINX_PulseRisingEvent();
+
+void Timer0_tick10msecFunc();
+
+# 39 "mcc_generated_files/ext_int.c"
 void (*INT_InterruptHandler)(void);
 
-# 43
+# 44
 void INT_ISR(void)
 {
 
@@ -9708,9 +9713,11 @@ void INT_ISR(void)
 INT_CallBack();
 }
 
-# 58
+# 59
 void INT_CallBack(void)
 {
+
+EncINX_PulseRisingEvent();
 
 if(INT_InterruptHandler)
 {
@@ -9718,28 +9725,28 @@ INT_InterruptHandler();
 }
 }
 
-# 70
+# 73
 void INT_SetInterruptHandler(void* InterruptHandler){
 INT_InterruptHandler = InterruptHandler;
 }
 
-# 77
+# 80
 void INT_DefaultInterruptHandler(void){
 
 
 }
 
-# 90
+# 93
 void EXT_INT_Initialize(void)
 {
 
-# 99
+# 102
 (PIR0bits.INTF = 0);
 (INTCONbits.INTEDG = 1);
 
 INT_SetInterruptHandler(INT_DefaultInterruptHandler);
 (PIE0bits.INTE = 1);
 
-# 109
+# 112
 }
 

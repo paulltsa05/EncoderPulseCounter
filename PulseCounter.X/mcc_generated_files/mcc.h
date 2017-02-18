@@ -55,6 +55,7 @@
 #include "ccp1.h"
 #include "ccp2.h"
 #include "eusart.h"
+#include "tmr0.h"
 #include "adc.h"
 #include "ext_int.h"
 

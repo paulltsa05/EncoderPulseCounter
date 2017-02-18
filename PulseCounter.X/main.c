@@ -44,10 +44,17 @@
 */
 
 #include "mcc_generated_files/mcc.h"
+#include "ModbusManager.h"
+#include "main.h"
+#include "LED_Ctrl.h"
 
 /*
                          Main application
  */
+unsigned int OldEncPulseOpState=IDLE;
+
+void EPC_StateMachineControlLoop();
+
 void main(void)
 {
     // initialize the device
@@ -57,10 +64,10 @@ void main(void)
     // Use the following macros to:
 
     // Enable the Global Interrupts
-    //INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_GlobalInterruptEnable();
 
     // Enable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
 
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
@@ -71,12 +78,142 @@ void main(void)
     TMR3_StopTimer();//Stop TMR3
     TMR5_WriteTimer(0);//reset TMR5
     TMR5_StopTimer();//Stop TMR5
+    
+    ModbusMasterSetup();
+    EncPulseOpState=IDLE;
 
     while (1)
     {
         // Add your application code
+       // EPC_StateMachineControlLoop();
     }
 }
+
+void EPC_StateMachineControlLoop() //call the statemachine in main loop
+{
+    switch (EncPulseOpState)
+    {
+        case IDLE       :   if(EncPulseOpState != OldEncPulseOpState)//entry
+                            {   //Entry code here
+            
+            
+                            }
+                            else
+                            {   //during state
+            
+                            }    
+            
+                            OldEncPulseOpState=EncPulseOpState;
+                        break;
+        case EnALoEnBLo :   if(EncPulseOpState != OldEncPulseOpState)//entry
+                            {   //Entry code here
+            
+            
+                            }
+                            else
+                            {   //during state
+            
+                            }    
+            
+                            OldEncPulseOpState=EncPulseOpState;
+            
+                        break;
+        case EnAHiEnBLo :   if(EncPulseOpState != OldEncPulseOpState)//entry
+                            {   //Entry code here
+            
+            
+                            }
+                            else
+                            {   //during state
+            
+                            }    
+            
+                            OldEncPulseOpState=EncPulseOpState;
+            
+                        break;
+        case EnAHiEnBHi :   if(EncPulseOpState != OldEncPulseOpState)//entry
+                            {   //Entry code here
+            
+            
+                            }
+                            else
+                            {   //during state
+            
+                            }    
+            
+                            OldEncPulseOpState=EncPulseOpState;
+            
+                        break;
+        case EnALoEnBHi :   if(EncPulseOpState != OldEncPulseOpState)//entry
+                            {   //Entry code here
+            
+            
+                            }
+                            else
+                            {   //during state
+            
+                            }    
+            
+                            OldEncPulseOpState=EncPulseOpState;
+            
+                        break;
+        case EncError   :   if(EncPulseOpState != OldEncPulseOpState)//entry
+                            {   //Entry code here
+            
+            
+                            }
+                            else
+                            {   //during state
+            
+                            }    
+            
+                            OldEncPulseOpState=EncPulseOpState;
+            
+                        break;
+        default: break;
+    }        
+}
+
+//Interrupt trigger function call
+void EncA_PulseEdgeEvent(uint16_t capturedValue)
+{
+    TMR3_WriteTimer(0);
+    TMR3_StartTimer();//Start if not started TMR3
+    if(ENC_A_RC5_GetValue())// rising uses timer 3 & CCP1
+    {
+        
+    }
+    else//falling
+    {
+        
+    }
+    
+}
+void EncB_PulseEdgeEvent(uint16_t capturedValue)
+{
+    TMR5_WriteTimer(0);
+    TMR5_StartTimer();//Start if not started TMR5
+    if(ENC_B_RC4_GetValue())// rising uses timer 5 & CCP2
+    {
+        
+    }
+    else//falling
+    {
+        
+    }
+    
+}
+
+void EncINX_PulseRisingEvent()
+{   //on rising only 
+    
+}
+
+void Timer0_tick10msecFunc()//call every 10msec
+{
+    LedON_Control_10msec();
+}
+
 /**
  End of File
 */

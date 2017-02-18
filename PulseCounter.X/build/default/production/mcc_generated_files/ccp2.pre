@@ -9789,8 +9789,9 @@ void CCP2_CaptureISR(void);
 
 # 158
 void CCP2_CallBack(uint16_t capturedValue);
+void EncB_PulseEdgeEvent(uint16_t capturedValue);
 
-# 57 "mcc_generated_files/ccp2.c"
+# 58 "mcc_generated_files/ccp2.c"
 void CCP2_Initialize(void)
 {
 
@@ -9830,10 +9831,12 @@ module.ccpr2h = CCPR2H;
 
 
 CCP2_CallBack(module.ccpr2_16Bit);
+EncB_PulseEdgeEvent(module.ccpr2_16Bit);
 }
 
 void CCP2_CallBack(uint16_t capturedValue)
 {
+
 
 }
 

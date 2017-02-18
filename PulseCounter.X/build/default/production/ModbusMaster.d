@@ -1,1 +1,0 @@
- build/default/production/ModbusMaster.d  build/default/production/ModbusMaster.p1:  ModbusMaster.c crc16.h ModbusMaster.h word.h

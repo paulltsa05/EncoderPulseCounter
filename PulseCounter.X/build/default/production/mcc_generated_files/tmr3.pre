@@ -9804,7 +9804,7 @@ void TMR3_Initialize(void)
 
 
 
-T3CON = 0x70;
+T3CON = 0x30;
 
 
 T3GCON = 0x00;
@@ -9813,7 +9813,7 @@ T3GCON = 0x00;
 TMR3H = 0xFF;
 
 
-TMR3L = 0xD8;
+TMR3L = 0xF6;
 
 
 timer3ReloadVal=(TMR3H << 8) | TMR3L;

@@ -9804,7 +9804,7 @@ void TMR5_Initialize(void)
 
 
 
-T5CON = 0x70;
+T5CON = 0x30;
 
 
 T5GCON = 0x00;
@@ -9813,7 +9813,7 @@ T5GCON = 0x00;
 TMR5H = 0xFF;
 
 
-TMR5L = 0xD8;
+TMR5L = 0xF6;
 
 
 timer5ReloadVal=(TMR5H << 8) | TMR5L;

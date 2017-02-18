@@ -156,6 +156,7 @@ void CCP1_CaptureISR(void);
     None
 */
  void CCP1_CallBack(uint16_t capturedValue);
+ void EncA_PulseEdgeEvent(uint16_t capturedValue);
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 

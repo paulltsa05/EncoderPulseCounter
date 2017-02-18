@@ -23,12 +23,25 @@ extern "C" {
 Arduino class library for communicating with Modbus slaves over 
 RS232/485 (via RTU protocol).
 */
+    // Modbus function codes for bit access
+#define   ku8MBReadCoils                                              0x01  //< Modbus function 0x01 Read Coils
+#define   ku8MBReadDiscreteInputs                                     0x02  //< Modbus function 0x02 Read Discrete Inputs
+#define   ku8MBWriteSingleCoil                                        0x05     //< Modbus function 0x05 Write Single Coil
+#define   ku8MBWriteMultipleCoils                                     0x0F     //< Modbus function 0x0F Write Multiple Coils
 
+    // Modbus function codes for 16 bit access
+#define   ku8MBReadHoldingRegisters                                   0x03     //< Modbus function 0x03 Read Holding Registers
+#define   ku8MBReadInputRegisters                                     0x04     //< Modbus function 0x04 Read Input Registers
+#define   ku8MBWriteSingleRegister                                    0x06     //< Modbus function 0x06 Write Single Register
+#define   ku8MBWriteMultipleRegisters                                 0x10     //< Modbus function 0x10 Write Multiple Registers
+#define   ku8MBMaskWriteRegister                                      0x16     //< Modbus function 0x16 Mask Write Register
+#define   ku8MBReadWriteMultipleRegisters                             0x17     //< Modbus function 0x17 Read Write Multiple Registers
+    
+    // Modbus timeout [milliseconds]
+#define   ku16MBResponseTimeout                                      2000     //< Modbus timeout [milliseconds]
+    
    
-//    void begin(uint8_t, Stream &serial);
-    void idle(void (*)());
-    void preTransmission(void (*)());
-    void postTransmission(void (*)());
+
 
     // Modbus exception codes
     /**
@@ -43,7 +56,7 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBIllegalFunction            = 0x01;
+#define   ku8MBIllegalFunction                                        0x01;
 
     /**
     Modbus protocol illegal data address exception.
@@ -63,7 +76,7 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBIllegalDataAddress         = 0x02;
+#define   ku8MBIllegalDataAddress                                     0x02;
     
     /**
     Modbus protocol illegal data value exception.
@@ -78,7 +91,7 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBIllegalDataValue           = 0x03;
+#define   ku8MBIllegalDataValue                                       0x03;
     
     /**
     Modbus protocol slave device failure exception.
@@ -88,13 +101,13 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBSlaveDeviceFailure         = 0x04;
+#define   ku8MBSlaveDeviceFailure                                     0x04;
 
     // Class-defined success/exception codes
     /**
     ModbusMaster success.
     
-    Modbus transaction was successful; the following checks were valid:
+    Modbus transaction was successful   the following checks were valid:
       - slave ID
       - function code
       - response code
@@ -103,7 +116,7 @@ RS232/485 (via RTU protocol).
       
     @ingroup constant
     */
-    static const uint8_t ku8MBSuccess                    = 0x00;
+#define   ku8MBSuccess                                                0x00  
     
     /**
     ModbusMaster invalid response slave ID exception.
@@ -112,7 +125,7 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBInvalidSlaveID             = 0xE0;
+#define   ku8MBInvalidSlaveID                                         0xE0  
     
     /**
     ModbusMaster invalid response function exception.
@@ -121,7 +134,7 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBInvalidFunction            = 0xE1;
+#define   ku8MBInvalidFunction                                        0xE1  
     
     /**
     ModbusMaster response timed out exception.
@@ -131,7 +144,7 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBResponseTimedOut           = 0xE2;
+#define   ku8MBResponseTimedOut                                       0xE2  
     
     /**
     ModbusMaster invalid response CRC exception.
@@ -140,78 +153,70 @@ RS232/485 (via RTU protocol).
     
     @ingroup constant
     */
-    static const uint8_t ku8MBInvalidCRC                 = 0xE3;
-    
-    uint16_t getResponseBuffer(uint8_t);
-    void     clearResponseBuffer();
-    uint8_t  setTransmitBuffer(uint8_t, uint16_t);
-    void     clearTransmitBuffer();
-    
-    void beginTransmission(uint16_t);
-    uint8_t requestFrom(uint16_t, uint16_t);
-    void sendBit(bool);
-    void send8(uint8_t);
-    void send16(uint16_t);
-    void send32(uint32_t);
-    uint8_t available(void);
-    uint16_t receive(void);
-    
-    
-    uint8_t  readCoils(uint16_t, uint16_t);
-    uint8_t  readDiscreteInputs(uint16_t, uint16_t);
-    uint8_t  readHoldingRegisters(uint16_t, uint16_t);
-    uint8_t  readInputRegisters(uint16_t, uint8_t);
-    uint8_t  writeSingleCoil(uint16_t, uint8_t);
-    uint8_t  writeSingleRegister(uint16_t, uint16_t);
-    uint8_t  writeMultipleCoils(uint16_t, uint16_t);
-    uint8_t  writeMultipleCoils();
-    uint8_t  writeMultipleRegisters(uint16_t, uint16_t);
-    uint8_t  writeMultipleRegisters();
-    uint8_t  maskWriteRegister(uint16_t, uint16_t, uint16_t);
-    uint8_t  readWriteMultipleRegisters(uint16_t, uint16_t, uint16_t, uint16_t);
-    uint8_t  readWriteMultipleRegisters(uint16_t, uint16_t);
+#define   ku8MBInvalidCRC                                             0xE3  
+  
+#define   ku8MaxBufferSize                                            64     ///< size of response/transmit buffers    
+
     
 
-    uint8_t  _u8MBSlave;                                         ///< Modbus slave (1..255) initialized in begin()
-    static const uint8_t ku8MaxBufferSize                = 64;   ///< size of response/transmit buffers    
-    uint16_t _u16ReadAddress;                                    ///< slave register from which to read
-    uint16_t _u16ReadQty;                                        ///< quantity of words to read
-    uint16_t _u16ResponseBuffer[ku8MaxBufferSize];               ///< buffer to store Modbus slave response; read via GetResponseBuffer()
-    uint16_t _u16WriteAddress;                                   ///< slave register to which to write
-    uint16_t _u16WriteQty;                                       ///< quantity of words to write
-    uint16_t _u16TransmitBuffer[ku8MaxBufferSize];               ///< buffer containing data to transmit to Modbus slave; set via SetTransmitBuffer()
-    uint16_t* txBuffer; // from Wire.h -- need to clean this up Rx
-    uint8_t _u8TransmitBufferIndex;
-    uint16_t u16TransmitBufferLength;
-    uint16_t* rxBuffer; // from Wire.h -- need to clean this up Rx
-    uint8_t _u8ResponseBufferIndex;
-    uint8_t _u8ResponseBufferLength;
+    unsigned char  _u8MBSlave;                                         ///< Modbus slave (1..255) initialized in begin()
+    unsigned int _u16ReadAddress;                                    ///< slave register from which to read
+    unsigned int _u16ReadQty;                                        ///< quantity of words to read
+    unsigned int _u16ResponseBuffer[ku8MaxBufferSize];               ///< buffer to store Modbus slave response; read via GetResponseBuffer()
+    unsigned int _u16WriteAddress;                                   ///< slave register to which to write
+    unsigned int _u16WriteQty;                                       ///< quantity of words to write
+    unsigned int _u16TransmitBuffer[ku8MaxBufferSize];               ///< buffer containing data to transmit to Modbus slave; set via SetTransmitBuffer()
+    unsigned int* txBuffer; // from Wire.h -- need to clean this up Rx
+    unsigned char _u8TransmitBufferIndex;
+    unsigned int u16TransmitBufferLength;
+    unsigned int* rxBuffer; // from Wire.h -- need to clean this up Rx
+    unsigned char _u8ResponseBufferIndex;
+    unsigned char _u8ResponseBufferLength;
     
-    // Modbus function codes for bit access
-    static const uint8_t ku8MBReadCoils                  = 0x01; ///< Modbus function 0x01 Read Coils
-    static const uint8_t ku8MBReadDiscreteInputs         = 0x02; ///< Modbus function 0x02 Read Discrete Inputs
-    static const uint8_t ku8MBWriteSingleCoil            = 0x05; ///< Modbus function 0x05 Write Single Coil
-    static const uint8_t ku8MBWriteMultipleCoils         = 0x0F; ///< Modbus function 0x0F Write Multiple Coils
 
-    // Modbus function codes for 16 bit access
-    static const uint8_t ku8MBReadHoldingRegisters       = 0x03; ///< Modbus function 0x03 Read Holding Registers
-    static const uint8_t ku8MBReadInputRegisters         = 0x04; ///< Modbus function 0x04 Read Input Registers
-    static const uint8_t ku8MBWriteSingleRegister        = 0x06; ///< Modbus function 0x06 Write Single Register
-    static const uint8_t ku8MBWriteMultipleRegisters     = 0x10; ///< Modbus function 0x10 Write Multiple Registers
-    static const uint8_t ku8MBMaskWriteRegister          = 0x16; ///< Modbus function 0x16 Mask Write Register
-    static const uint8_t ku8MBReadWriteMultipleRegisters = 0x17; ///< Modbus function 0x17 Read Write Multiple Registers
-    
-    // Modbus timeout [milliseconds]
-    static const uint16_t ku16MBResponseTimeout          = 2000; ///< Modbus timeout [milliseconds]
-    
     // master function that conducts Modbus transactions
-    uint8_t ModbusMasterTransaction(uint8_t u8MBFunction);
-    
+    unsigned char ModbusMasterTransaction(unsigned char u8MBFunction);
+
+  
     // preTransmission callback function; gets called before writing a Modbus message
     void (*_preTransmission)();
     // postTransmission callback function; gets called after a Modbus message has been sent
     void (*_postTransmission)();
 
+ //    void begin(unsigned char, Stream &serial);
+    void ModbusMasterInit(unsigned char slave);
+
+    void preTransmission(void (*)());
+    void postTransmission(void (*)());   
+    
+    unsigned int getResponseBuffer(unsigned char);
+    void     clearResponseBuffer();
+    unsigned char  setTransmitBuffer(unsigned char, unsigned int);
+    void     clearTransmitBuffer();
+    
+    void beginTransmission(unsigned int);
+    unsigned char requestFrom(unsigned int, unsigned int);
+ //   void sendbit(bool);
+    void send8(unsigned char);
+    void send16(unsigned int);
+    void send32(unsigned long);
+    unsigned char available(void);
+    unsigned int receive(void);
+    
+    
+    unsigned char  readCoils(unsigned int, unsigned int);
+    unsigned char  readDiscreteInputs(unsigned int, unsigned int);
+    unsigned char  readHoldingRegisters(unsigned int, unsigned int);
+    unsigned char  readInputRegisters(unsigned int, unsigned char);
+    unsigned char  writeSingleCoil(unsigned int, unsigned char);
+    unsigned char  writeSingleRegister(unsigned int, unsigned int);
+    unsigned char  writeMultipleCoils(unsigned int, unsigned int);
+ //   unsigned char  writeMultipleCoils();
+    unsigned char  writeMultipleRegisters(unsigned int, unsigned int);
+ //   unsigned char  writeMultipleRegisters();
+    unsigned char  maskWriteRegister(unsigned int, unsigned int, unsigned int);
+    unsigned char  readWriteMultipleRegisters(unsigned int, unsigned int, unsigned int, unsigned int);
+//    unsigned char  readWriteMultipleRegisters(unsigned int, unsigned int);    
 
 
 #ifdef	__cplusplus

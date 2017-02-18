@@ -20,11 +20,11 @@ extern "C" {
 
     This CRC is normally used in disk-drive controllers.
 
-    @param uint16_t crc (0x0000..0xFFFF)
-    @param uint8_t a (0x00..0xFF)
+    @param unsigned int crc (0x0000..0xFFFF)
+    @param unsigned char a (0x00..0xFF)
     @return calculated CRC (0x0000..0xFFFF)
 */
-static uint16_t crc16_update(uint16_t crc, uint8_t a)
+static unsigned int crc16_update(unsigned int crc, unsigned char a)
 {
   int i;
 

@@ -1,4 +1,7 @@
 #include "ModbusMaster.h"
+#include "mcc_generated_files/eusart.h"
+#include "mcc_generated_files/pin_manager.h"
+#include "mcc_generated_files/tmr0.h"
 
 
 /* _____GLOBAL VARIABLES_____________________________________________________ */
@@ -12,9 +15,9 @@ Creates class object; initialize it using begin().
 
 @ingroup setup
 */
-void ModbusMasterInit(uint8_t slave)
+void ModbusMasterInit(unsigned char slave)
 {
-  _idle = 0;
+
   _preTransmission = 0;
   _postTransmission = 0;
   _u8MBSlave = slave;
@@ -27,7 +30,7 @@ void ModbusMasterInit(uint8_t slave)
 #endif
 }
 
-void beginTransmission(uint16_t u16Address)
+void beginTransmission(unsigned int u16Address)
 {
   _u16WriteAddress = u16Address;
   _u8TransmitBufferIndex = 0;
@@ -35,9 +38,9 @@ void beginTransmission(uint16_t u16Address)
 }
 
 // eliminate this function in favor of using existing MB request functions
-uint8_t requestFrom(uint16_t address, uint16_t quantity)
+unsigned char requestFrom(unsigned int address, unsigned int quantity)
 {
-  uint8_t read;
+  unsigned char read;
   // clamp to buffer length
   if (quantity > ku8MaxBufferSize)
   {
@@ -51,23 +54,23 @@ uint8_t requestFrom(uint16_t address, uint16_t quantity)
 }
 
 
-void sendBit(bool data)
-{
-  uint8_t txBitIndex = u16TransmitBufferLength % 16;
-  if ((u16TransmitBufferLength >> 4) < ku8MaxBufferSize)
-  {
-    if (0 == txBitIndex)
-    {
-      _u16TransmitBuffer[_u8TransmitBufferIndex] = 0;
-    }
-    bitWrite(_u16TransmitBuffer[_u8TransmitBufferIndex], txBitIndex, data);
-    u16TransmitBufferLength++;
-    _u8TransmitBufferIndex = u16TransmitBufferLength >> 4;
-  }
-}
+//void sendbit(bool bitVal)
+//{
+//  unsigned char txBitIndex = u16TransmitBufferLength % 16;
+//  if ((u16TransmitBufferLength >> 4) < ku8MaxBufferSize)
+//  {
+//    if (0 == txBitIndex)
+//    {
+//      _u16TransmitBuffer[_u8TransmitBufferIndex] = 0;
+//    }
+//    bitWrite(_u16TransmitBuffer[_u8TransmitBufferIndex], txBitIndex, bitVal);
+//    u16TransmitBufferLength++;
+//    _u8TransmitBufferIndex = u16TransmitBufferLength >> 4;
+//  }
+//}
 
 
-void send16(uint16_t data)
+void send16(unsigned int data)
 {
   if (_u8TransmitBufferIndex < ku8MaxBufferSize)
   {
@@ -77,16 +80,16 @@ void send16(uint16_t data)
 }
 
 
-void send32(uint32_t data)
+void send32(unsigned long data)
 {
   send16(lowWord(data));
   send16(highWord(data));
 }
 
 
-void send8(uint8_t data)
+void send8(unsigned char data)
 {
-  send16(((uint16_t)data)&0x00FF);
+  send16(((unsigned int)data)&0x00FF);
 }
 
 
@@ -97,13 +100,13 @@ void send8(uint8_t data)
 
 
 
-uint8_t available(void)
+unsigned char available(void)
 {
   return _u8ResponseBufferLength - _u8ResponseBufferIndex;
 }
 
 
-uint16_t receive(void)
+unsigned int receive(void)
 {
   if (_u8ResponseBufferIndex < _u8ResponseBufferLength)
   {
@@ -159,7 +162,7 @@ Retrieve data from response buffer.
 @return value in position u8Index of response buffer (0x0000..0xFFFF)
 @ingroup buffer
 */
-uint16_t getResponseBuffer(uint8_t u8Index)
+unsigned int getResponseBuffer(unsigned char u8Index)
 {
   if (u8Index < ku8MaxBufferSize)
   {
@@ -175,12 +178,12 @@ uint16_t getResponseBuffer(uint8_t u8Index)
 /**
 Clear Modbus response buffer.
 
-@see getResponseBuffer(uint8_t u8Index)
+@see getResponseBuffer(unsigned char u8Index)
 @ingroup buffer
 */
 void clearResponseBuffer()
 {
-  uint8_t i;
+  unsigned char i;
   
   for (i = 0; i < ku8MaxBufferSize; i++)
   {
@@ -198,7 +201,7 @@ Place data in transmit buffer.
 @return 0 on success; exception number on failure
 @ingroup buffer
 */
-uint8_t setTransmitBuffer(uint8_t u8Index, uint16_t u16Value)
+unsigned char setTransmitBuffer(unsigned char u8Index, unsigned int u16Value)
 {
   if (u8Index < ku8MaxBufferSize)
   {
@@ -215,12 +218,12 @@ uint8_t setTransmitBuffer(uint8_t u8Index, uint16_t u16Value)
 /**
 Clear Modbus transmit buffer.
 
-@see setTransmitBuffer(uint8_t u8Index, uint16_t u16Value)
+@see setTransmitBuffer(unsigned char u8Index, unsigned int u16Value)
 @ingroup buffer
 */
 void clearTransmitBuffer()
 {
-  uint8_t i;
+  unsigned char i;
   
   for (i = 0; i < ku8MaxBufferSize; i++)
   {
@@ -252,7 +255,7 @@ order end of the word).
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t readCoils(uint16_t u16ReadAddress, uint16_t u16BitQty)
+unsigned char readCoils(unsigned int u16ReadAddress, unsigned int u16BitQty)
 {
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16BitQty;
@@ -283,8 +286,8 @@ order end of the word).
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t readDiscreteInputs(uint16_t u16ReadAddress,
-  uint16_t u16BitQty)
+unsigned char readDiscreteInputs(unsigned int u16ReadAddress,
+  unsigned int u16BitQty)
 {
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16BitQty;
@@ -308,8 +311,8 @@ register.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t readHoldingRegisters(uint16_t u16ReadAddress,
-  uint16_t u16ReadQty)
+unsigned char readHoldingRegisters(unsigned int u16ReadAddress,
+  unsigned int u16ReadQty)
 {
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16ReadQty;
@@ -333,8 +336,8 @@ register.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t readInputRegisters(uint16_t u16ReadAddress,
-  uint8_t u16ReadQty)
+unsigned char readInputRegisters(unsigned int u16ReadAddress,
+  unsigned char u16ReadQty)
 {
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16ReadQty;
@@ -356,7 +359,7 @@ address of the coil to be forced. Coils are addressed starting at zero.
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t writeSingleCoil(uint16_t u16WriteAddress, uint8_t u8State)
+unsigned char writeSingleCoil(unsigned int u16WriteAddress, unsigned char u8State)
 {
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = (u8State ? 0xFF00 : 0x0000);
@@ -376,8 +379,8 @@ written. Registers are addressed starting at zero.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t writeSingleRegister(uint16_t u16WriteAddress,
-  uint16_t u16WriteValue)
+unsigned char writeSingleRegister(unsigned int u16WriteAddress,
+  unsigned int u16WriteValue)
 {
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = 0;
@@ -402,18 +405,18 @@ corresponding output to be ON. A logical '0' requests it to be OFF.
 @return 0 on success; exception number on failure
 @ingroup discrete
 */
-uint8_t writeMultipleCoils(uint16_t u16WriteAddress,
-  uint16_t u16BitQty)
+unsigned char writeMultipleCoils(unsigned int u16WriteAddress,
+  unsigned int u16BitQty)
 {
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = u16BitQty;
   return ModbusMasterTransaction(ku8MBWriteMultipleCoils);
 }
-uint8_t writeMultipleCoils()
-{
-  _u16WriteQty = u16TransmitBufferLength;
-  return ModbusMasterTransaction(ku8MBWriteMultipleCoils);
-}
+//unsigned char writeMultipleCoils()
+//{
+//  _u16WriteQty = u16TransmitBufferLength;
+//  return ModbusMasterTransaction(ku8MBWriteMultipleCoils);
+//}
 
 
 /**
@@ -430,8 +433,8 @@ is packed as one word per register.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t writeMultipleRegisters(uint16_t u16WriteAddress,
-  uint16_t u16WriteQty)
+unsigned char writeMultipleRegisters(unsigned int u16WriteAddress,
+  unsigned int u16WriteQty)
 {
   _u16WriteAddress = u16WriteAddress;
   _u16WriteQty = u16WriteQty;
@@ -439,11 +442,11 @@ uint8_t writeMultipleRegisters(uint16_t u16WriteAddress,
 }
 
 // new version based on Wire.h
-uint8_t writeMultipleRegisters()
-{
-  _u16WriteQty = _u8TransmitBufferIndex;
-  return ModbusMasterTransaction(ku8MBWriteMultipleRegisters);
-}
+//unsigned char writeMultipleRegisters()
+//{
+//  _u16WriteQty = _u8TransmitBufferIndex;
+//  return ModbusMasterTransaction(ku8MBWriteMultipleRegisters);
+//}
 
 
 /**
@@ -468,8 +471,8 @@ Result = (Current Contents && And_Mask) || (Or_Mask && (~And_Mask))
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t maskWriteRegister(uint16_t u16WriteAddress,
-  uint16_t u16AndMask, uint16_t u16OrMask)
+unsigned char maskWriteRegister(unsigned int u16WriteAddress,
+  unsigned int u16AndMask, unsigned int u16OrMask)
 {
   _u16WriteAddress = u16WriteAddress;
   _u16TransmitBuffer[0] = u16AndMask;
@@ -498,8 +501,8 @@ buffer.
 @return 0 on success; exception number on failure
 @ingroup register
 */
-uint8_t readWriteMultipleRegisters(uint16_t u16ReadAddress,
-  uint16_t u16ReadQty, uint16_t u16WriteAddress, uint16_t u16WriteQty)
+unsigned char readWriteMultipleRegisters(unsigned int u16ReadAddress,
+  unsigned int u16ReadQty, unsigned int u16WriteAddress, unsigned int u16WriteQty)
 {
   _u16ReadAddress = u16ReadAddress;
   _u16ReadQty = u16ReadQty;
@@ -507,14 +510,14 @@ uint8_t readWriteMultipleRegisters(uint16_t u16ReadAddress,
   _u16WriteQty = u16WriteQty;
   return ModbusMasterTransaction(ku8MBReadWriteMultipleRegisters);
 }
-uint8_t readWriteMultipleRegisters(uint16_t u16ReadAddress,
-  uint16_t u16ReadQty)
-{
-  _u16ReadAddress = u16ReadAddress;
-  _u16ReadQty = u16ReadQty;
-  _u16WriteQty = _u8TransmitBufferIndex;
-  return ModbusMasterTransaction(ku8MBReadWriteMultipleRegisters);
-}
+//unsigned char readWriteMultipleRegisters(unsigned int u16ReadAddress,
+//  unsigned int u16ReadQty)
+//{
+//  _u16ReadAddress = u16ReadAddress;
+//  _u16ReadQty = u16ReadQty;
+//  _u16WriteQty = _u8TransmitBufferIndex;
+//  return ModbusMasterTransaction(ku8MBReadWriteMultipleRegisters);
+//}
 
 
 /* _____PRIVATE FUNCTIONS____________________________________________________ */
@@ -531,15 +534,16 @@ Sequence:
 @param u8MBFunction Modbus function (0x01..0xFF)
 @return 0 on success; exception number on failure
 */
-uint8_t ModbusMasterTransaction(uint8_t u8MBFunction)
+unsigned char ModbusMasterTransaction(unsigned char u8MBFunction)
 {
-  uint8_t u8ModbusADU[256];
-  uint8_t u8ModbusADUSize = 0;
-  uint8_t i, u8Qty;
-  uint16_t u16CRC;
-  uint32_t u32StartTime;
-  uint8_t u8BytesLeft = 8;
-  uint8_t u8MBStatus = ku8MBSuccess;
+  //unsigned char u8ModbusADU[256];
+  unsigned char u8ModbusADU[64];  
+  unsigned char u8ModbusADUSize = 0;
+  unsigned char i, u8Qty;
+  unsigned int u16CRC;
+  unsigned long u32StartTime;
+  unsigned char u8BytesLeft = 8;
+  unsigned char u8MBStatus = ku8MBSuccess;
   
   // assemble Modbus Request Application Data Unit
   u8ModbusADU[u8ModbusADUSize++] = _u8MBSlave;
@@ -637,7 +641,7 @@ uint8_t ModbusMasterTransaction(uint8_t u8MBFunction)
 
   // flush receive buffer before transmitting request
   //while (_serial->read() != -1);
-    if(PIR1bits.RCIF){PIR1bits.RCIF=1;}//clear all RCIF
+    if(PIR1bits.RCIF){PIR1bits.RCIF=0;}//clear all RCIF
 
   // transmit request
   if (_preTransmission)
@@ -650,14 +654,20 @@ uint8_t ModbusMasterTransaction(uint8_t u8MBFunction)
   }
   
   u8ModbusADUSize = 0;
- // _serial->flush();    // flush transmit buffer
+ // _serial->flush();    // wait flush transmit buffer
+  while(0 == PIR1bits.TXIF)
+    {
+    }
+  
   if (_postTransmission)
   {
     _postTransmission();
   }
   
   // loop until we run out of time or bytes, or an error occurs
-//  u32StartTime = millis();// to be implemented TBD
+  millisReset();
+  
+  u32StartTime = millis();// to be implemented TBD
   while (u8BytesLeft && !u8MBStatus)
   {
 //    if (_serial->available())
@@ -666,7 +676,7 @@ uint8_t ModbusMasterTransaction(uint8_t u8MBFunction)
       digitalWrite(__MODBUSMASTER_DEBUG_PIN_A__, true);
 #endif
       //u8ModbusADU[u8ModbusADUSize++] = _serial->read();
-      u8ModbusADU[u8ModbusADUSize++] = EUSART_Read();
+      u8ModbusADU[u8ModbusADUSize++] = EUSART_Read();//continously wait for RX byte
       u8BytesLeft--;
 #if __MODBUSMASTER_DEBUG__
       digitalWrite(__MODBUSMASTER_DEBUG_PIN_A__, false);

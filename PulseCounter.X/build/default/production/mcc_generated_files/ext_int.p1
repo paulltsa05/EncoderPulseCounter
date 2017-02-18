@@ -10,6 +10,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR0bits `VS33 ~T0 @X0 0 e@16 ]
 "296 mcc_generated_files/ext_int.h
 [v _INT_CallBack `(v ~T0 @X0 0 ef ]
+"19 mcc_generated_files/../main.h
+[v _EncINX_PulseRisingEvent `(v ~T0 @X0 0 ef ]
 "341 /opt/microchip/xc8/v1.41/include/pic16f18344.h
 [s S26 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S26 . INTEDG . PEIE GIE ]
@@ -7338,97 +7340,102 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
 [; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
 [; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-"38 mcc_generated_files/ext_int.c
+[; ;main.h: 19: void EncINX_PulseRisingEvent();
+[; ;main.h: 21: void Timer0_tick10msecFunc();
+"39 mcc_generated_files/ext_int.c
 [v _INT_InterruptHandler `*F7661 ~T0 @X0 1 e ]
-[; ;ext_int.c: 38: void (*INT_InterruptHandler)(void);
-"43
-[v _INT_ISR `(v ~T0 @X0 1 ef ]
+[; ;ext_int.c: 39: void (*INT_InterruptHandler)(void);
 "44
+[v _INT_ISR `(v ~T0 @X0 1 ef ]
+"45
 {
-[; ;ext_int.c: 43: void INT_ISR(void)
-[; ;ext_int.c: 44: {
+[; ;ext_int.c: 44: void INT_ISR(void)
+[; ;ext_int.c: 45: {
 [e :U _INT_ISR ]
 [f ]
-[; ;ext_int.c: 49: (PIR0bits.INTF = 0);
-"49
+[; ;ext_int.c: 50: (PIR0bits.INTF = 0);
+"50
 [e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
-[; ;ext_int.c: 52: INT_CallBack();
-"52
-[e ( _INT_CallBack ..  ]
-[; ;ext_int.c: 53: }
+[; ;ext_int.c: 53: INT_CallBack();
 "53
+[e ( _INT_CallBack ..  ]
+[; ;ext_int.c: 54: }
+"54
 [e :UE 924 ]
 }
-"58
-[v _INT_CallBack `(v ~T0 @X0 1 ef ]
 "59
+[v _INT_CallBack `(v ~T0 @X0 1 ef ]
+"60
 {
-[; ;ext_int.c: 58: void INT_CallBack(void)
-[; ;ext_int.c: 59: {
+[; ;ext_int.c: 59: void INT_CallBack(void)
+[; ;ext_int.c: 60: {
 [e :U _INT_CallBack ]
 [f ]
-[; ;ext_int.c: 61: if(INT_InterruptHandler)
-"61
-[e $ ! != _INT_InterruptHandler -> -> 0 `i `*F7661 926  ]
-[; ;ext_int.c: 62: {
+[; ;ext_int.c: 62: EncINX_PulseRisingEvent();
 "62
-{
-[; ;ext_int.c: 63: INT_InterruptHandler();
-"63
-[e ( *U _INT_InterruptHandler ..  ]
+[e ( _EncINX_PulseRisingEvent ..  ]
+[; ;ext_int.c: 64: if(INT_InterruptHandler)
 "64
+[e $ ! != _INT_InterruptHandler -> -> 0 `i `*F7661 926  ]
+[; ;ext_int.c: 65: {
+"65
+{
+[; ;ext_int.c: 66: INT_InterruptHandler();
+"66
+[e ( *U _INT_InterruptHandler ..  ]
+"67
 }
 [e :U 926 ]
-[; ;ext_int.c: 64: }
-[; ;ext_int.c: 65: }
-"65
+[; ;ext_int.c: 67: }
+[; ;ext_int.c: 68: }
+"68
 [e :UE 925 ]
 }
-"70
+"73
 [v _INT_SetInterruptHandler `(v ~T0 @X0 1 ef1`*v ]
 {
-[; ;ext_int.c: 70: void INT_SetInterruptHandler(void* InterruptHandler){
+[; ;ext_int.c: 73: void INT_SetInterruptHandler(void* InterruptHandler){
 [e :U _INT_SetInterruptHandler ]
 [v _InterruptHandler `*v ~T0 @X0 1 r1 ]
 [f ]
-[; ;ext_int.c: 71: INT_InterruptHandler = InterruptHandler;
-"71
+[; ;ext_int.c: 74: INT_InterruptHandler = InterruptHandler;
+"74
 [e = _INT_InterruptHandler -> _InterruptHandler `*F7661 ]
-[; ;ext_int.c: 72: }
-"72
+[; ;ext_int.c: 75: }
+"75
 [e :UE 927 ]
 }
-"77
+"80
 [v _INT_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;ext_int.c: 77: void INT_DefaultInterruptHandler(void){
+[; ;ext_int.c: 80: void INT_DefaultInterruptHandler(void){
 [e :U _INT_DefaultInterruptHandler ]
 [f ]
-[; ;ext_int.c: 80: }
-"80
+[; ;ext_int.c: 83: }
+"83
 [e :UE 928 ]
 }
-"90
+"93
 [v _EXT_INT_Initialize `(v ~T0 @X0 1 ef ]
-"91
+"94
 {
-[; ;ext_int.c: 90: void EXT_INT_Initialize(void)
-[; ;ext_int.c: 91: {
+[; ;ext_int.c: 93: void EXT_INT_Initialize(void)
+[; ;ext_int.c: 94: {
 [e :U _EXT_INT_Initialize ]
 [f ]
-[; ;ext_int.c: 99: (PIR0bits.INTF = 0);
-"99
-[e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
-[; ;ext_int.c: 100: (INTCONbits.INTEDG = 1);
-"100
-[e = . . _INTCONbits 0 0 -> -> 1 `i `uc ]
-[; ;ext_int.c: 102: INT_SetInterruptHandler(INT_DefaultInterruptHandler);
+[; ;ext_int.c: 102: (PIR0bits.INTF = 0);
 "102
-[e ( _INT_SetInterruptHandler (1 -> &U _INT_DefaultInterruptHandler `*v ]
-[; ;ext_int.c: 103: (PIE0bits.INTE = 1);
+[e = . . _PIR0bits 0 0 -> -> 0 `i `uc ]
+[; ;ext_int.c: 103: (INTCONbits.INTEDG = 1);
 "103
+[e = . . _INTCONbits 0 0 -> -> 1 `i `uc ]
+[; ;ext_int.c: 105: INT_SetInterruptHandler(INT_DefaultInterruptHandler);
+"105
+[e ( _INT_SetInterruptHandler (1 -> &U _INT_DefaultInterruptHandler `*v ]
+[; ;ext_int.c: 106: (PIE0bits.INTE = 1);
+"106
 [e = . . _PIE0bits 0 0 -> -> 1 `i `uc ]
-[; ;ext_int.c: 109: }
-"109
+[; ;ext_int.c: 112: }
+"112
 [e :UE 929 ]
 }

@@ -1,0 +1,833 @@
+[p LITE_MODE AUTOSTATIC PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F18344 ]
+[d frameptr 6 ]
+"86 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/adc.c
+[e E7686 . `uc
+TEMP_ANA2 2
+channel_AVSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR 63
+]
+"62 /opt/microchip/xc8/v1.41/sources/common/float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 /opt/microchip/xc8/v1.41/sources/common/ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"6 /opt/microchip/xc8/v1.41/sources/common/lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"15 /opt/microchip/xc8/v1.41/sources/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"6 /opt/microchip/xc8/v1.41/sources/pic/eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"27 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/crc16.h
+[v _crc16_update crc16_update `(ui  1 s 2 crc16_update ]
+"51 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/LED_Ctrl.c
+[v _LedON_Control_10msec LedON_Control_10msec `(v  1 e 1 0 ]
+"58 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/main.c
+[v _main main `(v  1 e 1 0 ]
+"192
+[v _EncB_PulseEdgeEvent EncB_PulseEdgeEvent `(v  1 e 1 0 ]
+"207
+[v _EncINX_PulseRisingEvent EncINX_PulseRisingEvent `(v  1 e 1 0 ]
+"64 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+"58 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp1.c
+[v _CCP1_Initialize CCP1_Initialize `(v  1 e 1 0 ]
+"84
+[v _CCP1_CaptureISR CCP1_CaptureISR `(v  1 e 1 0 ]
+"100
+[v _CCP1_CallBack CCP1_CallBack `(v  1 e 1 0 ]
+"58 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp2.c
+[v _CCP2_Initialize CCP2_Initialize `(v  1 e 1 0 ]
+"84
+[v _CCP2_CaptureISR CCP2_CaptureISR `(v  1 e 1 0 ]
+"100
+[v _CCP2_CallBack CCP2_CallBack `(v  1 e 1 0 ]
+"55 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/eusart.c
+[v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
+"77
+[v _EUSART_Read EUSART_Read `(uc  1 e 1 0 ]
+"96
+[v _EUSART_Write EUSART_Write `(v  1 e 1 0 ]
+"44 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ext_int.c
+[v _INT_ISR INT_ISR `(v  1 e 1 0 ]
+"59
+[v _INT_CallBack INT_CallBack `(v  1 e 1 0 ]
+"73
+[v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
+"80
+[v _INT_DefaultInterruptHandler INT_DefaultInterruptHandler `(v  1 e 1 0 ]
+"93
+[v _EXT_INT_Initialize EXT_INT_Initialize `(v  1 e 1 0 ]
+"51 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+"76 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"92
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+"112
+[v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
+"51 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"68 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+"100
+[v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
+"139
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+"154
+[v _TMR0_CallBack TMR0_CallBack `(v  1 e 1 0 ]
+"166
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+"170
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
+"175
+[v _millis millis `(ul  1 e 4 0 ]
+"179
+[v _millisReset millisReset `(v  1 e 1 0 ]
+"63 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr3.c
+[v _TMR3_Initialize TMR3_Initialize `(v  1 e 1 0 ]
+"89
+[v _TMR3_StartTimer TMR3_StartTimer `(v  1 e 1 0 ]
+"95
+[v _TMR3_StopTimer TMR3_StopTimer `(v  1 e 1 0 ]
+"110
+[v _TMR3_WriteTimer TMR3_WriteTimer `(v  1 e 1 0 ]
+"63 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr5.c
+[v _TMR5_Initialize TMR5_Initialize `(v  1 e 1 0 ]
+"89
+[v _TMR5_StartTimer TMR5_StartTimer `(v  1 e 1 0 ]
+[v i1_TMR5_StartTimer TMR5_StartTimer `(v  1 e 1 0 ]
+"95
+[v _TMR5_StopTimer TMR5_StopTimer `(v  1 e 1 0 ]
+"110
+[v _TMR5_WriteTimer TMR5_WriteTimer `(v  1 e 1 0 ]
+[v i1_TMR5_WriteTimer TMR5_WriteTimer `(v  1 e 1 0 ]
+"33 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusManager.c
+[v _preTransmission_App preTransmission_App `(v  1 e 1 0 ]
+"38
+[v _postTransmission_App postTransmission_App `(v  1 e 1 0 ]
+"43
+[v _ModbusMasterSetup ModbusMasterSetup `(v  1 e 1 0 ]
+"18 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusMaster.c
+[v _ModbusMasterInit ModbusMasterInit `(v  1 e 1 0 ]
+"73
+[v _send16 send16 `(v  1 e 1 0 ]
+"133
+[v _preTransmission preTransmission `(v  1 e 1 0 ]
+"151
+[v _postTransmission postTransmission `(v  1 e 1 0 ]
+"165
+[v _getResponseBuffer getResponseBuffer `(ui  1 e 2 0 ]
+"339
+[v _readInputRegisters readInputRegisters `(uc  1 e 1 0 ]
+"362
+[v _writeSingleCoil writeSingleCoil `(uc  1 e 1 0 ]
+"382
+[v _writeSingleRegister writeSingleRegister `(uc  1 e 1 0 ]
+"537
+[v _ModbusMasterTransaction ModbusMasterTransaction `(uc  1 e 1 0 ]
+"21 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/word.h
+[v _lowWord lowWord `(ui  1 s 2 lowWord ]
+"33
+[v _highWord highWord `(ui  1 s 2 highWord ]
+"38
+[v _highByte highByte `(uc  1 s 1 highByte ]
+"43
+[v _lowByte lowByte `(uc  1 s 1 lowByte ]
+"54
+[v _word word `(ui  1 s 2 word ]
+[s S477 . 1 `uc 1 INTEDG 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"348 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+[u S482 . 1 `S477 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES482  1 e 1 @11 ]
+[s S871 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"471
+[u S880 . 1 `S871 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES880  1 e 1 @14 ]
+[s S456 . 1 `uc 1 INTF 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIF 1 0 :1:4 
+`uc 1 TMR0IF 1 0 :1:5 
+]
+"528
+[u S461 . 1 `S456 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES461  1 e 1 @16 ]
+[s S716 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 BCL1IF 1 0 :1:2 
+`uc 1 SSP1IF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 TMR1GIF 1 0 :1:7 
+]
+"564
+[u S725 . 1 `S716 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES725  1 e 1 @17 ]
+[s S225 . 1 `uc 1 CLC1IF 1 0 :1:0 
+`uc 1 CLC2IF 1 0 :1:1 
+`uc 1 CLC3IF 1 0 :1:2 
+`uc 1 CLC4IF 1 0 :1:3 
+`uc 1 TMR3IF 1 0 :1:4 
+`uc 1 TMR3GIF 1 0 :1:5 
+`uc 1 CSWIF 1 0 :1:6 
+`uc 1 OSFIF 1 0 :1:7 
+]
+"675
+[u S234 . 1 `S225 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES234  1 e 1 @19 ]
+[s S55 . 1 `uc 1 CCP1IF 1 0 :1:0 
+`uc 1 CCP2IF 1 0 :1:1 
+`uc 1 CCP3IF 1 0 :1:2 
+`uc 1 CCP4IF 1 0 :1:3 
+`uc 1 TMR5IF 1 0 :1:4 
+`uc 1 TMR5GIF 1 0 :1:5 
+`uc 1 CWG1IF 1 0 :1:6 
+`uc 1 CWG2IF 1 0 :1:7 
+]
+"736
+[u S64 . 1 `S55 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES64  1 e 1 @20 ]
+"780
+[v _TMR0L TMR0L `VEuc  1 e 1 @21 ]
+"917
+[v _TMR0H TMR0H `VEuc  1 e 1 @22 ]
+"1170
+[v _T0CON0 T0CON0 `VEuc  1 e 1 @23 ]
+[s S1149 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+`uc 1 T016BIT 1 0 :1:4 
+`uc 1 T0OUT 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 T0EN 1 0 :1:7 
+]
+"1190
+[s S1155 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+`uc 1 T0OUTPS1 1 0 :1:1 
+`uc 1 T0OUTPS2 1 0 :1:2 
+`uc 1 T0OUTPS3 1 0 :1:3 
+]
+[u S1160 . 1 `S1149 1 . 1 0 `S1155 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES1160  1 e 1 @23 ]
+"1234
+[v _T0CON1 T0CON1 `VEuc  1 e 1 @24 ]
+"1602
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"1646
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"1684
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+[s S443 . 1 `uc 1 INTE 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 IOCIE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+"1758
+[u S448 . 1 `S443 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES448  1 e 1 @144 ]
+[s S76 . 1 `uc 1 CCP1IE 1 0 :1:0 
+`uc 1 CCP2IE 1 0 :1:1 
+`uc 1 CCP3IE 1 0 :1:2 
+`uc 1 CCP4IE 1 0 :1:3 
+`uc 1 TMR5IE 1 0 :1:4 
+`uc 1 TMR5GIE 1 0 :1:5 
+`uc 1 CWG1IE 1 0 :1:6 
+`uc 1 CWG2IE 1 0 :1:7 
+]
+"1966
+[u S85 . 1 `S76 1 . 1 0 ]
+[v _PIE4bits PIE4bits `VES85  1 e 1 @148 ]
+"2010
+[v _WDTCON WDTCON `VEuc  1 e 1 @151 ]
+"2074
+[v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
+"2093
+[v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
+"2112
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
+[s S791 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :6:2 
+]
+"2138
+[s S795 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 ADGO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 CHS4 1 0 :1:6 
+`uc 1 CHS5 1 0 :1:7 
+]
+[s S804 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[u S807 . 1 `S791 1 . 1 0 `S795 1 . 1 0 `S804 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES807  1 e 1 @157 ]
+"2197
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
+"2268
+[v _ADACT ADACT `VEuc  1 e 1 @159 ]
+"2319
+[v _LATA LATA `VEuc  1 e 1 @268 ]
+"2363
+[v _LATB LATB `VEuc  1 e 1 @269 ]
+[s S1207 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"2377
+[u S1213 . 1 `S1207 1 . 1 0 ]
+[v _LATBbits LATBbits `VES1213  1 e 1 @269 ]
+"2401
+[v _LATC LATC `VEuc  1 e 1 @270 ]
+[s S1290 . 1 `uc 1 LATC0 1 0 :1:0 
+`uc 1 LATC1 1 0 :1:1 
+`uc 1 LATC2 1 0 :1:2 
+`uc 1 LATC3 1 0 :1:3 
+`uc 1 LATC4 1 0 :1:4 
+`uc 1 LATC5 1 0 :1:5 
+`uc 1 LATC6 1 0 :1:6 
+`uc 1 LATC7 1 0 :1:7 
+]
+"2418
+[u S1299 . 1 `S1290 1 . 1 0 ]
+[v _LATCbits LATCbits `VES1299  1 e 1 @270 ]
+"2946
+[v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
+"2990
+[v _ANSELB ANSELB `VEuc  1 e 1 @397 ]
+"3028
+[v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
+"3109
+[v _RC1REG RC1REG `VEuc  1 e 1 @409 ]
+"3162
+[v _TX1REG TX1REG `VEuc  1 e 1 @410 ]
+"3221
+[v _SP1BRGL SP1BRGL `VEuc  1 e 1 @411 ]
+"3290
+[v _SP1BRGH SP1BRGH `VEuc  1 e 1 @412 ]
+"3343
+[v _RC1STA RC1STA `VEuc  1 e 1 @413 ]
+[s S737 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"3369
+[u S746 . 1 `S737 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES746  1 e 1 @413 ]
+"3522
+[v _TX1STA TX1STA `VEuc  1 e 1 @414 ]
+"3701
+[v _BAUD1CON BAUD1CON `VEuc  1 e 1 @415 ]
+"3946
+[v _WPUA WPUA `VEuc  1 e 1 @524 ]
+"3995
+[v _WPUB WPUB `VEuc  1 e 1 @525 ]
+"4033
+[v _WPUC WPUC `VEuc  1 e 1 @526 ]
+"5485
+[v _ODCONA ODCONA `VEuc  1 e 1 @652 ]
+"5529
+[v _ODCONB ODCONB `VEuc  1 e 1 @653 ]
+"5567
+[v _ODCONC ODCONC `VEuc  1 e 1 @654 ]
+"5634
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @657 ]
+"5653
+[v _CCPR1H CCPR1H `VEuc  1 e 1 @658 ]
+"5672
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @659 ]
+"5736
+[v _CCP1CAP CCP1CAP `VEuc  1 e 1 @660 ]
+"5787
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @661 ]
+"5806
+[v _CCPR2H CCPR2H `VEuc  1 e 1 @662 ]
+"5825
+[v _CCP2CON CCP2CON `VEuc  1 e 1 @663 ]
+"5889
+[v _CCP2CAP CCP2CAP `VEuc  1 e 1 @664 ]
+[s S23 . 1 `uc 1 C1TSEL 1 0 :2:0 
+`uc 1 C2TSEL 1 0 :2:2 
+`uc 1 C3TSEL 1 0 :2:4 
+`uc 1 C4TSEL 1 0 :2:6 
+]
+"5957
+[s S28 . 1 `uc 1 C1TSEL0 1 0 :1:0 
+`uc 1 C1TSEL1 1 0 :1:1 
+`uc 1 C2TSEL0 1 0 :1:2 
+`uc 1 C2TSEL1 1 0 :1:3 
+`uc 1 C3TSEL0 1 0 :1:4 
+`uc 1 C3TSEL1 1 0 :1:5 
+`uc 1 C4TSEL0 1 0 :1:6 
+`uc 1 C4TSEL1 1 0 :1:7 
+]
+[u S37 . 1 `S23 1 . 1 0 `S28 1 . 1 0 ]
+[v _CCPTMRSbits CCPTMRSbits `VES37  1 e 1 @671 ]
+"7332
+[v _TMR3L TMR3L `VEuc  1 e 1 @1041 ]
+"7351
+[v _TMR3H TMR3H `VEuc  1 e 1 @1042 ]
+"7370
+[v _T3CON T3CON `VEuc  1 e 1 @1043 ]
+[s S250 . 1 `uc 1 TMR3ON 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 T3SYNC 1 0 :1:2 
+`uc 1 T3SOSC 1 0 :1:3 
+`uc 1 T3CKPS 1 0 :2:4 
+`uc 1 TMR3CS 1 0 :2:6 
+]
+"7392
+[s S257 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 T3CKPS0 1 0 :1:4 
+`uc 1 T3CKPS1 1 0 :1:5 
+`uc 1 TMR3CS0 1 0 :1:6 
+`uc 1 TMR3CS1 1 0 :1:7 
+]
+[u S263 . 1 `S250 1 . 1 0 `S257 1 . 1 0 ]
+[v _T3CONbits T3CONbits `VES263  1 e 1 @1043 ]
+"7441
+[v _T3GCON T3GCON `VEuc  1 e 1 @1044 ]
+[s S280 . 1 `uc 1 T3GSS 1 0 :2:0 
+`uc 1 T3GVAL 1 0 :1:2 
+`uc 1 T3GGO_nDONE 1 0 :1:3 
+`uc 1 T3GSPM 1 0 :1:4 
+`uc 1 T3GTM 1 0 :1:5 
+`uc 1 T3GPOL 1 0 :1:6 
+`uc 1 TMR3GE 1 0 :1:7 
+]
+"7461
+[s S288 . 1 `uc 1 T3GSS0 1 0 :1:0 
+`uc 1 T3GSS1 1 0 :1:1 
+]
+[u S291 . 1 `S280 1 . 1 0 `S288 1 . 1 0 ]
+[v _T3GCONbits T3GCONbits `VES291  1 e 1 @1044 ]
+"7624
+[v _TMR5L TMR5L `VEuc  1 e 1 @1048 ]
+"7643
+[v _TMR5H TMR5H `VEuc  1 e 1 @1049 ]
+"7662
+[v _T5CON T5CON `VEuc  1 e 1 @1050 ]
+[s S361 . 1 `uc 1 TMR5ON 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 T5SYNC 1 0 :1:2 
+`uc 1 T5SOSC 1 0 :1:3 
+`uc 1 T5CKPS 1 0 :2:4 
+`uc 1 TMR5CS 1 0 :2:6 
+]
+"7684
+[s S368 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 T5CKPS0 1 0 :1:4 
+`uc 1 T5CKPS1 1 0 :1:5 
+`uc 1 TMR5CS0 1 0 :1:6 
+`uc 1 TMR5CS1 1 0 :1:7 
+]
+[u S374 . 1 `S361 1 . 1 0 `S368 1 . 1 0 ]
+[v _T5CONbits T5CONbits `VES374  1 e 1 @1050 ]
+"7733
+[v _T5GCON T5GCON `VEuc  1 e 1 @1051 ]
+[s S391 . 1 `uc 1 T5GSS 1 0 :2:0 
+`uc 1 T5GVAL 1 0 :1:2 
+`uc 1 T5GGO_nDONE 1 0 :1:3 
+`uc 1 T5GSPM 1 0 :1:4 
+`uc 1 T5GTM 1 0 :1:5 
+`uc 1 T5GPOL 1 0 :1:6 
+`uc 1 TMR5GE 1 0 :1:7 
+]
+"7753
+[s S399 . 1 `uc 1 T5GSS0 1 0 :1:0 
+`uc 1 T5GSS1 1 0 :1:1 
+]
+[u S402 . 1 `S391 1 . 1 0 `S399 1 . 1 0 ]
+[v _T5GCONbits T5GCONbits `VES402  1 e 1 @1051 ]
+"11654
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @2329 ]
+"11792
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @2331 ]
+"11887
+[v _OSCEN OSCEN `VEuc  1 e 1 @2333 ]
+"11932
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2334 ]
+"11989
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2335 ]
+"12034
+[v _PPSLOCK PPSLOCK `VEuc  1 e 1 @3599 ]
+[s S595 . 1 `uc 1 PPSLOCKED 1 0 :1:0 
+]
+"12044
+[u S597 . 1 `S595 1 . 1 0 ]
+[v _PPSLOCKbits PPSLOCKbits `VES597  1 e 1 @3599 ]
+[s S642 . 1 `uc 1 INTPPS 1 0 :5:0 
+]
+"12070
+[s S644 . 1 `uc 1 INTPPS0 1 0 :1:0 
+`uc 1 INTPPS1 1 0 :1:1 
+`uc 1 INTPPS2 1 0 :1:2 
+`uc 1 INTPPS3 1 0 :1:3 
+`uc 1 INTPPS4 1 0 :1:4 
+]
+[u S650 . 1 `S642 1 . 1 0 `S644 1 . 1 0 ]
+[v _INTPPSbits INTPPSbits `VES650  1 e 1 @3600 ]
+[s S662 . 1 `uc 1 CCP1PPS 1 0 :5:0 
+]
+"12274
+[s S664 . 1 `uc 1 CCP1PPS0 1 0 :1:0 
+`uc 1 CCP1PPS1 1 0 :1:1 
+`uc 1 CCP1PPS2 1 0 :1:2 
+`uc 1 CCP1PPS3 1 0 :1:3 
+`uc 1 CCP1PPS4 1 0 :1:4 
+]
+[u S670 . 1 `S662 1 . 1 0 `S664 1 . 1 0 ]
+[v _CCP1PPSbits CCP1PPSbits `VES670  1 e 1 @3604 ]
+[s S602 . 1 `uc 1 CCP2PPS 1 0 :5:0 
+]
+"12325
+[s S604 . 1 `uc 1 CCP2PPS0 1 0 :1:0 
+`uc 1 CCP2PPS1 1 0 :1:1 
+`uc 1 CCP2PPS2 1 0 :1:2 
+`uc 1 CCP2PPS3 1 0 :1:3 
+`uc 1 CCP2PPS4 1 0 :1:4 
+]
+[u S610 . 1 `S602 1 . 1 0 `S604 1 . 1 0 ]
+[v _CCP2PPSbits CCP2PPSbits `VES610  1 e 1 @3605 ]
+[s S622 . 1 `uc 1 RXPPS 1 0 :5:0 
+]
+"12886
+[s S624 . 1 `uc 1 RXDTPPS0 1 0 :1:0 
+`uc 1 RXDTPPS1 1 0 :1:1 
+`uc 1 RXDTPPS2 1 0 :1:2 
+`uc 1 RXDTPPS3 1 0 :1:3 
+`uc 1 RXDTPPS4 1 0 :1:4 
+]
+[u S630 . 1 `S622 1 . 1 0 `S624 1 . 1 0 ]
+[v _RXPPSbits RXPPSbits `VES630  1 e 1 @3620 ]
+[s S682 . 1 `uc 1 RB5PPS 1 0 :5:0 
+]
+"13574
+[s S684 . 1 `uc 1 RB5PPS0 1 0 :1:0 
+`uc 1 RB5PPS1 1 0 :1:1 
+`uc 1 RB5PPS2 1 0 :1:2 
+`uc 1 RB5PPS3 1 0 :1:3 
+`uc 1 RB5PPS4 1 0 :1:4 
+]
+[u S690 . 1 `S682 1 . 1 0 `S684 1 . 1 0 ]
+[v _RB5PPSbits RB5PPSbits `VES690  1 e 1 @3741 ]
+"19358
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"20392
+[v _PLLR PLLR `VEb  1 e 0 @18656 ]
+"4 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/LED_Ctrl.c
+[v _Led_ON Led_ON `uc  1 s 1 Led_ON ]
+[v _LED_Color LED_Color `uc  1 s 1 LED_Color ]
+"5
+[v _LED_msec_Cnt LED_msec_Cnt `ui  1 s 2 LED_msec_Cnt ]
+[v _Blick_tickPointMsec Blick_tickPointMsec `ui  1 s 2 Blick_tickPointMsec ]
+[v _Blick_tickPoint Blick_tickPoint `ui  1 s 2 Blick_tickPoint ]
+[v _LedON_Duration_msec LedON_Duration_msec `ui  1 s 2 LedON_Duration_msec ]
+"54 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/main.c
+[v _OldEncPulseOpState OldEncPulseOpState `ui  1 e 2 0 ]
+"39 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ext_int.c
+[v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
+"58 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr0.c
+[v _timer0ReloadVal16bit timer0ReloadVal16bit `VEui  1 e 2 0 ]
+"60
+[v _TimertickMsec TimertickMsec `ul  1 e 4 0 ]
+"66
+[v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
+"56 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr3.c
+[v _timer3ReloadVal timer3ReloadVal `VEui  1 e 2 0 ]
+"56 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr5.c
+[v _timer5ReloadVal timer5ReloadVal `VEui  1 e 2 0 ]
+"30 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusManager.h
+[v _EncPulseCntResult EncPulseCntResult `uc  1 e 1 0 ]
+"31
+[v _EncPulseOpState EncPulseOpState `ui  1 e 2 0 ]
+"34
+[v _MBreadNoOfPulseCnt MBreadNoOfPulseCnt `ui  1 e 2 0 ]
+"35
+[v _MBreadPulseTimeoutSec MBreadPulseTimeoutSec `ui  1 e 2 0 ]
+"36
+[v _MBread_EPC_Ctrl MBread_EPC_Ctrl `ui  1 e 2 0 ]
+"162 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusMaster.h
+[v __u8MBSlave _u8MBSlave `uc  1 e 1 0 ]
+"163
+[v __u16ReadAddress _u16ReadAddress `ui  1 e 2 0 ]
+"164
+[v __u16ReadQty _u16ReadQty `ui  1 e 2 0 ]
+"165
+[v __u16ResponseBuffer _u16ResponseBuffer `[64]ui  1 e 128 @8432 ]
+"166
+[v __u16WriteAddress _u16WriteAddress `ui  1 e 2 0 ]
+"167
+[v __u16WriteQty _u16WriteQty `ui  1 e 2 0 ]
+"168
+[v __u16TransmitBuffer _u16TransmitBuffer `[64]ui  1 e 128 @8560 ]
+"170
+[v __u8TransmitBufferIndex _u8TransmitBufferIndex `uc  1 e 1 0 ]
+"171
+[v _u16TransmitBufferLength u16TransmitBufferLength `ui  1 e 2 0 ]
+"173
+[v __u8ResponseBufferIndex _u8ResponseBufferIndex `uc  1 e 1 0 ]
+"174
+[v __u8ResponseBufferLength _u8ResponseBufferLength `uc  1 e 1 0 ]
+"182
+[v __preTransmission _preTransmission `*.37(v  1 e 2 0 ]
+"184
+[v __postTransmission _postTransmission `*.37(v  1 e 2 0 ]
+"58 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"90
+} 0
+"110 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr5.c
+[v _TMR5_WriteTimer TMR5_WriteTimer `(v  1 e 1 0 ]
+{
+[v TMR5_WriteTimer@timerVal timerVal `ui  1 p 2 0 ]
+"130
+} 0
+"95
+[v _TMR5_StopTimer TMR5_StopTimer `(v  1 e 1 0 ]
+{
+"99
+} 0
+"110 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr3.c
+[v _TMR3_WriteTimer TMR3_WriteTimer `(v  1 e 1 0 ]
+{
+[v TMR3_WriteTimer@timerVal timerVal `ui  1 p 2 0 ]
+"130
+} 0
+"95
+[v _TMR3_StopTimer TMR3_StopTimer `(v  1 e 1 0 ]
+{
+"99
+} 0
+"76 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"90
+} 0
+"112
+[v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
+{
+"116
+} 0
+"63 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr5.c
+[v _TMR5_Initialize TMR5_Initialize `(v  1 e 1 0 ]
+{
+"87
+} 0
+"89
+[v _TMR5_StartTimer TMR5_StartTimer `(v  1 e 1 0 ]
+{
+"93
+} 0
+"63 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr3.c
+[v _TMR3_Initialize TMR3_Initialize `(v  1 e 1 0 ]
+{
+"87
+} 0
+"89
+[v _TMR3_StartTimer TMR3_StartTimer `(v  1 e 1 0 ]
+{
+"93
+} 0
+"68 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr0.c
+[v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
+{
+"98
+} 0
+"100
+[v _TMR0_StartTimer TMR0_StartTimer `(v  1 e 1 0 ]
+{
+"104
+} 0
+"166
+[v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v TMR0_SetInterruptHandler@InterruptHandler InterruptHandler `*.37v  1 p 2 0 ]
+"168
+} 0
+"51 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"93
+[v PIN_MANAGER_Initialize@state state `uc  1 a 1 0 ]
+"110
+} 0
+"92 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/mcc.c
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+{
+"110
+} 0
+"93 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ext_int.c
+[v _EXT_INT_Initialize EXT_INT_Initialize `(v  1 e 1 0 ]
+{
+"112
+} 0
+"73
+[v _INT_SetInterruptHandler INT_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v INT_SetInterruptHandler@InterruptHandler InterruptHandler `*.37v  1 p 2 0 ]
+"75
+} 0
+"58 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp2.c
+[v _CCP2_Initialize CCP2_Initialize `(v  1 e 1 0 ]
+{
+"82
+} 0
+"58 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp1.c
+[v _CCP1_Initialize CCP1_Initialize `(v  1 e 1 0 ]
+{
+"82
+} 0
+"64 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+{
+"83
+} 0
+"43 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusManager.c
+[v _ModbusMasterSetup ModbusMasterSetup `(v  1 e 1 0 ]
+{
+"52
+} 0
+"133 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusMaster.c
+[v _preTransmission preTransmission `(v  1 e 1 0 ]
+{
+"134
+[v preTransmission@preTransmission preTransmission `*.37(v  1 p 2 0 ]
+"136
+} 0
+"151
+[v _postTransmission postTransmission `(v  1 e 1 0 ]
+{
+"152
+[v postTransmission@postTransmission postTransmission `*.37(v  1 p 2 0 ]
+"154
+} 0
+"18
+[v _ModbusMasterInit ModbusMasterInit `(v  1 e 1 0 ]
+{
+[v ModbusMasterInit@slave slave `uc  1 a 1 wreg ]
+[v ModbusMasterInit@slave slave `uc  1 a 1 wreg ]
+"21
+[v ModbusMasterInit@slave slave `uc  1 a 1 1 ]
+"31
+} 0
+"55 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/eusart.c
+[v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
+{
+"74
+} 0
+"51 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/interrupt_manager.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
+{
+"74
+} 0
+"139 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr0.c
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+{
+"152
+} 0
+"154
+[v _TMR0_CallBack TMR0_CallBack `(v  1 e 1 0 ]
+{
+"164
+} 0
+"170
+[v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"173
+} 0
+"44 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ext_int.c
+[v _INT_ISR INT_ISR `(v  1 e 1 0 ]
+{
+"54
+} 0
+"59
+[v _INT_CallBack INT_CallBack `(v  1 e 1 0 ]
+{
+"68
+} 0
+"80
+[v _INT_DefaultInterruptHandler INT_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"83
+} 0
+"207 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/main.c
+[v _EncINX_PulseRisingEvent EncINX_PulseRisingEvent `(v  1 e 1 0 ]
+{
+"210
+} 0
+"84 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp2.c
+[v _CCP2_CaptureISR CCP2_CaptureISR `(v  1 e 1 0 ]
+{
+[s S189 . 2 `uc 1 ccpr2l 1 0 `uc 1 ccpr2h 1 1 ]
+"86
+[s S192 . 2 `ui 1 ccpr2_16Bit 2 0 ]
+[u S194 CCPR2Reg_tag 2 `S189 1 . 2 0 `S192 1 . 2 0 ]
+[v CCP2_CaptureISR@module module `S194  1 a 2 5 ]
+"98
+} 0
+"192 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/main.c
+[v _EncB_PulseEdgeEvent EncB_PulseEdgeEvent `(v  1 e 1 0 ]
+{
+[v EncB_PulseEdgeEvent@capturedValue capturedValue `ui  1 p 2 2 ]
+"205
+} 0
+"110 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr5.c
+[v i1_TMR5_WriteTimer TMR5_WriteTimer `(v  1 e 1 0 ]
+{
+[v i1TMR5_WriteTimer@timerVal timerVal `ui  1 p 2 0 ]
+"130
+} 0
+"89
+[v i1_TMR5_StartTimer TMR5_StartTimer `(v  1 e 1 0 ]
+{
+"93
+} 0
+"100 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp2.c
+[v _CCP2_CallBack CCP2_CallBack `(v  1 e 1 0 ]
+{
+[v CCP2_CallBack@capturedValue capturedValue `ui  1 p 2 0 ]
+"104
+} 0
+"84 /home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp1.c
+[v _CCP1_CaptureISR CCP1_CaptureISR `(v  1 e 1 0 ]
+{
+[s S97 . 2 `uc 1 ccpr1l 1 0 `uc 1 ccpr1h 1 1 ]
+"86
+[s S100 . 2 `ui 1 ccpr1_16Bit 2 0 ]
+[u S102 CCPR1Reg_tag 2 `S97 1 . 2 0 `S100 1 . 2 0 ]
+[v CCP1_CaptureISR@module module `S102  1 a 2 3 ]
+"98
+} 0
+"100
+[v _CCP1_CallBack CCP1_CallBack `(v  1 e 1 0 ]
+{
+[v CCP1_CallBack@capturedValue capturedValue `ui  1 p 2 0 ]
+"105
+} 0
