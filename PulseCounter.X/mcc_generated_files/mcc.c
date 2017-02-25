@@ -47,7 +47,7 @@
 
 // CONFIG1
 #pragma config FEXTOSC = OFF    // FEXTOSC External Oscillator mode Selection bits->Oscillator not enabled
-#pragma config RSTOSC = HFINT32    // Power-up default value for COSC bits->HFINTOSC with 2x PLL (32MHz)
+#pragma config RSTOSC = HFINT1    // Power-up default value for COSC bits->HFINTOSC
 #pragma config CLKOUTEN = OFF    // Clock Out Enable bit->CLKOUT function is disabled; I/O or oscillator function on OSC2
 #pragma config CSWEN = ON    // Clock Switch Enable bit->Writing to NOSC and NDIV is allowed
 #pragma config FCMEN = ON    // Fail-Safe Clock Monitor Enable->Fail-Safe Clock Monitor is enabled
@@ -81,18 +81,17 @@ void SYSTEM_Initialize(void)
     WDT_Initialize();
     CCP2_Initialize();
     ADC_Initialize();
-    TMR3_Initialize();
     CCP1_Initialize();
+    TMR3_Initialize();
     TMR5_Initialize();
-    EXT_INT_Initialize();
     TMR0_Initialize();
     EUSART_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
 {
-    // NOSC HFINTOSC with 2x PLL; NDIV 1; 
-    OSCCON1 = 0x00;
+    // NOSC HFINTOSC with 2x PLL; NDIV 4; 
+    OSCCON1 = 0x02;
     // CSWHOLD may proceed; SOSCPWR Low power; SOSCBE crystal oscillator; 
     OSCCON3 = 0x00;
     // LFOEN disabled; ADOEN disabled; SOSCEN disabled; EXTOEN disabled; HFOEN disabled; 
@@ -103,10 +102,6 @@ void OSCILLATOR_Initialize(void)
     OSCTUNE = 0x00;
     // Set the secondary oscillator
     
-    // Wait for PLL to stabilize
-    while(PLLR == 0)
-    {
-    }
 }
 
 void WDT_Initialize(void)

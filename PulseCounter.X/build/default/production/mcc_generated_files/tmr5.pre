@@ -9804,7 +9804,7 @@ void TMR5_Initialize(void)
 
 
 
-T5CON = 0x30;
+T5CON = 0x00;
 
 
 T5GCON = 0x00;

@@ -270,8 +270,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ModbusManager.h: 41: void MB_getEPC_PLC_Control(void);
 [; ;ModbusManager.h: 42: void MB_SendEncPulseOpState(void);
 [; ;ModbusManager.h: 43: void MB_SendEncPulseCntResult(void);
-[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 332: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_IOC(void);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);

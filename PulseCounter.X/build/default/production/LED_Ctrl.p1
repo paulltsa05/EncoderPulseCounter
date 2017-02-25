@@ -7313,8 +7313,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 192: extern unsigned char __resetbits;
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
-[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 332: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -7345,24 +7345,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
-[; ;tmr5.h: 99: void TMR5_Initialize(void);
-[; ;tmr5.h: 128: void TMR5_StartTimer(void);
-[; ;tmr5.h: 160: void TMR5_StopTimer(void);
-[; ;tmr5.h: 195: uint16_t TMR5_ReadTimer(void);
-[; ;tmr5.h: 234: void TMR5_WriteTimer(uint16_t timerVal);
-[; ;tmr5.h: 270: void TMR5_Reload(void);
-[; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
-[; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
-[; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
-[; ;tmr3.h: 99: void TMR3_Initialize(void);
-[; ;tmr3.h: 128: void TMR3_StartTimer(void);
-[; ;tmr3.h: 160: void TMR3_StopTimer(void);
-[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
-[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
-[; ;tmr3.h: 270: void TMR3_Reload(void);
-[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
-[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
-[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
 [; ;ccp1.h: 78: typedef union CCPR1Reg_tag
 [; ;ccp1.h: 79: {
 [; ;ccp1.h: 80: struct
@@ -7378,7 +7360,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp1.h: 121: void CCP1_Initialize(void);
 [; ;ccp1.h: 137: void CCP1_CaptureISR(void);
 [; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
-[; ;ccp1.h: 159: void EncA_PulseEdgeEvent(uint16_t capturedValue);
 [; ;ccp2.h: 78: typedef union CCPR2Reg_tag
 [; ;ccp2.h: 79: {
 [; ;ccp2.h: 80: struct
@@ -7394,23 +7375,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
-[; ;ccp2.h: 159: void EncB_PulseEdgeEvent(uint16_t capturedValue);
-[; ;eusart.h: 94: void EUSART_Initialize(void);
-[; ;eusart.h: 114: uint8_t EUSART_Read(void);
-[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
-[; ;tmr0.h: 105: void TMR0_Initialize(void);
-[; ;tmr0.h: 134: void TMR0_StartTimer(void);
-[; ;tmr0.h: 166: void TMR0_StopTimer(void);
-[; ;tmr0.h: 202: uint16_t TMR0_Read16bitTimer(void);
-[; ;tmr0.h: 241: void TMR0_Write16bitTimer(uint16_t timerVal);
-[; ;tmr0.h: 277: void TMR0_Reload16bit(void);
-[; ;tmr0.h: 295: void TMR0_ISR(void);
-[; ;tmr0.h: 313: void TMR0_CallBack(void);
-[; ;tmr0.h: 331: void TMR0_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr0.h: 349: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 367: void TMR0_DefaultInterruptHandler(void);
-[; ;tmr0.h: 370: uint32_t millis(void);
-[; ;tmr0.h: 372: void millisReset(void);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -7431,19 +7395,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 225: bool ADC_IsConversionDone();
 [; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;mcc.h: 76: void SYSTEM_Initialize(void);
-[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 102: void WDT_Initialize(void);
-[; ;LED_Ctrl.h: 21: extern char LedONStatusBusy(void);
-[; ;LED_Ctrl.h: 23: extern char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
-[; ;LED_Ctrl.h: 24: extern void LedON_Control_10msec(void);
-"4 LED_Ctrl.c
+[; ;eusart.h: 94: void EUSART_Initialize(void);
+[; ;eusart.h: 114: uint8_t EUSART_Read(void);
+[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;tmr0.h: 105: void TMR0_Initialize(void);
+[; ;tmr0.h: 134: void TMR0_StartTimer(void);
+[; ;tmr0.h: 166: void TMR0_StopTimer(void);
+[; ;tmr0.h: 201: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 240: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 277: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 296: void TMR0_ISR(void);
+[; ;tmr0.h: 314: void TMR0_CallBack(void);
+[; ;tmr0.h: 332: void TMR0_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr0.h: 350: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 368: void TMR0_DefaultInterruptHandler(void);
+[; ;tmr5.h: 99: void TMR5_Initialize(void);
+[; ;tmr5.h: 128: void TMR5_StartTimer(void);
+[; ;tmr5.h: 160: void TMR5_StopTimer(void);
+[; ;tmr5.h: 195: uint16_t TMR5_ReadTimer(void);
+[; ;tmr5.h: 234: void TMR5_WriteTimer(uint16_t timerVal);
+[; ;tmr5.h: 270: void TMR5_Reload(void);
+[; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
+[; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
+[; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
+[; ;tmr3.h: 99: void TMR3_Initialize(void);
+[; ;tmr3.h: 128: void TMR3_StartTimer(void);
+[; ;tmr3.h: 160: void TMR3_StopTimer(void);
+[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
+[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
+[; ;tmr3.h: 270: void TMR3_Reload(void);
+[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
+[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
+[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void WDT_Initialize(void);
+[; ;LED_Ctrl.h: 20: char LedONStatusBusy(void);
+[; ;LED_Ctrl.h: 22: char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
+[; ;LED_Ctrl.h: 23: void LedON_Control_10msec(void);
+"7 LED_Ctrl.c
 [v _Led_ON `uc ~T0 @X0 1 s ]
 [i _Led_ON
 -> -> 0 `i `uc
@@ -7452,8 +7442,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [i _LED_Color
 -> -> 1 `i `uc
 ]
-[; ;LED_Ctrl.c: 4: static unsigned char Led_ON=0,LED_Color=1;
-"5
+[; ;LED_Ctrl.c: 7: static unsigned char Led_ON=0,LED_Color=1;
+"8
 [v _LED_msec_Cnt `ui ~T0 @X0 1 s ]
 [i _LED_msec_Cnt
 -> -> 0 `i `ui
@@ -7467,313 +7457,313 @@ Version 3.2 HI-TECH Software Intermediate Code
 [i _LedON_Duration_msec
 -> -> 0 `i `ui
 ]
-[; ;LED_Ctrl.c: 5: static unsigned int LED_msec_Cnt=0,Blick_tickPointMsec=0,Blick_tickPoint,LedON_Duration_msec=0;
-"9
+[; ;LED_Ctrl.c: 8: static unsigned int LED_msec_Cnt=0,Blick_tickPointMsec=0,Blick_tickPoint,LedON_Duration_msec=0;
+"12
 [v _LedONStatusBusy `(uc ~T0 @X0 1 ef ]
-"10
+"13
 {
-[; ;LED_Ctrl.c: 9: char LedONStatusBusy(void)
-[; ;LED_Ctrl.c: 10: {
+[; ;LED_Ctrl.c: 12: char LedONStatusBusy(void)
+[; ;LED_Ctrl.c: 13: {
 [e :U _LedONStatusBusy ]
 [f ]
-[; ;LED_Ctrl.c: 11: return Led_ON;
-"11
+[; ;LED_Ctrl.c: 14: return Led_ON;
+"14
 [e ) _Led_ON ]
 [e $UE 931  ]
-[; ;LED_Ctrl.c: 12: }
-"12
+[; ;LED_Ctrl.c: 15: }
+"15
 [e :UE 931 ]
 }
-"15
+"18
 [v _LedONStartConfig `(uc ~T0 @X0 1 ef3`uc`uc`uc ]
-"16
+"19
 {
-[; ;LED_Ctrl.c: 15: char LedONStartConfig(unsigned char LEDcolor, unsigned char LedONDurationSec, unsigned char LedONNumBlink)
-[; ;LED_Ctrl.c: 16: {
+[; ;LED_Ctrl.c: 18: char LedONStartConfig(unsigned char LEDcolor, unsigned char LedONDurationSec, unsigned char LedONNumBlink)
+[; ;LED_Ctrl.c: 19: {
 [e :U _LedONStartConfig ]
-"15
+"18
 [v _LEDcolor `uc ~T0 @X0 1 r1 ]
 [v _LedONDurationSec `uc ~T0 @X0 1 r2 ]
 [v _LedONNumBlink `uc ~T0 @X0 1 r3 ]
-"16
-[f ]
-[; ;LED_Ctrl.c: 17: if(Led_ON!=1 && (LedONDurationSec!=0)&& (LedONDurationSec <= 60))
-"17
-[e $ ! && && != -> _Led_ON `i -> 1 `i != -> _LedONDurationSec `i -> 0 `i <= -> _LedONDurationSec `i -> 60 `i 933  ]
-[; ;LED_Ctrl.c: 18: {
-"18
-{
-[; ;LED_Ctrl.c: 19: Led_ON=1;
 "19
-[e = _Led_ON -> -> 1 `i `uc ]
-[; ;LED_Ctrl.c: 20: LED_Color=LEDcolor;
+[f ]
+[; ;LED_Ctrl.c: 20: if(Led_ON!=1 && (LedONDurationSec!=0)&& (LedONDurationSec <= 60))
 "20
-[e = _LED_Color _LEDcolor ]
-[; ;LED_Ctrl.c: 22: switch(LED_Color)
-"22
-[e $U 935  ]
-[; ;LED_Ctrl.c: 23: {
-"23
+[e $ ! && && != -> _Led_ON `i -> 1 `i != -> _LedONDurationSec `i -> 0 `i <= -> _LedONDurationSec `i -> 60 `i 933  ]
+[; ;LED_Ctrl.c: 21: {
+"21
 {
-[; ;LED_Ctrl.c: 24: case 0 : do { LATCbits.LATC0 = 1; } while(0);
-"24
+[; ;LED_Ctrl.c: 22: Led_ON=1;
+"22
+[e = _Led_ON -> -> 1 `i `uc ]
+[; ;LED_Ctrl.c: 23: LED_Color=LEDcolor;
+"23
+[e = _LED_Color _LEDcolor ]
+[; ;LED_Ctrl.c: 25: switch(LED_Color)
+"25
+[e $U 935  ]
+[; ;LED_Ctrl.c: 26: {
+"26
+{
+[; ;LED_Ctrl.c: 27: case 0 : do { LATCbits.LATC0 = 1; } while(0);
+"27
 [e :U 936 ]
 [e :U 939 ]
 {
 [e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
 }
 [e :U 938 ]
-[; ;LED_Ctrl.c: 25: break;
-"25
+[; ;LED_Ctrl.c: 28: break;
+"28
 [e $U 934  ]
-[; ;LED_Ctrl.c: 26: case 1 : do { LATCbits.LATC1 = 1; } while(0);
-"26
+[; ;LED_Ctrl.c: 29: case 1 : do { LATCbits.LATC1 = 1; } while(0);
+"29
 [e :U 940 ]
 [e :U 943 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 942 ]
-[; ;LED_Ctrl.c: 27: break;
-"27
+[; ;LED_Ctrl.c: 30: break;
+"30
 [e $U 934  ]
-[; ;LED_Ctrl.c: 28: case 2 : do { LATCbits.LATC2 = 1; } while(0);
-"28
+[; ;LED_Ctrl.c: 31: case 2 : do { LATCbits.LATC2 = 1; } while(0);
+"31
 [e :U 944 ]
 [e :U 947 ]
 {
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
 }
 [e :U 946 ]
-[; ;LED_Ctrl.c: 29: break;
-"29
+[; ;LED_Ctrl.c: 32: break;
+"32
 [e $U 934  ]
-[; ;LED_Ctrl.c: 30: default : break;
-"30
+[; ;LED_Ctrl.c: 33: default : break;
+"33
 [e :U 948 ]
 [e $U 934  ]
-"31
+"34
 }
-[; ;LED_Ctrl.c: 31: }
+[; ;LED_Ctrl.c: 34: }
 [e $U 934  ]
-"22
+"25
 [e :U 935 ]
 [e [\ _LED_Color , $ -> -> 0 `i `uc 936
  , $ -> -> 1 `i `uc 940
  , $ -> -> 2 `i `uc 944
  948 ]
-"31
-[e :U 934 ]
-[; ;LED_Ctrl.c: 33: LED_msec_Cnt=0;
-"33
-[e = _LED_msec_Cnt -> -> 0 `i `ui ]
-[; ;LED_Ctrl.c: 34: LedON_Duration_msec=((unsigned int)LedONDurationSec)*1000;
 "34
-[e = _LedON_Duration_msec * -> _LedONDurationSec `ui -> -> 1000 `i `ui ]
-[; ;LED_Ctrl.c: 35: if(LedONNumBlink > 1)
-"35
-[e $ ! > -> _LedONNumBlink `i -> 1 `i 949  ]
-[; ;LED_Ctrl.c: 36: Blick_tickPointMsec=(LedON_Duration_msec/(((LedONNumBlink-1)*2)+1));
+[e :U 934 ]
+[; ;LED_Ctrl.c: 36: LED_msec_Cnt=0;
 "36
+[e = _LED_msec_Cnt -> -> 0 `i `ui ]
+[; ;LED_Ctrl.c: 37: LedON_Duration_msec=((unsigned int)LedONDurationSec)*1000;
+"37
+[e = _LedON_Duration_msec * -> _LedONDurationSec `ui -> -> 1000 `i `ui ]
+[; ;LED_Ctrl.c: 38: if(LedONNumBlink > 1)
+"38
+[e $ ! > -> _LedONNumBlink `i -> 1 `i 949  ]
+[; ;LED_Ctrl.c: 39: Blick_tickPointMsec=(LedON_Duration_msec/(((LedONNumBlink-1)*2)+1));
+"39
 [e = _Blick_tickPointMsec / _LedON_Duration_msec -> + * - -> _LedONNumBlink `i -> 1 `i -> 2 `i -> 1 `i `ui ]
 [e $U 950  ]
-"37
+"40
 [e :U 949 ]
-[; ;LED_Ctrl.c: 37: else
-[; ;LED_Ctrl.c: 38: Blick_tickPointMsec=LedON_Duration_msec;
-"38
+[; ;LED_Ctrl.c: 40: else
+[; ;LED_Ctrl.c: 41: Blick_tickPointMsec=LedON_Duration_msec;
+"41
 [e = _Blick_tickPointMsec _LedON_Duration_msec ]
 [e :U 950 ]
-[; ;LED_Ctrl.c: 40: Blick_tickPoint=Blick_tickPointMsec;
-"40
+[; ;LED_Ctrl.c: 43: Blick_tickPoint=Blick_tickPointMsec;
+"43
 [e = _Blick_tickPoint _Blick_tickPointMsec ]
-[; ;LED_Ctrl.c: 41: return 1;
-"41
+[; ;LED_Ctrl.c: 44: return 1;
+"44
 [e ) -> -> 1 `i `uc ]
 [e $UE 932  ]
-"42
-}
-[; ;LED_Ctrl.c: 42: }
-[e $U 951  ]
-"43
-[e :U 933 ]
-[; ;LED_Ctrl.c: 43: else
-[; ;LED_Ctrl.c: 44: {
-"44
-{
-[; ;LED_Ctrl.c: 45: return 0;
 "45
+}
+[; ;LED_Ctrl.c: 45: }
+[e $U 951  ]
+"46
+[e :U 933 ]
+[; ;LED_Ctrl.c: 46: else
+[; ;LED_Ctrl.c: 47: {
+"47
+{
+[; ;LED_Ctrl.c: 48: return 0;
+"48
 [e ) -> -> 0 `i `uc ]
 [e $UE 932  ]
-"46
+"49
 }
 [e :U 951 ]
-[; ;LED_Ctrl.c: 46: }
-[; ;LED_Ctrl.c: 48: }
-"48
+[; ;LED_Ctrl.c: 49: }
+[; ;LED_Ctrl.c: 51: }
+"51
 [e :UE 932 ]
 }
-"51
+"54
 [v _LedON_Control_10msec `(v ~T0 @X0 1 ef ]
-"52
+"55
 {
-[; ;LED_Ctrl.c: 51: void LedON_Control_10msec(void)
-[; ;LED_Ctrl.c: 52: {
+[; ;LED_Ctrl.c: 54: void LedON_Control_10msec(void)
+[; ;LED_Ctrl.c: 55: {
 [e :U _LedON_Control_10msec ]
 [f ]
-[; ;LED_Ctrl.c: 53: if(1==Led_ON)
-"53
-[e $ ! == -> 1 `i -> _Led_ON `i 953  ]
-[; ;LED_Ctrl.c: 54: {
-"54
-{
-[; ;LED_Ctrl.c: 56: if(LED_msec_Cnt == Blick_tickPoint)
+[; ;LED_Ctrl.c: 56: if(1==Led_ON)
 "56
-[e $ ! == _LED_msec_Cnt _Blick_tickPoint 954  ]
+[e $ ! == -> 1 `i -> _Led_ON `i 953  ]
 [; ;LED_Ctrl.c: 57: {
 "57
 {
-[; ;LED_Ctrl.c: 58: switch(LED_Color)
-"58
-[e $U 956  ]
-[; ;LED_Ctrl.c: 59: {
+[; ;LED_Ctrl.c: 59: if(LED_msec_Cnt >= Blick_tickPoint)
 "59
-{
-[; ;LED_Ctrl.c: 60: case 0 : do { LATCbits.LATC0 = ~LATCbits.LATC0; } while(0);
+[e $ ! >= _LED_msec_Cnt _Blick_tickPoint 954  ]
+[; ;LED_Ctrl.c: 60: {
 "60
+{
+[; ;LED_Ctrl.c: 61: switch(LED_Color)
+"61
+[e $U 956  ]
+[; ;LED_Ctrl.c: 62: {
+"62
+{
+[; ;LED_Ctrl.c: 63: case 0 : do { LATCbits.LATC0 = ~LATCbits.LATC0; } while(0);
+"63
 [e :U 957 ]
 [e :U 960 ]
 {
 [e = . . _LATCbits 0 0 -> ~ -> . . _LATCbits 0 0 `i `uc ]
 }
 [e :U 959 ]
-[; ;LED_Ctrl.c: 61: break;
-"61
+[; ;LED_Ctrl.c: 64: break;
+"64
 [e $U 955  ]
-[; ;LED_Ctrl.c: 62: case 1 : do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0);
-"62
+[; ;LED_Ctrl.c: 65: case 1 : do { LATCbits.LATC1 = ~LATCbits.LATC1; } while(0);
+"65
 [e :U 961 ]
 [e :U 964 ]
 {
 [e = . . _LATCbits 0 1 -> ~ -> . . _LATCbits 0 1 `i `uc ]
 }
 [e :U 963 ]
-[; ;LED_Ctrl.c: 63: break;
-"63
+[; ;LED_Ctrl.c: 66: break;
+"66
 [e $U 955  ]
-[; ;LED_Ctrl.c: 64: case 2 : do { LATCbits.LATC2 = ~LATCbits.LATC2; } while(0);
-"64
+[; ;LED_Ctrl.c: 67: case 2 : do { LATCbits.LATC2 = ~LATCbits.LATC2; } while(0);
+"67
 [e :U 965 ]
 [e :U 968 ]
 {
 [e = . . _LATCbits 0 2 -> ~ -> . . _LATCbits 0 2 `i `uc ]
 }
 [e :U 967 ]
-[; ;LED_Ctrl.c: 65: break;
-"65
+[; ;LED_Ctrl.c: 68: break;
+"68
 [e $U 955  ]
-[; ;LED_Ctrl.c: 66: default : break;
-"66
+[; ;LED_Ctrl.c: 69: default : break;
+"69
 [e :U 969 ]
 [e $U 955  ]
-"67
+"70
 }
-[; ;LED_Ctrl.c: 67: }
+[; ;LED_Ctrl.c: 70: }
 [e $U 955  ]
-"58
+"61
 [e :U 956 ]
 [e [\ _LED_Color , $ -> -> 0 `i `uc 957
  , $ -> -> 1 `i `uc 961
  , $ -> -> 2 `i `uc 965
  969 ]
-"67
-[e :U 955 ]
-[; ;LED_Ctrl.c: 70: Blick_tickPoint=Blick_tickPoint+Blick_tickPointMsec;
 "70
+[e :U 955 ]
+[; ;LED_Ctrl.c: 73: Blick_tickPoint=Blick_tickPoint+Blick_tickPointMsec;
+"73
 [e = _Blick_tickPoint + _Blick_tickPoint _Blick_tickPointMsec ]
-"72
+"75
 }
 [e :U 954 ]
-[; ;LED_Ctrl.c: 72: }
-[; ;LED_Ctrl.c: 74: if(LED_msec_Cnt > LedON_Duration_msec)
-"74
-[e $ ! > _LED_msec_Cnt _LedON_Duration_msec 970  ]
-[; ;LED_Ctrl.c: 75: {
-"75
-{
-[; ;LED_Ctrl.c: 76: switch(LED_Color)
-"76
-[e $U 972  ]
-[; ;LED_Ctrl.c: 77: {
+[; ;LED_Ctrl.c: 75: }
+[; ;LED_Ctrl.c: 77: if(LED_msec_Cnt > LedON_Duration_msec)
 "77
-{
-[; ;LED_Ctrl.c: 78: case 0 : do { LATCbits.LATC0 = 0; } while(0);
+[e $ ! > _LED_msec_Cnt _LedON_Duration_msec 970  ]
+[; ;LED_Ctrl.c: 78: {
 "78
+{
+[; ;LED_Ctrl.c: 79: switch(LED_Color)
+"79
+[e $U 972  ]
+[; ;LED_Ctrl.c: 80: {
+"80
+{
+[; ;LED_Ctrl.c: 81: case 0 : do { LATCbits.LATC0 = 0; } while(0);
+"81
 [e :U 973 ]
 [e :U 976 ]
 {
 [e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
 }
 [e :U 975 ]
-[; ;LED_Ctrl.c: 79: break;
-"79
+[; ;LED_Ctrl.c: 82: break;
+"82
 [e $U 971  ]
-[; ;LED_Ctrl.c: 80: case 1 : do { LATCbits.LATC1 = 0; } while(0);
-"80
+[; ;LED_Ctrl.c: 83: case 1 : do { LATCbits.LATC1 = 0; } while(0);
+"83
 [e :U 977 ]
 [e :U 980 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 979 ]
-[; ;LED_Ctrl.c: 81: break;
-"81
+[; ;LED_Ctrl.c: 84: break;
+"84
 [e $U 971  ]
-[; ;LED_Ctrl.c: 82: case 2 : do { LATCbits.LATC2 = 0; } while(0);
-"82
+[; ;LED_Ctrl.c: 85: case 2 : do { LATCbits.LATC2 = 0; } while(0);
+"85
 [e :U 981 ]
 [e :U 984 ]
 {
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
 }
 [e :U 983 ]
-[; ;LED_Ctrl.c: 83: break;
-"83
+[; ;LED_Ctrl.c: 86: break;
+"86
 [e $U 971  ]
-[; ;LED_Ctrl.c: 84: default : break;
-"84
+[; ;LED_Ctrl.c: 87: default : break;
+"87
 [e :U 985 ]
 [e $U 971  ]
-"85
+"88
 }
-[; ;LED_Ctrl.c: 85: }
+[; ;LED_Ctrl.c: 88: }
 [e $U 971  ]
-"76
+"79
 [e :U 972 ]
 [e [\ _LED_Color , $ -> -> 0 `i `uc 973
  , $ -> -> 1 `i `uc 977
  , $ -> -> 2 `i `uc 981
  985 ]
-"85
-[e :U 971 ]
-[; ;LED_Ctrl.c: 87: Led_ON=0;
-"87
-[e = _Led_ON -> -> 0 `i `uc ]
-[; ;LED_Ctrl.c: 88: LED_msec_Cnt=0;
 "88
-[e = _LED_msec_Cnt -> -> 0 `i `ui ]
-"89
-}
-[e :U 970 ]
-[; ;LED_Ctrl.c: 89: }
-[; ;LED_Ctrl.c: 91: LED_msec_Cnt+=10;
+[e :U 971 ]
+[; ;LED_Ctrl.c: 90: Led_ON=0;
+"90
+[e = _Led_ON -> -> 0 `i `uc ]
+[; ;LED_Ctrl.c: 91: LED_msec_Cnt=0;
 "91
-[e =+ _LED_msec_Cnt -> -> 10 `i `ui ]
+[e = _LED_msec_Cnt -> -> 0 `i `ui ]
 "92
 }
-[e :U 953 ]
+[e :U 970 ]
 [; ;LED_Ctrl.c: 92: }
-[; ;LED_Ctrl.c: 95: }
+[; ;LED_Ctrl.c: 94: LED_msec_Cnt+=10;
+"94
+[e =+ _LED_msec_Cnt -> -> 10 `i `ui ]
 "95
+}
+[e :U 953 ]
+[; ;LED_Ctrl.c: 95: }
+[; ;LED_Ctrl.c: 98: }
+"98
 [e :UE 952 ]
 }

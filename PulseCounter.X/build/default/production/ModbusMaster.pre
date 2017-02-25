@@ -9880,10 +9880,10 @@ uint8_t EUSART_Read(void);
 # 134
 void EUSART_Write(uint8_t txData);
 
-# 344 "mcc_generated_files/pin_manager.h"
+# 332 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 356
+# 344
 void PIN_MANAGER_IOC(void);
 
 # 105 "mcc_generated_files/tmr0.h"
@@ -9895,36 +9895,41 @@ void TMR0_StartTimer(void);
 # 166
 void TMR0_StopTimer(void);
 
-# 202
-uint16_t TMR0_Read16bitTimer(void);
+# 201
+uint8_t TMR0_Read8bitTimer(void);
 
-# 241
-void TMR0_Write16bitTimer(uint16_t timerVal);
+# 240
+void TMR0_Write8bitTimer(uint8_t timerVal);
 
 # 277
-void TMR0_Reload16bit(void);
+void TMR0_Load8bitPeriod(uint8_t periodVal);
 
-# 295
+# 296
 void TMR0_ISR(void);
 
-# 313
+# 314
 void TMR0_CallBack(void);
 
-# 331
+# 332
 void TMR0_SetInterruptHandler(void *InterruptHandler);
 
-# 349
+# 350
 extern void (*TMR0_InterruptHandler)(void);
 
-# 367
+# 368
 void TMR0_DefaultInterruptHandler(void);
 
+# 18 "main.h"
+void EncA_PulseEdgeEvent(uint16_t *capturedValue);
+void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+
+void Timer0_tick10msecFunc(void);
 
 uint32_t millis(void);
 
 void millisReset(void);
 
-# 18 "ModbusMaster.c"
+# 19 "ModbusMaster.c"
 void ModbusMasterInit(unsigned char slave)
 {
 
@@ -9934,7 +9939,7 @@ _u8MBSlave = slave;
 _u8TransmitBufferIndex = 0;
 u16TransmitBufferLength = 0;
 
-# 31
+# 32
 }
 
 void beginTransmission(unsigned int u16Address)
@@ -9960,7 +9965,7 @@ _u8ResponseBufferLength = read;
 return read;
 }
 
-# 73
+# 74
 void send16(unsigned int data)
 {
 if (_u8TransmitBufferIndex < 64)
@@ -9983,7 +9988,7 @@ void send8(unsigned char data)
 send16(((unsigned int)data)&0x00FF);
 }
 
-# 103
+# 104
 unsigned char available(void)
 {
 return _u8ResponseBufferLength - _u8ResponseBufferIndex;
@@ -10002,19 +10007,19 @@ return 0xFFFF;
 }
 }
 
-# 133
+# 134
 void preTransmission(void (*preTransmission)())
 {
 _preTransmission = preTransmission;
 }
 
-# 151
+# 152
 void postTransmission(void (*postTransmission)())
 {
 _postTransmission = postTransmission;
 }
 
-# 165
+# 166
 unsigned int getResponseBuffer(unsigned char u8Index)
 {
 if (u8Index < 64)
@@ -10027,7 +10032,7 @@ return 0xFFFF;
 }
 }
 
-# 184
+# 185
 void clearResponseBuffer()
 {
 unsigned char i;
@@ -10038,7 +10043,7 @@ _u16ResponseBuffer[i] = 0;
 }
 }
 
-# 204
+# 205
 unsigned char setTransmitBuffer(unsigned char u8Index, unsigned int u16Value)
 {
 if (u8Index < 64)
@@ -10052,7 +10057,7 @@ return 0x02;;
 }
 }
 
-# 224
+# 225
 void clearTransmitBuffer()
 {
 unsigned char i;
@@ -10063,7 +10068,7 @@ _u16TransmitBuffer[i] = 0;
 }
 }
 
-# 258
+# 259
 unsigned char readCoils(unsigned int u16ReadAddress, unsigned int u16BitQty)
 {
 _u16ReadAddress = u16ReadAddress;
@@ -10071,7 +10076,7 @@ _u16ReadQty = u16BitQty;
 return ModbusMasterTransaction(0x01);
 }
 
-# 289
+# 290
 unsigned char readDiscreteInputs(unsigned int u16ReadAddress,
 unsigned int u16BitQty)
 {
@@ -10080,7 +10085,7 @@ _u16ReadQty = u16BitQty;
 return ModbusMasterTransaction(0x02);
 }
 
-# 314
+# 315
 unsigned char readHoldingRegisters(unsigned int u16ReadAddress,
 unsigned int u16ReadQty)
 {
@@ -10089,7 +10094,7 @@ _u16ReadQty = u16ReadQty;
 return ModbusMasterTransaction(0x03);
 }
 
-# 339
+# 340
 unsigned char readInputRegisters(unsigned int u16ReadAddress,
 unsigned char u16ReadQty)
 {
@@ -10098,7 +10103,7 @@ _u16ReadQty = u16ReadQty;
 return ModbusMasterTransaction(0x04);
 }
 
-# 362
+# 363
 unsigned char writeSingleCoil(unsigned int u16WriteAddress, unsigned char u8State)
 {
 _u16WriteAddress = u16WriteAddress;
@@ -10106,7 +10111,7 @@ _u16WriteQty = (u8State ? 0xFF00 : 0x0000);
 return ModbusMasterTransaction(0x05);
 }
 
-# 382
+# 383
 unsigned char writeSingleRegister(unsigned int u16WriteAddress,
 unsigned int u16WriteValue)
 {
@@ -10116,7 +10121,7 @@ _u16TransmitBuffer[0] = u16WriteValue;
 return ModbusMasterTransaction(0x06);
 }
 
-# 408
+# 409
 unsigned char writeMultipleCoils(unsigned int u16WriteAddress,
 unsigned int u16BitQty)
 {
@@ -10125,7 +10130,7 @@ _u16WriteQty = u16BitQty;
 return ModbusMasterTransaction(0x0F);
 }
 
-# 436
+# 437
 unsigned char writeMultipleRegisters(unsigned int u16WriteAddress,
 unsigned int u16WriteQty)
 {
@@ -10134,7 +10139,7 @@ _u16WriteQty = u16WriteQty;
 return ModbusMasterTransaction(0x10);
 }
 
-# 474
+# 475
 unsigned char maskWriteRegister(unsigned int u16WriteAddress,
 unsigned int u16AndMask, unsigned int u16OrMask)
 {
@@ -10144,7 +10149,7 @@ _u16TransmitBuffer[1] = u16OrMask;
 return ModbusMasterTransaction(0x16);
 }
 
-# 504
+# 505
 unsigned char readWriteMultipleRegisters(unsigned int u16ReadAddress,
 unsigned int u16ReadQty, unsigned int u16WriteAddress, unsigned int u16WriteQty)
 {
@@ -10155,7 +10160,7 @@ _u16WriteQty = u16WriteQty;
 return ModbusMasterTransaction(0x17);
 }
 
-# 537
+# 538
 unsigned char ModbusMasterTransaction(unsigned char u8MBFunction)
 {
 
@@ -10293,11 +10298,11 @@ u32StartTime = millis();
 while (u8BytesLeft && !u8MBStatus)
 {
 
-# 679
+# 680
 u8ModbusADU[u8ModbusADUSize++] = EUSART_Read();
 u8BytesLeft--;
 
-# 700
+# 701
 if (u8ModbusADUSize == 5)
 {
 

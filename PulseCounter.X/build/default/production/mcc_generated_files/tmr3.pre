@@ -9804,7 +9804,7 @@ void TMR3_Initialize(void)
 
 
 
-T3CON = 0x30;
+T3CON = 0x00;
 
 
 T3GCON = 0x00;

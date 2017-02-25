@@ -61,7 +61,7 @@ void PIN_MANAGER_Initialize(void)
     TRISx registers
     */    
     TRISA = 0x37;
-    TRISB = 0x10;
+    TRISB = 0x90;
     TRISC = 0x30;
 
     /**
@@ -76,7 +76,7 @@ void PIN_MANAGER_Initialize(void)
     */ 
     WPUB = 0x80;
     WPUA = 0x00;
-    WPUC = 0xFF;
+    WPUC = 0xF8;
 
     /**
     ODx registers
@@ -98,9 +98,7 @@ void PIN_MANAGER_Initialize(void)
 
     CCP2PPSbits.CCP2PPS = 0x14;   //RC4->CCP2:CCP2;
     RXPPSbits.RXPPS = 0x0C;   //RB4->EUSART:RX;
-    INTPPSbits.INTPPS = 0x05;   //RA5->EXT_INT:INT;
     CCP1PPSbits.CCP1PPS = 0x15;   //RC5->CCP1:CCP1;
-    RB5PPSbits.RB5PPS = 0x14;   //RB5->EUSART:TX;
 
     PPSLOCK = 0x55;
     PPSLOCK = 0xAA;

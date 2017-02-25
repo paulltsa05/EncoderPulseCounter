@@ -55,10 +55,6 @@ void interrupt INTERRUPT_InterruptManager (void)
     {
         TMR0_ISR();
     }
-    else if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
-    {
-        INT_ISR();
-    }
     else if(INTCONbits.PEIE == 1 && PIE4bits.CCP2IE == 1 && PIR4bits.CCP2IF == 1)
     {
         CCP2_CaptureISR();

@@ -7398,9 +7398,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr3.c: 64: {
 [e :U _TMR3_Initialize ]
 [f ]
-[; ;tmr3.c: 68: T3CON = 0x30;
+[; ;tmr3.c: 68: T3CON = 0x00;
 "68
-[e = _T3CON -> -> 48 `i `uc ]
+[e = _T3CON -> -> 0 `i `uc ]
 [; ;tmr3.c: 71: T3GCON = 0x00;
 "71
 [e = _T3GCON -> -> 0 `i `uc ]

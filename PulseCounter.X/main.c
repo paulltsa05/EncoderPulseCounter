@@ -45,20 +45,31 @@
 
 #include "mcc_generated_files/mcc.h"
 #include "ModbusManager.h"
-#include "main.h"
 #include "LED_Ctrl.h"
+#include "main.h"
+
 
 /*
                          Main application
  */
 unsigned int OldEncPulseOpState=IDLE;
 
+unsigned int PulseTime_uSec=0;
+
+uint32_t TimertickMsec=0;
+
+
+
+void getStateOfPulse(uint16_t *capturevalue);
 void EPC_StateMachineControlLoop();
 
 void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
+    
+
+    
 
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
@@ -81,9 +92,23 @@ void main(void)
     
     ModbusMasterSetup();
     EncPulseOpState=IDLE;
+  
+//    LED_RED_RC0_SetLow();
+//    LED_GREEN_RC1_SetLow();
+//    LED_BLUE_RC2_SetLow();
+
+    LedONStartConfig(LED_RED, 4, 10);
+    while(LedONStatusBusy());//wait for LED blink     
+    LedONStartConfig(LED_GREEN, 4, 10);
+    while(LedONStatusBusy());//wait for LED blink 
+    LedONStartConfig(LED_BLUE, 4, 10);
+    while(LedONStatusBusy());//wait for LED blink    
+    
+
 
     while (1)
     {
+
         // Add your application code
        // EPC_StateMachineControlLoop();
     }
@@ -175,32 +200,46 @@ void EPC_StateMachineControlLoop() //call the statemachine in main loop
 }
 
 //Interrupt trigger function call
-void EncA_PulseEdgeEvent(uint16_t capturedValue)
+void EncA_PulseEdgeEvent(uint16_t *capturedValue)// ISR callback function
 {
-    TMR3_WriteTimer(0);
-    TMR3_StartTimer();//Start if not started TMR3
-    if(ENC_A_RC5_GetValue())// rising uses timer 3 & CCP1
-    {
-        
-    }
-    else//falling
-    {
-        
-    }
+ //   getStateOfPulse(&captureValue);
     
 }
-void EncB_PulseEdgeEvent(uint16_t capturedValue)
+void EncB_PulseEdgeEvent(uint16_t *capturedValue)// ISR callback function
 {
+//    getStateOfPulse(&captureValue);
+    
+}
+
+void getStateOfPulse(uint16_t *capturevalue)
+{
+    TMR3_WriteTimer(0);
+    TMR3_StartTimer();//Start if not started TMR3    
     TMR5_WriteTimer(0);
-    TMR5_StartTimer();//Start if not started TMR5
-    if(ENC_B_RC4_GetValue())// rising uses timer 5 & CCP2
+    TMR5_StartTimer();//Start if not started TMR5    
+    PulseTime_uSec=capturevalue;
+    if(ENC_A_RC5_GetValue())// rising uses timer 3 & CCP1
     {
-        
+        if(ENC_B_RC4_GetValue())// rising uses timer 5 & CCP2
+        {
+            EncPulseOpState=EnAHiEnBHi;
+        } 
+        else
+        {
+            EncPulseOpState=EnAHiEnBLo;
+        }    
     }
-    else//falling
+    else
     {
-        
-    }
+         if(ENC_B_RC4_GetValue())// rising uses timer 5 & CCP2
+        {
+            EncPulseOpState=EnALoEnBHi;
+        } 
+        else
+        {
+            EncPulseOpState=EnALoEnBLo;
+        }       
+    }    
     
 }
 
@@ -209,10 +248,21 @@ void EncINX_PulseRisingEvent()
     
 }
 
-void Timer0_tick10msecFunc()//call every 10msec
+void Timer0_tick10msecFunc(void)//call every 10msec
 {
     LedON_Control_10msec();
+    //LED_RED_RC0_Toggle();
+    TimertickMsec=TimertickMsec+10;
 }
+//
+//uint32_t millis(void) //arduino Like implementation for miilis())
+//{
+//    return TimertickMsec;
+//}
+//void millisReset(void)//arduino Like implementation for miilis())
+//{
+//    TimertickMsec=0;
+//}
 
 /**
  End of File

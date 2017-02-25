@@ -13,12 +13,17 @@ extern "C" {
 #endif
 
 
-//Interrupt Function callback
-//void EncA_PulseEdgeEvent(uint16_t capturedValue);
-//void EncB_PulseEdgeEvent(uint16_t capturedValue);
-void EncINX_PulseRisingEvent();
 
-void Timer0_tick10msecFunc();
+//Interrupt Function callback
+void EncA_PulseEdgeEvent(uint16_t *capturedValue);
+void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+
+void Timer0_tick10msecFunc(void);    
+
+uint32_t millis(void); //arduino Like implementation for miilis())
+
+void millisReset(void);//arduino Like implementation for miilis())
+
 
 
 #ifdef	__cplusplus

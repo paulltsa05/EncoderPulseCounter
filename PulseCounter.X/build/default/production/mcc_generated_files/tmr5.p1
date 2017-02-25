@@ -7398,9 +7398,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr5.c: 64: {
 [e :U _TMR5_Initialize ]
 [f ]
-[; ;tmr5.c: 68: T5CON = 0x30;
+[; ;tmr5.c: 68: T5CON = 0x00;
 "68
-[e = _T5CON -> -> 48 `i `uc ]
+[e = _T5CON -> -> 0 `i `uc ]
 [; ;tmr5.c: 71: T5GCON = 0x00;
 "71
 [e = _T5GCON -> -> 0 `i `uc ]

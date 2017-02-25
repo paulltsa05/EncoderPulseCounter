@@ -15,9 +15,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR1bits `VS46 ~T0 @X0 0 e@17 ]
 "134 mcc_generated_files/eusart.h
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
-"372 mcc_generated_files/tmr0.h
+"25 main.h
 [v _millisReset `(v ~T0 @X0 0 ef ]
-"370
+"23
 [v _millis `(ul ~T0 @X0 0 ef ]
 "114 mcc_generated_files/eusart.h
 [v _EUSART_Read `(uc ~T0 @X0 0 ef ]
@@ -7582,815 +7582,818 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 94: void EUSART_Initialize(void);
 [; ;eusart.h: 114: uint8_t EUSART_Read(void);
 [; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
-[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 332: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_IOC(void);
 [; ;tmr0.h: 105: void TMR0_Initialize(void);
 [; ;tmr0.h: 134: void TMR0_StartTimer(void);
 [; ;tmr0.h: 166: void TMR0_StopTimer(void);
-[; ;tmr0.h: 202: uint16_t TMR0_Read16bitTimer(void);
-[; ;tmr0.h: 241: void TMR0_Write16bitTimer(uint16_t timerVal);
-[; ;tmr0.h: 277: void TMR0_Reload16bit(void);
-[; ;tmr0.h: 295: void TMR0_ISR(void);
-[; ;tmr0.h: 313: void TMR0_CallBack(void);
-[; ;tmr0.h: 331: void TMR0_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr0.h: 349: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 367: void TMR0_DefaultInterruptHandler(void);
-[; ;tmr0.h: 370: uint32_t millis(void);
-[; ;tmr0.h: 372: void millisReset(void);
-"18 ModbusMaster.c
+[; ;tmr0.h: 201: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 240: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 277: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 296: void TMR0_ISR(void);
+[; ;tmr0.h: 314: void TMR0_CallBack(void);
+[; ;tmr0.h: 332: void TMR0_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr0.h: 350: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 368: void TMR0_DefaultInterruptHandler(void);
+[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t *capturedValue);
+[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+[; ;main.h: 21: void Timer0_tick10msecFunc(void);
+[; ;main.h: 23: uint32_t millis(void);
+[; ;main.h: 25: void millisReset(void);
+"19 ModbusMaster.c
 [v _ModbusMasterInit `(v ~T0 @X0 1 ef1`uc ]
-"19
+"20
 {
-[; ;ModbusMaster.c: 18: void ModbusMasterInit(unsigned char slave)
-[; ;ModbusMaster.c: 19: {
+[; ;ModbusMaster.c: 19: void ModbusMasterInit(unsigned char slave)
+[; ;ModbusMaster.c: 20: {
 [e :U _ModbusMasterInit ]
-"18
-[v _slave `uc ~T0 @X0 1 r1 ]
 "19
+[v _slave `uc ~T0 @X0 1 r1 ]
+"20
 [f ]
-[; ;ModbusMaster.c: 21: _preTransmission = 0;
-"21
-[e = __preTransmission -> -> 0 `i `*F39 ]
-[; ;ModbusMaster.c: 22: _postTransmission = 0;
+[; ;ModbusMaster.c: 22: _preTransmission = 0;
 "22
-[e = __postTransmission -> -> 0 `i `*F41 ]
-[; ;ModbusMaster.c: 23: _u8MBSlave = slave;
+[e = __preTransmission -> -> 0 `i `*F39 ]
+[; ;ModbusMaster.c: 23: _postTransmission = 0;
 "23
-[e = __u8MBSlave _slave ]
-[; ;ModbusMaster.c: 24: _u8TransmitBufferIndex = 0;
+[e = __postTransmission -> -> 0 `i `*F41 ]
+[; ;ModbusMaster.c: 24: _u8MBSlave = slave;
 "24
-[e = __u8TransmitBufferIndex -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 25: u16TransmitBufferLength = 0;
+[e = __u8MBSlave _slave ]
+[; ;ModbusMaster.c: 25: _u8TransmitBufferIndex = 0;
 "25
+[e = __u8TransmitBufferIndex -> -> 0 `i `uc ]
+[; ;ModbusMaster.c: 26: u16TransmitBufferLength = 0;
+"26
 [e = _u16TransmitBufferLength -> -> 0 `i `ui ]
-[; ;ModbusMaster.c: 31: }
-"31
+[; ;ModbusMaster.c: 32: }
+"32
 [e :UE 935 ]
 }
-"33
+"34
 [v _beginTransmission `(v ~T0 @X0 1 ef1`ui ]
-"34
-{
-[; ;ModbusMaster.c: 33: void beginTransmission(unsigned int u16Address)
-[; ;ModbusMaster.c: 34: {
-[e :U _beginTransmission ]
-"33
-[v _u16Address `ui ~T0 @X0 1 r1 ]
-"34
-[f ]
-[; ;ModbusMaster.c: 35: _u16WriteAddress = u16Address;
 "35
-[e = __u16WriteAddress _u16Address ]
-[; ;ModbusMaster.c: 36: _u8TransmitBufferIndex = 0;
+{
+[; ;ModbusMaster.c: 34: void beginTransmission(unsigned int u16Address)
+[; ;ModbusMaster.c: 35: {
+[e :U _beginTransmission ]
+"34
+[v _u16Address `ui ~T0 @X0 1 r1 ]
+"35
+[f ]
+[; ;ModbusMaster.c: 36: _u16WriteAddress = u16Address;
 "36
-[e = __u8TransmitBufferIndex -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 37: u16TransmitBufferLength = 0;
+[e = __u16WriteAddress _u16Address ]
+[; ;ModbusMaster.c: 37: _u8TransmitBufferIndex = 0;
 "37
-[e = _u16TransmitBufferLength -> -> 0 `i `ui ]
-[; ;ModbusMaster.c: 38: }
+[e = __u8TransmitBufferIndex -> -> 0 `i `uc ]
+[; ;ModbusMaster.c: 38: u16TransmitBufferLength = 0;
 "38
+[e = _u16TransmitBufferLength -> -> 0 `i `ui ]
+[; ;ModbusMaster.c: 39: }
+"39
 [e :UE 936 ]
 }
-"41
-[v _requestFrom `(uc ~T0 @X0 1 ef2`ui`ui ]
 "42
+[v _requestFrom `(uc ~T0 @X0 1 ef2`ui`ui ]
+"43
 {
-[; ;ModbusMaster.c: 41: unsigned char requestFrom(unsigned int address, unsigned int quantity)
-[; ;ModbusMaster.c: 42: {
+[; ;ModbusMaster.c: 42: unsigned char requestFrom(unsigned int address, unsigned int quantity)
+[; ;ModbusMaster.c: 43: {
 [e :U _requestFrom ]
-"41
+"42
 [v _address `ui ~T0 @X0 1 r1 ]
 [v _quantity `ui ~T0 @X0 1 r2 ]
-"42
-[f ]
 "43
+[f ]
+"44
 [v _read `uc ~T0 @X0 1 a ]
-[; ;ModbusMaster.c: 43: unsigned char read;
-[; ;ModbusMaster.c: 45: if (quantity > 64)
-"45
-[e $ ! > _quantity -> -> 64 `i `ui 938  ]
-[; ;ModbusMaster.c: 46: {
+[; ;ModbusMaster.c: 44: unsigned char read;
+[; ;ModbusMaster.c: 46: if (quantity > 64)
 "46
-{
-[; ;ModbusMaster.c: 47: quantity = 64;
+[e $ ! > _quantity -> -> 64 `i `ui 938  ]
+[; ;ModbusMaster.c: 47: {
 "47
-[e = _quantity -> -> 64 `i `ui ]
+{
+[; ;ModbusMaster.c: 48: quantity = 64;
 "48
+[e = _quantity -> -> 64 `i `ui ]
+"49
 }
 [e :U 938 ]
-[; ;ModbusMaster.c: 48: }
-[; ;ModbusMaster.c: 50: _u8ResponseBufferIndex = 0;
-"50
-[e = __u8ResponseBufferIndex -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 51: _u8ResponseBufferLength = read;
+[; ;ModbusMaster.c: 49: }
+[; ;ModbusMaster.c: 51: _u8ResponseBufferIndex = 0;
 "51
+[e = __u8ResponseBufferIndex -> -> 0 `i `uc ]
+[; ;ModbusMaster.c: 52: _u8ResponseBufferLength = read;
+"52
 [e = __u8ResponseBufferLength _read ]
-[; ;ModbusMaster.c: 53: return read;
-"53
+[; ;ModbusMaster.c: 54: return read;
+"54
 [e ) _read ]
 [e $UE 937  ]
-[; ;ModbusMaster.c: 54: }
-"54
+[; ;ModbusMaster.c: 55: }
+"55
 [e :UE 937 ]
 }
-"73
+"74
 [v _send16 `(v ~T0 @X0 1 ef1`ui ]
-"74
-{
-[; ;ModbusMaster.c: 73: void send16(unsigned int data)
-[; ;ModbusMaster.c: 74: {
-[e :U _send16 ]
-"73
-[v _data `ui ~T0 @X0 1 r1 ]
-"74
-[f ]
-[; ;ModbusMaster.c: 75: if (_u8TransmitBufferIndex < 64)
 "75
-[e $ ! < -> __u8TransmitBufferIndex `i -> 64 `i 940  ]
-[; ;ModbusMaster.c: 76: {
-"76
 {
-[; ;ModbusMaster.c: 77: _u16TransmitBuffer[_u8TransmitBufferIndex++] = data;
+[; ;ModbusMaster.c: 74: void send16(unsigned int data)
+[; ;ModbusMaster.c: 75: {
+[e :U _send16 ]
+"74
+[v _data `ui ~T0 @X0 1 r1 ]
+"75
+[f ]
+[; ;ModbusMaster.c: 76: if (_u8TransmitBufferIndex < 64)
+"76
+[e $ ! < -> __u8TransmitBufferIndex `i -> 64 `i 940  ]
+[; ;ModbusMaster.c: 77: {
 "77
-[e = *U + &U __u16TransmitBuffer * -> ++ __u8TransmitBufferIndex -> -> 1 `i `uc `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _data ]
-[; ;ModbusMaster.c: 78: u16TransmitBufferLength = _u8TransmitBufferIndex << 4;
+{
+[; ;ModbusMaster.c: 78: _u16TransmitBuffer[_u8TransmitBufferIndex++] = data;
 "78
-[e = _u16TransmitBufferLength -> << -> __u8TransmitBufferIndex `i -> 4 `i `ui ]
+[e = *U + &U __u16TransmitBuffer * -> ++ __u8TransmitBufferIndex -> -> 1 `i `uc `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _data ]
+[; ;ModbusMaster.c: 79: u16TransmitBufferLength = _u8TransmitBufferIndex << 4;
 "79
+[e = _u16TransmitBufferLength -> << -> __u8TransmitBufferIndex `i -> 4 `i `ui ]
+"80
 }
 [e :U 940 ]
-[; ;ModbusMaster.c: 79: }
 [; ;ModbusMaster.c: 80: }
-"80
+[; ;ModbusMaster.c: 81: }
+"81
 [e :UE 939 ]
 }
-"83
+"84
 [v _send32 `(v ~T0 @X0 1 ef1`ul ]
-"84
-{
-[; ;ModbusMaster.c: 83: void send32(unsigned long data)
-[; ;ModbusMaster.c: 84: {
-[e :U _send32 ]
-"83
-[v _data `ul ~T0 @X0 1 r1 ]
-"84
-[f ]
-[; ;ModbusMaster.c: 85: send16(lowWord(data));
 "85
-[e ( _send16 (1 ( _lowWord (1 _data ]
-[; ;ModbusMaster.c: 86: send16(highWord(data));
+{
+[; ;ModbusMaster.c: 84: void send32(unsigned long data)
+[; ;ModbusMaster.c: 85: {
+[e :U _send32 ]
+"84
+[v _data `ul ~T0 @X0 1 r1 ]
+"85
+[f ]
+[; ;ModbusMaster.c: 86: send16(lowWord(data));
 "86
-[e ( _send16 (1 ( _highWord (1 _data ]
-[; ;ModbusMaster.c: 87: }
+[e ( _send16 (1 ( _lowWord (1 _data ]
+[; ;ModbusMaster.c: 87: send16(highWord(data));
 "87
+[e ( _send16 (1 ( _highWord (1 _data ]
+[; ;ModbusMaster.c: 88: }
+"88
 [e :UE 941 ]
 }
-"90
+"91
 [v _send8 `(v ~T0 @X0 1 ef1`uc ]
-"91
-{
-[; ;ModbusMaster.c: 90: void send8(unsigned char data)
-[; ;ModbusMaster.c: 91: {
-[e :U _send8 ]
-"90
-[v _data `uc ~T0 @X0 1 r1 ]
-"91
-[f ]
-[; ;ModbusMaster.c: 92: send16(((unsigned int)data)&0x00FF);
 "92
-[e ( _send16 (1 & -> _data `ui -> -> 255 `i `ui ]
-[; ;ModbusMaster.c: 93: }
+{
+[; ;ModbusMaster.c: 91: void send8(unsigned char data)
+[; ;ModbusMaster.c: 92: {
+[e :U _send8 ]
+"91
+[v _data `uc ~T0 @X0 1 r1 ]
+"92
+[f ]
+[; ;ModbusMaster.c: 93: send16(((unsigned int)data)&0x00FF);
 "93
+[e ( _send16 (1 & -> _data `ui -> -> 255 `i `ui ]
+[; ;ModbusMaster.c: 94: }
+"94
 [e :UE 942 ]
 }
-"103
-[v _available `(uc ~T0 @X0 1 ef ]
 "104
+[v _available `(uc ~T0 @X0 1 ef ]
+"105
 {
-[; ;ModbusMaster.c: 103: unsigned char available(void)
-[; ;ModbusMaster.c: 104: {
+[; ;ModbusMaster.c: 104: unsigned char available(void)
+[; ;ModbusMaster.c: 105: {
 [e :U _available ]
 [f ]
-[; ;ModbusMaster.c: 105: return _u8ResponseBufferLength - _u8ResponseBufferIndex;
-"105
+[; ;ModbusMaster.c: 106: return _u8ResponseBufferLength - _u8ResponseBufferIndex;
+"106
 [e ) -> - -> __u8ResponseBufferLength `i -> __u8ResponseBufferIndex `i `uc ]
 [e $UE 943  ]
-[; ;ModbusMaster.c: 106: }
-"106
+[; ;ModbusMaster.c: 107: }
+"107
 [e :UE 943 ]
 }
-"109
-[v _receive `(ui ~T0 @X0 1 ef ]
 "110
+[v _receive `(ui ~T0 @X0 1 ef ]
+"111
 {
-[; ;ModbusMaster.c: 109: unsigned int receive(void)
-[; ;ModbusMaster.c: 110: {
+[; ;ModbusMaster.c: 110: unsigned int receive(void)
+[; ;ModbusMaster.c: 111: {
 [e :U _receive ]
 [f ]
-[; ;ModbusMaster.c: 111: if (_u8ResponseBufferIndex < _u8ResponseBufferLength)
-"111
-[e $ ! < -> __u8ResponseBufferIndex `i -> __u8ResponseBufferLength `i 945  ]
-[; ;ModbusMaster.c: 112: {
+[; ;ModbusMaster.c: 112: if (_u8ResponseBufferIndex < _u8ResponseBufferLength)
 "112
-{
-[; ;ModbusMaster.c: 113: return _u16ResponseBuffer[_u8ResponseBufferIndex++];
+[e $ ! < -> __u8ResponseBufferIndex `i -> __u8ResponseBufferLength `i 945  ]
+[; ;ModbusMaster.c: 113: {
 "113
+{
+[; ;ModbusMaster.c: 114: return _u16ResponseBuffer[_u8ResponseBufferIndex++];
+"114
 [e ) *U + &U __u16ResponseBuffer * -> ++ __u8ResponseBufferIndex -> -> 1 `i `uc `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ]
 [e $UE 944  ]
-"114
-}
-[; ;ModbusMaster.c: 114: }
-[e $U 946  ]
 "115
-[e :U 945 ]
-[; ;ModbusMaster.c: 115: else
-[; ;ModbusMaster.c: 116: {
+}
+[; ;ModbusMaster.c: 115: }
+[e $U 946  ]
 "116
-{
-[; ;ModbusMaster.c: 117: return 0xFFFF;
+[e :U 945 ]
+[; ;ModbusMaster.c: 116: else
+[; ;ModbusMaster.c: 117: {
 "117
+{
+[; ;ModbusMaster.c: 118: return 0xFFFF;
+"118
 [e ) -> 65535 `ui ]
 [e $UE 944  ]
-"118
+"119
 }
 [e :U 946 ]
-[; ;ModbusMaster.c: 118: }
 [; ;ModbusMaster.c: 119: }
-"119
+[; ;ModbusMaster.c: 120: }
+"120
 [e :UE 944 ]
 }
-"133
-[v _preTransmission `(v ~T0 @X0 1 ef1`*F45 ]
 "134
-{
-[; ;ModbusMaster.c: 133: void preTransmission(void (*preTransmission)())
-[; ;ModbusMaster.c: 134: {
-[e :U _preTransmission ]
-[v F7833 `(v ~T0 @X0 0 tf ]
-[v _preTransmission `*F7833 ~T0 @X0 1 r1 ]
-[f ]
-[; ;ModbusMaster.c: 135: _preTransmission = preTransmission;
+[v _preTransmission `(v ~T0 @X0 1 ef1`*F45 ]
 "135
-[e = __preTransmission _preTransmission ]
-[; ;ModbusMaster.c: 136: }
+{
+[; ;ModbusMaster.c: 134: void preTransmission(void (*preTransmission)())
+[; ;ModbusMaster.c: 135: {
+[e :U _preTransmission ]
+[v F7839 `(v ~T0 @X0 0 tf ]
+[v _preTransmission `*F7839 ~T0 @X0 1 r1 ]
+[f ]
+[; ;ModbusMaster.c: 136: _preTransmission = preTransmission;
 "136
+[e = __preTransmission _preTransmission ]
+[; ;ModbusMaster.c: 137: }
+"137
 [e :UE 947 ]
 }
-"151
-[v _postTransmission `(v ~T0 @X0 1 ef1`*F48 ]
 "152
-{
-[; ;ModbusMaster.c: 151: void postTransmission(void (*postTransmission)())
-[; ;ModbusMaster.c: 152: {
-[e :U _postTransmission ]
-[v F7835 `(v ~T0 @X0 0 tf ]
-[v _postTransmission `*F7835 ~T0 @X0 1 r1 ]
-[f ]
-[; ;ModbusMaster.c: 153: _postTransmission = postTransmission;
+[v _postTransmission `(v ~T0 @X0 1 ef1`*F48 ]
 "153
-[e = __postTransmission _postTransmission ]
-[; ;ModbusMaster.c: 154: }
+{
+[; ;ModbusMaster.c: 152: void postTransmission(void (*postTransmission)())
+[; ;ModbusMaster.c: 153: {
+[e :U _postTransmission ]
+[v F7841 `(v ~T0 @X0 0 tf ]
+[v _postTransmission `*F7841 ~T0 @X0 1 r1 ]
+[f ]
+[; ;ModbusMaster.c: 154: _postTransmission = postTransmission;
 "154
+[e = __postTransmission _postTransmission ]
+[; ;ModbusMaster.c: 155: }
+"155
 [e :UE 948 ]
 }
-"165
+"166
 [v _getResponseBuffer `(ui ~T0 @X0 1 ef1`uc ]
-"166
-{
-[; ;ModbusMaster.c: 165: unsigned int getResponseBuffer(unsigned char u8Index)
-[; ;ModbusMaster.c: 166: {
-[e :U _getResponseBuffer ]
-"165
-[v _u8Index `uc ~T0 @X0 1 r1 ]
-"166
-[f ]
-[; ;ModbusMaster.c: 167: if (u8Index < 64)
 "167
-[e $ ! < -> _u8Index `i -> 64 `i 950  ]
-[; ;ModbusMaster.c: 168: {
-"168
 {
-[; ;ModbusMaster.c: 169: return _u16ResponseBuffer[u8Index];
+[; ;ModbusMaster.c: 166: unsigned int getResponseBuffer(unsigned char u8Index)
+[; ;ModbusMaster.c: 167: {
+[e :U _getResponseBuffer ]
+"166
+[v _u8Index `uc ~T0 @X0 1 r1 ]
+"167
+[f ]
+[; ;ModbusMaster.c: 168: if (u8Index < 64)
+"168
+[e $ ! < -> _u8Index `i -> 64 `i 950  ]
+[; ;ModbusMaster.c: 169: {
 "169
+{
+[; ;ModbusMaster.c: 170: return _u16ResponseBuffer[u8Index];
+"170
 [e ) *U + &U __u16ResponseBuffer * -> _u8Index `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ]
 [e $UE 949  ]
-"170
-}
-[; ;ModbusMaster.c: 170: }
-[e $U 951  ]
 "171
-[e :U 950 ]
-[; ;ModbusMaster.c: 171: else
-[; ;ModbusMaster.c: 172: {
+}
+[; ;ModbusMaster.c: 171: }
+[e $U 951  ]
 "172
-{
-[; ;ModbusMaster.c: 173: return 0xFFFF;
+[e :U 950 ]
+[; ;ModbusMaster.c: 172: else
+[; ;ModbusMaster.c: 173: {
 "173
+{
+[; ;ModbusMaster.c: 174: return 0xFFFF;
+"174
 [e ) -> 65535 `ui ]
 [e $UE 949  ]
-"174
+"175
 }
 [e :U 951 ]
-[; ;ModbusMaster.c: 174: }
 [; ;ModbusMaster.c: 175: }
-"175
+[; ;ModbusMaster.c: 176: }
+"176
 [e :UE 949 ]
 }
-"184
-[v _clearResponseBuffer `(v ~T0 @X0 1 ef ]
 "185
+[v _clearResponseBuffer `(v ~T0 @X0 1 ef ]
+"186
 {
-[; ;ModbusMaster.c: 184: void clearResponseBuffer()
-[; ;ModbusMaster.c: 185: {
+[; ;ModbusMaster.c: 185: void clearResponseBuffer()
+[; ;ModbusMaster.c: 186: {
 [e :U _clearResponseBuffer ]
 [f ]
-"186
+"187
 [v _i `uc ~T0 @X0 1 a ]
-[; ;ModbusMaster.c: 186: unsigned char i;
-[; ;ModbusMaster.c: 188: for (i = 0; i < 64; i++)
-"188
+[; ;ModbusMaster.c: 187: unsigned char i;
+[; ;ModbusMaster.c: 189: for (i = 0; i < 64; i++)
+"189
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 64 `i 953  ]
 [e $U 954  ]
-"189
-[e :U 953 ]
-[; ;ModbusMaster.c: 189: {
-{
-[; ;ModbusMaster.c: 190: _u16ResponseBuffer[i] = 0;
 "190
-[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux -> -> 0 `i `ui ]
+[e :U 953 ]
+[; ;ModbusMaster.c: 190: {
+{
+[; ;ModbusMaster.c: 191: _u16ResponseBuffer[i] = 0;
 "191
+[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux -> -> 0 `i `ui ]
+"192
 }
-"188
+"189
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 64 `i 953  ]
 [e :U 954 ]
-"191
-}
-[; ;ModbusMaster.c: 191: }
-[; ;ModbusMaster.c: 192: }
 "192
+}
+[; ;ModbusMaster.c: 192: }
+[; ;ModbusMaster.c: 193: }
+"193
 [e :UE 952 ]
 }
-"204
-[v _setTransmitBuffer `(uc ~T0 @X0 1 ef2`uc`ui ]
 "205
+[v _setTransmitBuffer `(uc ~T0 @X0 1 ef2`uc`ui ]
+"206
 {
-[; ;ModbusMaster.c: 204: unsigned char setTransmitBuffer(unsigned char u8Index, unsigned int u16Value)
-[; ;ModbusMaster.c: 205: {
+[; ;ModbusMaster.c: 205: unsigned char setTransmitBuffer(unsigned char u8Index, unsigned int u16Value)
+[; ;ModbusMaster.c: 206: {
 [e :U _setTransmitBuffer ]
-"204
+"205
 [v _u8Index `uc ~T0 @X0 1 r1 ]
 [v _u16Value `ui ~T0 @X0 1 r2 ]
-"205
-[f ]
-[; ;ModbusMaster.c: 206: if (u8Index < 64)
 "206
-[e $ ! < -> _u8Index `i -> 64 `i 957  ]
-[; ;ModbusMaster.c: 207: {
+[f ]
+[; ;ModbusMaster.c: 207: if (u8Index < 64)
 "207
-{
-[; ;ModbusMaster.c: 208: _u16TransmitBuffer[u8Index] = u16Value;
+[e $ ! < -> _u8Index `i -> 64 `i 957  ]
+[; ;ModbusMaster.c: 208: {
 "208
-[e = *U + &U __u16TransmitBuffer * -> _u8Index `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16Value ]
-[; ;ModbusMaster.c: 209: return 0x00;
+{
+[; ;ModbusMaster.c: 209: _u16TransmitBuffer[u8Index] = u16Value;
 "209
+[e = *U + &U __u16TransmitBuffer * -> _u8Index `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16Value ]
+[; ;ModbusMaster.c: 210: return 0x00;
+"210
 [e ) -> -> 0 `i `uc ]
 [e $UE 956  ]
-"210
-}
-[; ;ModbusMaster.c: 210: }
-[e $U 958  ]
 "211
-[e :U 957 ]
-[; ;ModbusMaster.c: 211: else
-[; ;ModbusMaster.c: 212: {
+}
+[; ;ModbusMaster.c: 211: }
+[e $U 958  ]
 "212
-{
-[; ;ModbusMaster.c: 213: return 0x02;;
+[e :U 957 ]
+[; ;ModbusMaster.c: 212: else
+[; ;ModbusMaster.c: 213: {
 "213
+{
+[; ;ModbusMaster.c: 214: return 0x02;;
+"214
 [e ) -> -> 2 `i `uc ]
 [e $UE 956  ]
-"214
+"215
 }
 [e :U 958 ]
-[; ;ModbusMaster.c: 214: }
 [; ;ModbusMaster.c: 215: }
-"215
+[; ;ModbusMaster.c: 216: }
+"216
 [e :UE 956 ]
 }
-"224
-[v _clearTransmitBuffer `(v ~T0 @X0 1 ef ]
 "225
+[v _clearTransmitBuffer `(v ~T0 @X0 1 ef ]
+"226
 {
-[; ;ModbusMaster.c: 224: void clearTransmitBuffer()
-[; ;ModbusMaster.c: 225: {
+[; ;ModbusMaster.c: 225: void clearTransmitBuffer()
+[; ;ModbusMaster.c: 226: {
 [e :U _clearTransmitBuffer ]
 [f ]
-"226
+"227
 [v _i `uc ~T0 @X0 1 a ]
-[; ;ModbusMaster.c: 226: unsigned char i;
-[; ;ModbusMaster.c: 228: for (i = 0; i < 64; i++)
-"228
+[; ;ModbusMaster.c: 227: unsigned char i;
+[; ;ModbusMaster.c: 229: for (i = 0; i < 64; i++)
+"229
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 64 `i 960  ]
 [e $U 961  ]
-"229
-[e :U 960 ]
-[; ;ModbusMaster.c: 229: {
-{
-[; ;ModbusMaster.c: 230: _u16TransmitBuffer[i] = 0;
 "230
-[e = *U + &U __u16TransmitBuffer * -> _i `ux -> -> # *U &U __u16TransmitBuffer `ui `ux -> -> 0 `i `ui ]
+[e :U 960 ]
+[; ;ModbusMaster.c: 230: {
+{
+[; ;ModbusMaster.c: 231: _u16TransmitBuffer[i] = 0;
 "231
+[e = *U + &U __u16TransmitBuffer * -> _i `ux -> -> # *U &U __u16TransmitBuffer `ui `ux -> -> 0 `i `ui ]
+"232
 }
-"228
+"229
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 64 `i 960  ]
 [e :U 961 ]
-"231
-}
-[; ;ModbusMaster.c: 231: }
-[; ;ModbusMaster.c: 232: }
 "232
+}
+[; ;ModbusMaster.c: 232: }
+[; ;ModbusMaster.c: 233: }
+"233
 [e :UE 959 ]
 }
-"258
-[v _readCoils `(uc ~T0 @X0 1 ef2`ui`ui ]
 "259
+[v _readCoils `(uc ~T0 @X0 1 ef2`ui`ui ]
+"260
 {
-[; ;ModbusMaster.c: 258: unsigned char readCoils(unsigned int u16ReadAddress, unsigned int u16BitQty)
-[; ;ModbusMaster.c: 259: {
+[; ;ModbusMaster.c: 259: unsigned char readCoils(unsigned int u16ReadAddress, unsigned int u16BitQty)
+[; ;ModbusMaster.c: 260: {
 [e :U _readCoils ]
-"258
+"259
 [v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
 [v _u16BitQty `ui ~T0 @X0 1 r2 ]
-"259
-[f ]
-[; ;ModbusMaster.c: 260: _u16ReadAddress = u16ReadAddress;
 "260
-[e = __u16ReadAddress _u16ReadAddress ]
-[; ;ModbusMaster.c: 261: _u16ReadQty = u16BitQty;
+[f ]
+[; ;ModbusMaster.c: 261: _u16ReadAddress = u16ReadAddress;
 "261
-[e = __u16ReadQty _u16BitQty ]
-[; ;ModbusMaster.c: 262: return ModbusMasterTransaction(0x01);
+[e = __u16ReadAddress _u16ReadAddress ]
+[; ;ModbusMaster.c: 262: _u16ReadQty = u16BitQty;
 "262
+[e = __u16ReadQty _u16BitQty ]
+[; ;ModbusMaster.c: 263: return ModbusMasterTransaction(0x01);
+"263
 [e ) ( _ModbusMasterTransaction (1 -> -> 1 `i `uc ]
 [e $UE 963  ]
-[; ;ModbusMaster.c: 263: }
-"263
+[; ;ModbusMaster.c: 264: }
+"264
 [e :UE 963 ]
 }
-"289
-[v _readDiscreteInputs `(uc ~T0 @X0 1 ef2`ui`ui ]
-"291
-{
-[; ;ModbusMaster.c: 289: unsigned char readDiscreteInputs(unsigned int u16ReadAddress,
-[; ;ModbusMaster.c: 290: unsigned int u16BitQty)
-[; ;ModbusMaster.c: 291: {
-[e :U _readDiscreteInputs ]
-"289
-[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
 "290
-[v _u16BitQty `ui ~T0 @X0 1 r2 ]
-"291
-[f ]
-[; ;ModbusMaster.c: 292: _u16ReadAddress = u16ReadAddress;
+[v _readDiscreteInputs `(uc ~T0 @X0 1 ef2`ui`ui ]
 "292
-[e = __u16ReadAddress _u16ReadAddress ]
-[; ;ModbusMaster.c: 293: _u16ReadQty = u16BitQty;
+{
+[; ;ModbusMaster.c: 290: unsigned char readDiscreteInputs(unsigned int u16ReadAddress,
+[; ;ModbusMaster.c: 291: unsigned int u16BitQty)
+[; ;ModbusMaster.c: 292: {
+[e :U _readDiscreteInputs ]
+"290
+[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
+"291
+[v _u16BitQty `ui ~T0 @X0 1 r2 ]
+"292
+[f ]
+[; ;ModbusMaster.c: 293: _u16ReadAddress = u16ReadAddress;
 "293
-[e = __u16ReadQty _u16BitQty ]
-[; ;ModbusMaster.c: 294: return ModbusMasterTransaction(0x02);
+[e = __u16ReadAddress _u16ReadAddress ]
+[; ;ModbusMaster.c: 294: _u16ReadQty = u16BitQty;
 "294
+[e = __u16ReadQty _u16BitQty ]
+[; ;ModbusMaster.c: 295: return ModbusMasterTransaction(0x02);
+"295
 [e ) ( _ModbusMasterTransaction (1 -> -> 2 `i `uc ]
 [e $UE 964  ]
-[; ;ModbusMaster.c: 295: }
-"295
+[; ;ModbusMaster.c: 296: }
+"296
 [e :UE 964 ]
 }
-"314
-[v _readHoldingRegisters `(uc ~T0 @X0 1 ef2`ui`ui ]
-"316
-{
-[; ;ModbusMaster.c: 314: unsigned char readHoldingRegisters(unsigned int u16ReadAddress,
-[; ;ModbusMaster.c: 315: unsigned int u16ReadQty)
-[; ;ModbusMaster.c: 316: {
-[e :U _readHoldingRegisters ]
-"314
-[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
 "315
-[v _u16ReadQty `ui ~T0 @X0 1 r2 ]
-"316
-[f ]
-[; ;ModbusMaster.c: 317: _u16ReadAddress = u16ReadAddress;
+[v _readHoldingRegisters `(uc ~T0 @X0 1 ef2`ui`ui ]
 "317
-[e = __u16ReadAddress _u16ReadAddress ]
-[; ;ModbusMaster.c: 318: _u16ReadQty = u16ReadQty;
+{
+[; ;ModbusMaster.c: 315: unsigned char readHoldingRegisters(unsigned int u16ReadAddress,
+[; ;ModbusMaster.c: 316: unsigned int u16ReadQty)
+[; ;ModbusMaster.c: 317: {
+[e :U _readHoldingRegisters ]
+"315
+[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
+"316
+[v _u16ReadQty `ui ~T0 @X0 1 r2 ]
+"317
+[f ]
+[; ;ModbusMaster.c: 318: _u16ReadAddress = u16ReadAddress;
 "318
-[e = __u16ReadQty _u16ReadQty ]
-[; ;ModbusMaster.c: 319: return ModbusMasterTransaction(0x03);
+[e = __u16ReadAddress _u16ReadAddress ]
+[; ;ModbusMaster.c: 319: _u16ReadQty = u16ReadQty;
 "319
+[e = __u16ReadQty _u16ReadQty ]
+[; ;ModbusMaster.c: 320: return ModbusMasterTransaction(0x03);
+"320
 [e ) ( _ModbusMasterTransaction (1 -> -> 3 `i `uc ]
 [e $UE 965  ]
-[; ;ModbusMaster.c: 320: }
-"320
+[; ;ModbusMaster.c: 321: }
+"321
 [e :UE 965 ]
 }
-"339
-[v _readInputRegisters `(uc ~T0 @X0 1 ef2`ui`uc ]
-"341
-{
-[; ;ModbusMaster.c: 339: unsigned char readInputRegisters(unsigned int u16ReadAddress,
-[; ;ModbusMaster.c: 340: unsigned char u16ReadQty)
-[; ;ModbusMaster.c: 341: {
-[e :U _readInputRegisters ]
-"339
-[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
 "340
-[v _u16ReadQty `uc ~T0 @X0 1 r2 ]
-"341
-[f ]
-[; ;ModbusMaster.c: 342: _u16ReadAddress = u16ReadAddress;
+[v _readInputRegisters `(uc ~T0 @X0 1 ef2`ui`uc ]
 "342
-[e = __u16ReadAddress _u16ReadAddress ]
-[; ;ModbusMaster.c: 343: _u16ReadQty = u16ReadQty;
+{
+[; ;ModbusMaster.c: 340: unsigned char readInputRegisters(unsigned int u16ReadAddress,
+[; ;ModbusMaster.c: 341: unsigned char u16ReadQty)
+[; ;ModbusMaster.c: 342: {
+[e :U _readInputRegisters ]
+"340
+[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
+"341
+[v _u16ReadQty `uc ~T0 @X0 1 r2 ]
+"342
+[f ]
+[; ;ModbusMaster.c: 343: _u16ReadAddress = u16ReadAddress;
 "343
-[e = __u16ReadQty -> _u16ReadQty `ui ]
-[; ;ModbusMaster.c: 344: return ModbusMasterTransaction(0x04);
+[e = __u16ReadAddress _u16ReadAddress ]
+[; ;ModbusMaster.c: 344: _u16ReadQty = u16ReadQty;
 "344
+[e = __u16ReadQty -> _u16ReadQty `ui ]
+[; ;ModbusMaster.c: 345: return ModbusMasterTransaction(0x04);
+"345
 [e ) ( _ModbusMasterTransaction (1 -> -> 4 `i `uc ]
 [e $UE 966  ]
-[; ;ModbusMaster.c: 345: }
-"345
+[; ;ModbusMaster.c: 346: }
+"346
 [e :UE 966 ]
 }
-"362
-[v _writeSingleCoil `(uc ~T0 @X0 1 ef2`ui`uc ]
 "363
+[v _writeSingleCoil `(uc ~T0 @X0 1 ef2`ui`uc ]
+"364
 {
-[; ;ModbusMaster.c: 362: unsigned char writeSingleCoil(unsigned int u16WriteAddress, unsigned char u8State)
-[; ;ModbusMaster.c: 363: {
+[; ;ModbusMaster.c: 363: unsigned char writeSingleCoil(unsigned int u16WriteAddress, unsigned char u8State)
+[; ;ModbusMaster.c: 364: {
 [e :U _writeSingleCoil ]
-"362
+"363
 [v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
 [v _u8State `uc ~T0 @X0 1 r2 ]
-"363
-[f ]
-[; ;ModbusMaster.c: 364: _u16WriteAddress = u16WriteAddress;
 "364
-[e = __u16WriteAddress _u16WriteAddress ]
-[; ;ModbusMaster.c: 365: _u16WriteQty = (u8State ? 0xFF00 : 0x0000);
+[f ]
+[; ;ModbusMaster.c: 365: _u16WriteAddress = u16WriteAddress;
 "365
-[e = __u16WriteQty ? != -> _u8State `i -> -> -> 0 `i `uc `i : -> 65280 `ui -> -> 0 `i `ui ]
-[; ;ModbusMaster.c: 366: return ModbusMasterTransaction(0x05);
+[e = __u16WriteAddress _u16WriteAddress ]
+[; ;ModbusMaster.c: 366: _u16WriteQty = (u8State ? 0xFF00 : 0x0000);
 "366
+[e = __u16WriteQty ? != -> _u8State `i -> -> -> 0 `i `uc `i : -> 65280 `ui -> -> 0 `i `ui ]
+[; ;ModbusMaster.c: 367: return ModbusMasterTransaction(0x05);
+"367
 [e ) ( _ModbusMasterTransaction (1 -> -> 5 `i `uc ]
 [e $UE 967  ]
-[; ;ModbusMaster.c: 367: }
-"367
+[; ;ModbusMaster.c: 368: }
+"368
 [e :UE 967 ]
 }
-"382
-[v _writeSingleRegister `(uc ~T0 @X0 1 ef2`ui`ui ]
-"384
-{
-[; ;ModbusMaster.c: 382: unsigned char writeSingleRegister(unsigned int u16WriteAddress,
-[; ;ModbusMaster.c: 383: unsigned int u16WriteValue)
-[; ;ModbusMaster.c: 384: {
-[e :U _writeSingleRegister ]
-"382
-[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
 "383
-[v _u16WriteValue `ui ~T0 @X0 1 r2 ]
-"384
-[f ]
-[; ;ModbusMaster.c: 385: _u16WriteAddress = u16WriteAddress;
+[v _writeSingleRegister `(uc ~T0 @X0 1 ef2`ui`ui ]
 "385
-[e = __u16WriteAddress _u16WriteAddress ]
-[; ;ModbusMaster.c: 386: _u16WriteQty = 0;
+{
+[; ;ModbusMaster.c: 383: unsigned char writeSingleRegister(unsigned int u16WriteAddress,
+[; ;ModbusMaster.c: 384: unsigned int u16WriteValue)
+[; ;ModbusMaster.c: 385: {
+[e :U _writeSingleRegister ]
+"383
+[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
+"384
+[v _u16WriteValue `ui ~T0 @X0 1 r2 ]
+"385
+[f ]
+[; ;ModbusMaster.c: 386: _u16WriteAddress = u16WriteAddress;
 "386
-[e = __u16WriteQty -> -> 0 `i `ui ]
-[; ;ModbusMaster.c: 387: _u16TransmitBuffer[0] = u16WriteValue;
+[e = __u16WriteAddress _u16WriteAddress ]
+[; ;ModbusMaster.c: 387: _u16WriteQty = 0;
 "387
-[e = *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16WriteValue ]
-[; ;ModbusMaster.c: 388: return ModbusMasterTransaction(0x06);
+[e = __u16WriteQty -> -> 0 `i `ui ]
+[; ;ModbusMaster.c: 388: _u16TransmitBuffer[0] = u16WriteValue;
 "388
+[e = *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16WriteValue ]
+[; ;ModbusMaster.c: 389: return ModbusMasterTransaction(0x06);
+"389
 [e ) ( _ModbusMasterTransaction (1 -> -> 6 `i `uc ]
 [e $UE 968  ]
-[; ;ModbusMaster.c: 389: }
-"389
+[; ;ModbusMaster.c: 390: }
+"390
 [e :UE 968 ]
 }
-"408
-[v _writeMultipleCoils `(uc ~T0 @X0 1 ef2`ui`ui ]
-"410
-{
-[; ;ModbusMaster.c: 408: unsigned char writeMultipleCoils(unsigned int u16WriteAddress,
-[; ;ModbusMaster.c: 409: unsigned int u16BitQty)
-[; ;ModbusMaster.c: 410: {
-[e :U _writeMultipleCoils ]
-"408
-[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
 "409
-[v _u16BitQty `ui ~T0 @X0 1 r2 ]
-"410
-[f ]
-[; ;ModbusMaster.c: 411: _u16WriteAddress = u16WriteAddress;
+[v _writeMultipleCoils `(uc ~T0 @X0 1 ef2`ui`ui ]
 "411
-[e = __u16WriteAddress _u16WriteAddress ]
-[; ;ModbusMaster.c: 412: _u16WriteQty = u16BitQty;
+{
+[; ;ModbusMaster.c: 409: unsigned char writeMultipleCoils(unsigned int u16WriteAddress,
+[; ;ModbusMaster.c: 410: unsigned int u16BitQty)
+[; ;ModbusMaster.c: 411: {
+[e :U _writeMultipleCoils ]
+"409
+[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
+"410
+[v _u16BitQty `ui ~T0 @X0 1 r2 ]
+"411
+[f ]
+[; ;ModbusMaster.c: 412: _u16WriteAddress = u16WriteAddress;
 "412
-[e = __u16WriteQty _u16BitQty ]
-[; ;ModbusMaster.c: 413: return ModbusMasterTransaction(0x0F);
+[e = __u16WriteAddress _u16WriteAddress ]
+[; ;ModbusMaster.c: 413: _u16WriteQty = u16BitQty;
 "413
+[e = __u16WriteQty _u16BitQty ]
+[; ;ModbusMaster.c: 414: return ModbusMasterTransaction(0x0F);
+"414
 [e ) ( _ModbusMasterTransaction (1 -> -> 15 `i `uc ]
 [e $UE 969  ]
-[; ;ModbusMaster.c: 414: }
-"414
+[; ;ModbusMaster.c: 415: }
+"415
 [e :UE 969 ]
 }
-"436
-[v _writeMultipleRegisters `(uc ~T0 @X0 1 ef2`ui`ui ]
-"438
-{
-[; ;ModbusMaster.c: 436: unsigned char writeMultipleRegisters(unsigned int u16WriteAddress,
-[; ;ModbusMaster.c: 437: unsigned int u16WriteQty)
-[; ;ModbusMaster.c: 438: {
-[e :U _writeMultipleRegisters ]
-"436
-[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
 "437
-[v _u16WriteQty `ui ~T0 @X0 1 r2 ]
-"438
-[f ]
-[; ;ModbusMaster.c: 439: _u16WriteAddress = u16WriteAddress;
+[v _writeMultipleRegisters `(uc ~T0 @X0 1 ef2`ui`ui ]
 "439
-[e = __u16WriteAddress _u16WriteAddress ]
-[; ;ModbusMaster.c: 440: _u16WriteQty = u16WriteQty;
+{
+[; ;ModbusMaster.c: 437: unsigned char writeMultipleRegisters(unsigned int u16WriteAddress,
+[; ;ModbusMaster.c: 438: unsigned int u16WriteQty)
+[; ;ModbusMaster.c: 439: {
+[e :U _writeMultipleRegisters ]
+"437
+[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
+"438
+[v _u16WriteQty `ui ~T0 @X0 1 r2 ]
+"439
+[f ]
+[; ;ModbusMaster.c: 440: _u16WriteAddress = u16WriteAddress;
 "440
-[e = __u16WriteQty _u16WriteQty ]
-[; ;ModbusMaster.c: 441: return ModbusMasterTransaction(0x10);
+[e = __u16WriteAddress _u16WriteAddress ]
+[; ;ModbusMaster.c: 441: _u16WriteQty = u16WriteQty;
 "441
+[e = __u16WriteQty _u16WriteQty ]
+[; ;ModbusMaster.c: 442: return ModbusMasterTransaction(0x10);
+"442
 [e ) ( _ModbusMasterTransaction (1 -> -> 16 `i `uc ]
 [e $UE 970  ]
-[; ;ModbusMaster.c: 442: }
-"442
+[; ;ModbusMaster.c: 443: }
+"443
 [e :UE 970 ]
 }
-"474
-[v _maskWriteRegister `(uc ~T0 @X0 1 ef3`ui`ui`ui ]
-"476
-{
-[; ;ModbusMaster.c: 474: unsigned char maskWriteRegister(unsigned int u16WriteAddress,
-[; ;ModbusMaster.c: 475: unsigned int u16AndMask, unsigned int u16OrMask)
-[; ;ModbusMaster.c: 476: {
-[e :U _maskWriteRegister ]
-"474
-[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
 "475
+[v _maskWriteRegister `(uc ~T0 @X0 1 ef3`ui`ui`ui ]
+"477
+{
+[; ;ModbusMaster.c: 475: unsigned char maskWriteRegister(unsigned int u16WriteAddress,
+[; ;ModbusMaster.c: 476: unsigned int u16AndMask, unsigned int u16OrMask)
+[; ;ModbusMaster.c: 477: {
+[e :U _maskWriteRegister ]
+"475
+[v _u16WriteAddress `ui ~T0 @X0 1 r1 ]
+"476
 [v _u16AndMask `ui ~T0 @X0 1 r2 ]
 [v _u16OrMask `ui ~T0 @X0 1 r3 ]
-"476
-[f ]
-[; ;ModbusMaster.c: 477: _u16WriteAddress = u16WriteAddress;
 "477
-[e = __u16WriteAddress _u16WriteAddress ]
-[; ;ModbusMaster.c: 478: _u16TransmitBuffer[0] = u16AndMask;
+[f ]
+[; ;ModbusMaster.c: 478: _u16WriteAddress = u16WriteAddress;
 "478
-[e = *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16AndMask ]
-[; ;ModbusMaster.c: 479: _u16TransmitBuffer[1] = u16OrMask;
+[e = __u16WriteAddress _u16WriteAddress ]
+[; ;ModbusMaster.c: 479: _u16TransmitBuffer[0] = u16AndMask;
 "479
-[e = *U + &U __u16TransmitBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16OrMask ]
-[; ;ModbusMaster.c: 480: return ModbusMasterTransaction(0x16);
+[e = *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16AndMask ]
+[; ;ModbusMaster.c: 480: _u16TransmitBuffer[1] = u16OrMask;
 "480
+[e = *U + &U __u16TransmitBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux _u16OrMask ]
+[; ;ModbusMaster.c: 481: return ModbusMasterTransaction(0x16);
+"481
 [e ) ( _ModbusMasterTransaction (1 -> -> 22 `i `uc ]
 [e $UE 971  ]
-[; ;ModbusMaster.c: 481: }
-"481
+[; ;ModbusMaster.c: 482: }
+"482
 [e :UE 971 ]
 }
-"504
-[v _readWriteMultipleRegisters `(uc ~T0 @X0 1 ef4`ui`ui`ui`ui ]
-"506
-{
-[; ;ModbusMaster.c: 504: unsigned char readWriteMultipleRegisters(unsigned int u16ReadAddress,
-[; ;ModbusMaster.c: 505: unsigned int u16ReadQty, unsigned int u16WriteAddress, unsigned int u16WriteQty)
-[; ;ModbusMaster.c: 506: {
-[e :U _readWriteMultipleRegisters ]
-"504
-[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
 "505
+[v _readWriteMultipleRegisters `(uc ~T0 @X0 1 ef4`ui`ui`ui`ui ]
+"507
+{
+[; ;ModbusMaster.c: 505: unsigned char readWriteMultipleRegisters(unsigned int u16ReadAddress,
+[; ;ModbusMaster.c: 506: unsigned int u16ReadQty, unsigned int u16WriteAddress, unsigned int u16WriteQty)
+[; ;ModbusMaster.c: 507: {
+[e :U _readWriteMultipleRegisters ]
+"505
+[v _u16ReadAddress `ui ~T0 @X0 1 r1 ]
+"506
 [v _u16ReadQty `ui ~T0 @X0 1 r2 ]
 [v _u16WriteAddress `ui ~T0 @X0 1 r3 ]
 [v _u16WriteQty `ui ~T0 @X0 1 r4 ]
-"506
-[f ]
-[; ;ModbusMaster.c: 507: _u16ReadAddress = u16ReadAddress;
 "507
-[e = __u16ReadAddress _u16ReadAddress ]
-[; ;ModbusMaster.c: 508: _u16ReadQty = u16ReadQty;
+[f ]
+[; ;ModbusMaster.c: 508: _u16ReadAddress = u16ReadAddress;
 "508
-[e = __u16ReadQty _u16ReadQty ]
-[; ;ModbusMaster.c: 509: _u16WriteAddress = u16WriteAddress;
+[e = __u16ReadAddress _u16ReadAddress ]
+[; ;ModbusMaster.c: 509: _u16ReadQty = u16ReadQty;
 "509
-[e = __u16WriteAddress _u16WriteAddress ]
-[; ;ModbusMaster.c: 510: _u16WriteQty = u16WriteQty;
+[e = __u16ReadQty _u16ReadQty ]
+[; ;ModbusMaster.c: 510: _u16WriteAddress = u16WriteAddress;
 "510
-[e = __u16WriteQty _u16WriteQty ]
-[; ;ModbusMaster.c: 511: return ModbusMasterTransaction(0x17);
+[e = __u16WriteAddress _u16WriteAddress ]
+[; ;ModbusMaster.c: 511: _u16WriteQty = u16WriteQty;
 "511
+[e = __u16WriteQty _u16WriteQty ]
+[; ;ModbusMaster.c: 512: return ModbusMasterTransaction(0x17);
+"512
 [e ) ( _ModbusMasterTransaction (1 -> -> 23 `i `uc ]
 [e $UE 972  ]
-[; ;ModbusMaster.c: 512: }
-"512
+[; ;ModbusMaster.c: 513: }
+"513
 [e :UE 972 ]
 }
-"537
+"538
 [v _ModbusMasterTransaction `(uc ~T0 @X0 1 ef1`uc ]
-"538
+"539
 {
-[; ;ModbusMaster.c: 537: unsigned char ModbusMasterTransaction(unsigned char u8MBFunction)
-[; ;ModbusMaster.c: 538: {
+[; ;ModbusMaster.c: 538: unsigned char ModbusMasterTransaction(unsigned char u8MBFunction)
+[; ;ModbusMaster.c: 539: {
 [e :U _ModbusMasterTransaction ]
-"537
-[v _u8MBFunction `uc ~T0 @X0 1 r1 ]
 "538
+[v _u8MBFunction `uc ~T0 @X0 1 r1 ]
+"539
 [f ]
-"540
-[v _u8ModbusADU `uc ~T0 @X0 -> 64 `i a ]
 "541
-[v _u8ModbusADUSize `uc ~T0 @X0 1 a ]
-[; ;ModbusMaster.c: 540: unsigned char u8ModbusADU[64];
-[; ;ModbusMaster.c: 541: unsigned char u8ModbusADUSize = 0;
-[e = _u8ModbusADUSize -> -> 0 `i `uc ]
+[v _u8ModbusADU `uc ~T0 @X0 -> 64 `i a ]
 "542
+[v _u8ModbusADUSize `uc ~T0 @X0 1 a ]
+[; ;ModbusMaster.c: 541: unsigned char u8ModbusADU[64];
+[; ;ModbusMaster.c: 542: unsigned char u8ModbusADUSize = 0;
+[e = _u8ModbusADUSize -> -> 0 `i `uc ]
+"543
 [v _i `uc ~T0 @X0 1 a ]
 [v _u8Qty `uc ~T0 @X0 1 a ]
-"543
-[v _u16CRC `ui ~T0 @X0 1 a ]
 "544
-[v _u32StartTime `ul ~T0 @X0 1 a ]
+[v _u16CRC `ui ~T0 @X0 1 a ]
 "545
-[v _u8BytesLeft `uc ~T0 @X0 1 a ]
-[; ;ModbusMaster.c: 542: unsigned char i, u8Qty;
-[; ;ModbusMaster.c: 543: unsigned int u16CRC;
-[; ;ModbusMaster.c: 544: unsigned long u32StartTime;
-[; ;ModbusMaster.c: 545: unsigned char u8BytesLeft = 8;
-[e = _u8BytesLeft -> -> 8 `i `uc ]
+[v _u32StartTime `ul ~T0 @X0 1 a ]
 "546
+[v _u8BytesLeft `uc ~T0 @X0 1 a ]
+[; ;ModbusMaster.c: 543: unsigned char i, u8Qty;
+[; ;ModbusMaster.c: 544: unsigned int u16CRC;
+[; ;ModbusMaster.c: 545: unsigned long u32StartTime;
+[; ;ModbusMaster.c: 546: unsigned char u8BytesLeft = 8;
+[e = _u8BytesLeft -> -> 8 `i `uc ]
+"547
 [v _u8MBStatus `uc ~T0 @X0 1 a ]
-[; ;ModbusMaster.c: 546: unsigned char u8MBStatus = 0x00;
+[; ;ModbusMaster.c: 547: unsigned char u8MBStatus = 0x00;
 [e = _u8MBStatus -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 549: u8ModbusADU[u8ModbusADUSize++] = _u8MBSlave;
-"549
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux __u8MBSlave ]
-[; ;ModbusMaster.c: 550: u8ModbusADU[u8ModbusADUSize++] = u8MBFunction;
+[; ;ModbusMaster.c: 550: u8ModbusADU[u8ModbusADUSize++] = _u8MBSlave;
 "550
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux __u8MBSlave ]
+[; ;ModbusMaster.c: 551: u8ModbusADU[u8ModbusADUSize++] = u8MBFunction;
+"551
 [e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux _u8MBFunction ]
-[; ;ModbusMaster.c: 552: switch(u8MBFunction)
-"552
-[e $U 975  ]
-[; ;ModbusMaster.c: 553: {
+[; ;ModbusMaster.c: 553: switch(u8MBFunction)
 "553
-{
-[; ;ModbusMaster.c: 554: case 0x01:
+[e $U 975  ]
+[; ;ModbusMaster.c: 554: {
 "554
-[e :U 976 ]
+{
+[; ;ModbusMaster.c: 555: case 0x01:
 "555
-[e :U 977 ]
+[e :U 976 ]
 "556
-[e :U 978 ]
+[e :U 977 ]
 "557
-[e :U 979 ]
+[e :U 978 ]
 "558
-[e :U 980 ]
-[; ;ModbusMaster.c: 555: case 0x02:
-[; ;ModbusMaster.c: 556: case 0x04:
-[; ;ModbusMaster.c: 557: case 0x03:
-[; ;ModbusMaster.c: 558: case 0x17:
-[; ;ModbusMaster.c: 559: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16ReadAddress);
+[e :U 979 ]
 "559
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16ReadAddress ]
-[; ;ModbusMaster.c: 560: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16ReadAddress);
+[e :U 980 ]
+[; ;ModbusMaster.c: 556: case 0x02:
+[; ;ModbusMaster.c: 557: case 0x04:
+[; ;ModbusMaster.c: 558: case 0x03:
+[; ;ModbusMaster.c: 559: case 0x17:
+[; ;ModbusMaster.c: 560: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16ReadAddress);
 "560
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16ReadAddress ]
-[; ;ModbusMaster.c: 561: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16ReadQty);
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16ReadAddress ]
+[; ;ModbusMaster.c: 561: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16ReadAddress);
 "561
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16ReadQty ]
-[; ;ModbusMaster.c: 562: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16ReadQty);
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16ReadAddress ]
+[; ;ModbusMaster.c: 562: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16ReadQty);
 "562
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16ReadQty ]
-[; ;ModbusMaster.c: 563: break;
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16ReadQty ]
+[; ;ModbusMaster.c: 563: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16ReadQty);
 "563
-[e $U 974  ]
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16ReadQty ]
+[; ;ModbusMaster.c: 564: break;
 "564
-}
-[; ;ModbusMaster.c: 564: }
 [e $U 974  ]
-"552
+"565
+}
+[; ;ModbusMaster.c: 565: }
+[e $U 974  ]
+"553
 [e :U 975 ]
 [e [\ _u8MBFunction , $ -> -> 1 `i `uc 976
  , $ -> -> 2 `i `uc 977
@@ -8398,46 +8401,46 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 3 `i `uc 979
  , $ -> -> 23 `i `uc 980
  974 ]
-"564
+"565
 [e :U 974 ]
-[; ;ModbusMaster.c: 566: switch(u8MBFunction)
-"566
-[e $U 982  ]
-[; ;ModbusMaster.c: 567: {
+[; ;ModbusMaster.c: 567: switch(u8MBFunction)
 "567
-{
-[; ;ModbusMaster.c: 568: case 0x05:
+[e $U 982  ]
+[; ;ModbusMaster.c: 568: {
 "568
-[e :U 983 ]
+{
+[; ;ModbusMaster.c: 569: case 0x05:
 "569
-[e :U 984 ]
+[e :U 983 ]
 "570
-[e :U 985 ]
+[e :U 984 ]
 "571
-[e :U 986 ]
+[e :U 985 ]
 "572
-[e :U 987 ]
+[e :U 986 ]
 "573
-[e :U 988 ]
-[; ;ModbusMaster.c: 569: case 0x16:
-[; ;ModbusMaster.c: 570: case 0x0F:
-[; ;ModbusMaster.c: 571: case 0x06:
-[; ;ModbusMaster.c: 572: case 0x10:
-[; ;ModbusMaster.c: 573: case 0x17:
-[; ;ModbusMaster.c: 574: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteAddress);
+[e :U 987 ]
 "574
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16WriteAddress ]
-[; ;ModbusMaster.c: 575: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteAddress);
+[e :U 988 ]
+[; ;ModbusMaster.c: 570: case 0x16:
+[; ;ModbusMaster.c: 571: case 0x0F:
+[; ;ModbusMaster.c: 572: case 0x06:
+[; ;ModbusMaster.c: 573: case 0x10:
+[; ;ModbusMaster.c: 574: case 0x17:
+[; ;ModbusMaster.c: 575: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteAddress);
 "575
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16WriteAddress ]
-[; ;ModbusMaster.c: 576: break;
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16WriteAddress ]
+[; ;ModbusMaster.c: 576: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteAddress);
 "576
-[e $U 981  ]
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16WriteAddress ]
+[; ;ModbusMaster.c: 577: break;
 "577
-}
-[; ;ModbusMaster.c: 577: }
 [e $U 981  ]
-"566
+"578
+}
+[; ;ModbusMaster.c: 578: }
+[e $U 981  ]
+"567
 [e :U 982 ]
 [e [\ _u8MBFunction , $ -> -> 5 `i `uc 983
  , $ -> -> 22 `i `uc 984
@@ -8446,176 +8449,176 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 16 `i `uc 987
  , $ -> -> 23 `i `uc 988
  981 ]
-"577
+"578
 [e :U 981 ]
-[; ;ModbusMaster.c: 579: switch(u8MBFunction)
-"579
-[e $U 990  ]
-[; ;ModbusMaster.c: 580: {
+[; ;ModbusMaster.c: 580: switch(u8MBFunction)
 "580
-{
-[; ;ModbusMaster.c: 581: case 0x05:
+[e $U 990  ]
+[; ;ModbusMaster.c: 581: {
 "581
-[e :U 991 ]
-[; ;ModbusMaster.c: 582: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteQty);
+{
+[; ;ModbusMaster.c: 582: case 0x05:
 "582
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16WriteQty ]
-[; ;ModbusMaster.c: 583: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty);
+[e :U 991 ]
+[; ;ModbusMaster.c: 583: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteQty);
 "583
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16WriteQty ]
-[; ;ModbusMaster.c: 584: break;
-"584
-[e $U 989  ]
-[; ;ModbusMaster.c: 586: case 0x06:
-"586
-[e :U 992 ]
-[; ;ModbusMaster.c: 587: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[0]);
-"587
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 588: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[0]);
-"588
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 589: break;
-"589
-[e $U 989  ]
-[; ;ModbusMaster.c: 591: case 0x0F:
-"591
-[e :U 993 ]
-[; ;ModbusMaster.c: 592: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteQty);
-"592
 [e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16WriteQty ]
-[; ;ModbusMaster.c: 593: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty);
-"593
+[; ;ModbusMaster.c: 584: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty);
+"584
 [e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16WriteQty ]
-[; ;ModbusMaster.c: 594: u8Qty = (_u16WriteQty % 8) ? ((_u16WriteQty >> 3) + 1) : (_u16WriteQty >> 3);
+[; ;ModbusMaster.c: 585: break;
+"585
+[e $U 989  ]
+[; ;ModbusMaster.c: 587: case 0x06:
+"587
+[e :U 992 ]
+[; ;ModbusMaster.c: 588: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[0]);
+"588
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 589: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[0]);
+"589
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 590: break;
+"590
+[e $U 989  ]
+[; ;ModbusMaster.c: 592: case 0x0F:
+"592
+[e :U 993 ]
+[; ;ModbusMaster.c: 593: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteQty);
+"593
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16WriteQty ]
+[; ;ModbusMaster.c: 594: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty);
 "594
-[e = _u8Qty -> ? != % __u16WriteQty -> -> 8 `i `ui -> -> 0 `i `ui : + >> __u16WriteQty -> 3 `i -> -> 1 `i `ui >> __u16WriteQty -> 3 `i `uc ]
-[; ;ModbusMaster.c: 595: u8ModbusADU[u8ModbusADUSize++] = u8Qty;
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16WriteQty ]
+[; ;ModbusMaster.c: 595: u8Qty = (_u16WriteQty % 8) ? ((_u16WriteQty >> 3) + 1) : (_u16WriteQty >> 3);
 "595
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux _u8Qty ]
-[; ;ModbusMaster.c: 596: for (i = 0; i < u8Qty; i++)
+[e = _u8Qty -> ? != % __u16WriteQty -> -> 8 `i `ui -> -> 0 `i `ui : + >> __u16WriteQty -> 3 `i -> -> 1 `i `ui >> __u16WriteQty -> 3 `i `uc ]
+[; ;ModbusMaster.c: 596: u8ModbusADU[u8ModbusADUSize++] = u8Qty;
 "596
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux _u8Qty ]
+[; ;ModbusMaster.c: 597: for (i = 0; i < u8Qty; i++)
+"597
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 997  ]
-"597
+"598
 [e :U 994 ]
-[; ;ModbusMaster.c: 597: {
+[; ;ModbusMaster.c: 598: {
 {
-[; ;ModbusMaster.c: 598: switch(i % 2)
-"598
-[e $U 999  ]
-[; ;ModbusMaster.c: 599: {
+[; ;ModbusMaster.c: 599: switch(i % 2)
 "599
-{
-[; ;ModbusMaster.c: 600: case 0:
+[e $U 999  ]
+[; ;ModbusMaster.c: 600: {
 "600
-[e :U 1000 ]
-[; ;ModbusMaster.c: 601: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[i >> 1]);
+{
+[; ;ModbusMaster.c: 601: case 0:
 "601
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> >> -> _i `i -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 602: break;
+[e :U 1000 ]
+[; ;ModbusMaster.c: 602: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[i >> 1]);
 "602
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> >> -> _i `i -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 603: break;
+"603
 [e $U 998  ]
-[; ;ModbusMaster.c: 604: case 1:
-"604
-[e :U 1001 ]
-[; ;ModbusMaster.c: 605: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[i >> 1]);
+[; ;ModbusMaster.c: 605: case 1:
 "605
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> >> -> _i `i -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 606: break;
+[e :U 1001 ]
+[; ;ModbusMaster.c: 606: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[i >> 1]);
 "606
-[e $U 998  ]
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> >> -> _i `i -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 607: break;
 "607
-}
-[; ;ModbusMaster.c: 607: }
 [e $U 998  ]
-"598
+"608
+}
+[; ;ModbusMaster.c: 608: }
+[e $U 998  ]
+"599
 [e :U 999 ]
 [e [\ % -> _i `i -> 2 `i , $ -> 0 `i 1000
  , $ -> 1 `i 1001
  998 ]
-"607
-[e :U 998 ]
 "608
+[e :U 998 ]
+"609
 }
-"596
+"597
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 997 ]
 [e $ < -> _i `i -> _u8Qty `i 994  ]
 [e :U 995 ]
-"608
-}
-[; ;ModbusMaster.c: 608: }
-[; ;ModbusMaster.c: 609: break;
 "609
+}
+[; ;ModbusMaster.c: 609: }
+[; ;ModbusMaster.c: 610: break;
+"610
 [e $U 989  ]
-[; ;ModbusMaster.c: 611: case 0x10:
-"611
-[e :U 1002 ]
+[; ;ModbusMaster.c: 612: case 0x10:
 "612
-[e :U 1003 ]
-[; ;ModbusMaster.c: 612: case 0x17:
-[; ;ModbusMaster.c: 613: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteQty);
+[e :U 1002 ]
 "613
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16WriteQty ]
-[; ;ModbusMaster.c: 614: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty);
+[e :U 1003 ]
+[; ;ModbusMaster.c: 613: case 0x17:
+[; ;ModbusMaster.c: 614: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16WriteQty);
 "614
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16WriteQty ]
-[; ;ModbusMaster.c: 615: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty << 1);
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 __u16WriteQty ]
+[; ;ModbusMaster.c: 615: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty);
 "615
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 __u16WriteQty ]
+[; ;ModbusMaster.c: 616: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16WriteQty << 1);
+"616
 [e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 << __u16WriteQty -> 1 `i ]
-[; ;ModbusMaster.c: 617: for (i = 0; i < lowByte(_u16WriteQty); i++)
-"617
+[; ;ModbusMaster.c: 618: for (i = 0; i < lowByte(_u16WriteQty); i++)
+"618
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 1007  ]
-"618
-[e :U 1004 ]
-[; ;ModbusMaster.c: 618: {
-{
-[; ;ModbusMaster.c: 619: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[i]);
 "619
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> _i `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 620: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[i]);
+[e :U 1004 ]
+[; ;ModbusMaster.c: 619: {
+{
+[; ;ModbusMaster.c: 620: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[i]);
 "620
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> _i `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> _i `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 621: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[i]);
 "621
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> _i `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+"622
 }
-"617
+"618
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 1007 ]
 [e $ < -> _i `i -> ( _lowByte (1 __u16WriteQty `i 1004  ]
 [e :U 1005 ]
-"621
-}
-[; ;ModbusMaster.c: 621: }
-[; ;ModbusMaster.c: 622: break;
 "622
-[e $U 989  ]
-[; ;ModbusMaster.c: 624: case 0x16:
-"624
-[e :U 1008 ]
-[; ;ModbusMaster.c: 625: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[0]);
-"625
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 626: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[0]);
-"626
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 627: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[1]);
-"627
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 628: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[1]);
-"628
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
-[; ;ModbusMaster.c: 629: break;
-"629
-[e $U 989  ]
-"630
 }
-[; ;ModbusMaster.c: 630: }
+[; ;ModbusMaster.c: 622: }
+[; ;ModbusMaster.c: 623: break;
+"623
 [e $U 989  ]
-"579
+[; ;ModbusMaster.c: 625: case 0x16:
+"625
+[e :U 1008 ]
+[; ;ModbusMaster.c: 626: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[0]);
+"626
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 627: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[0]);
+"627
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 628: u8ModbusADU[u8ModbusADUSize++] = highByte(_u16TransmitBuffer[1]);
+"628
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 *U + &U __u16TransmitBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 629: u8ModbusADU[u8ModbusADUSize++] = lowByte(_u16TransmitBuffer[1]);
+"629
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 *U + &U __u16TransmitBuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U __u16TransmitBuffer `ui `ux ]
+[; ;ModbusMaster.c: 630: break;
+"630
+[e $U 989  ]
+"631
+}
+[; ;ModbusMaster.c: 631: }
+[e $U 989  ]
+"580
 [e :U 990 ]
 [e [\ _u8MBFunction , $ -> -> 5 `i `uc 991
  , $ -> -> 6 `i `uc 992
@@ -8624,246 +8627,246 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 23 `i `uc 1003
  , $ -> -> 22 `i `uc 1008
  989 ]
-"630
+"631
 [e :U 989 ]
-[; ;ModbusMaster.c: 633: u16CRC = 0xFFFF;
-"633
-[e = _u16CRC -> 65535 `ui ]
-[; ;ModbusMaster.c: 634: for (i = 0; i < u8ModbusADUSize; i++)
+[; ;ModbusMaster.c: 634: u16CRC = 0xFFFF;
 "634
+[e = _u16CRC -> 65535 `ui ]
+[; ;ModbusMaster.c: 635: for (i = 0; i < u8ModbusADUSize; i++)
+"635
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 1012  ]
-"635
-[e :U 1009 ]
-[; ;ModbusMaster.c: 635: {
-{
-[; ;ModbusMaster.c: 636: u16CRC = crc16_update(u16CRC, u8ModbusADU[i]);
 "636
-[e = _u16CRC ( _crc16_update (2 , _u16CRC *U + &U _u8ModbusADU * -> _i `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+[e :U 1009 ]
+[; ;ModbusMaster.c: 636: {
+{
+[; ;ModbusMaster.c: 637: u16CRC = crc16_update(u16CRC, u8ModbusADU[i]);
 "637
+[e = _u16CRC ( _crc16_update (2 , _u16CRC *U + &U _u8ModbusADU * -> _i `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+"638
 }
-"634
+"635
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 1012 ]
 [e $ < -> _i `i -> _u8ModbusADUSize `i 1009  ]
 [e :U 1010 ]
-"637
-}
-[; ;ModbusMaster.c: 637: }
-[; ;ModbusMaster.c: 638: u8ModbusADU[u8ModbusADUSize++] = lowByte(u16CRC);
 "638
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 _u16CRC ]
-[; ;ModbusMaster.c: 639: u8ModbusADU[u8ModbusADUSize++] = highByte(u16CRC);
+}
+[; ;ModbusMaster.c: 638: }
+[; ;ModbusMaster.c: 639: u8ModbusADU[u8ModbusADUSize++] = lowByte(u16CRC);
 "639
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 _u16CRC ]
-[; ;ModbusMaster.c: 640: u8ModbusADU[u8ModbusADUSize] = 0;
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _lowByte (1 _u16CRC ]
+[; ;ModbusMaster.c: 640: u8ModbusADU[u8ModbusADUSize++] = highByte(u16CRC);
 "640
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _highByte (1 _u16CRC ]
+[; ;ModbusMaster.c: 641: u8ModbusADU[u8ModbusADUSize] = 0;
+"641
 [e = *U + &U _u8ModbusADU * -> _u8ModbusADUSize `ux -> -> # *U &U _u8ModbusADU `ui `ux -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 644: if(PIR1bits.RCIF){PIR1bits.RCIF=0;}
-"644
+[; ;ModbusMaster.c: 645: if(PIR1bits.RCIF){PIR1bits.RCIF=0;}
+"645
 [e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 1013  ]
 {
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
 }
 [e :U 1013 ]
-[; ;ModbusMaster.c: 647: if (_preTransmission)
-"647
-[e $ ! != __preTransmission -> -> 0 `i `*F39 1014  ]
-[; ;ModbusMaster.c: 648: {
+[; ;ModbusMaster.c: 648: if (_preTransmission)
 "648
-{
-[; ;ModbusMaster.c: 649: _preTransmission();
+[e $ ! != __preTransmission -> -> 0 `i `*F39 1014  ]
+[; ;ModbusMaster.c: 649: {
 "649
-[e ( *U __preTransmission ..  ]
+{
+[; ;ModbusMaster.c: 650: _preTransmission();
 "650
+[e ( *U __preTransmission ..  ]
+"651
 }
 [e :U 1014 ]
-[; ;ModbusMaster.c: 650: }
-[; ;ModbusMaster.c: 651: for (i = 0; i < u8ModbusADUSize; i++)
-"651
+[; ;ModbusMaster.c: 651: }
+[; ;ModbusMaster.c: 652: for (i = 0; i < u8ModbusADUSize; i++)
+"652
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 1018  ]
-"652
-[e :U 1015 ]
-[; ;ModbusMaster.c: 652: {
-{
-[; ;ModbusMaster.c: 653: EUSART_Write(u8ModbusADU[i]);
 "653
-[e ( _EUSART_Write (1 *U + &U _u8ModbusADU * -> _i `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+[e :U 1015 ]
+[; ;ModbusMaster.c: 653: {
+{
+[; ;ModbusMaster.c: 654: EUSART_Write(u8ModbusADU[i]);
 "654
+[e ( _EUSART_Write (1 *U + &U _u8ModbusADU * -> _i `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+"655
 }
-"651
+"652
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 1018 ]
 [e $ < -> _i `i -> _u8ModbusADUSize `i 1015  ]
 [e :U 1016 ]
-"654
+"655
 }
-[; ;ModbusMaster.c: 654: }
-[; ;ModbusMaster.c: 656: u8ModbusADUSize = 0;
-"656
+[; ;ModbusMaster.c: 655: }
+[; ;ModbusMaster.c: 657: u8ModbusADUSize = 0;
+"657
 [e = _u8ModbusADUSize -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 658: while(0 == PIR1bits.TXIF)
-"658
+[; ;ModbusMaster.c: 659: while(0 == PIR1bits.TXIF)
+"659
 [e $U 1019  ]
 [e :U 1020 ]
-[; ;ModbusMaster.c: 659: {
-"659
-{
+[; ;ModbusMaster.c: 660: {
 "660
+{
+"661
 }
 [e :U 1019 ]
-"658
+"659
 [e $ == -> 0 `i -> . . _PIR1bits 0 4 `i 1020  ]
 [e :U 1021 ]
-[; ;ModbusMaster.c: 660: }
-[; ;ModbusMaster.c: 662: if (_postTransmission)
-"662
-[e $ ! != __postTransmission -> -> 0 `i `*F41 1022  ]
-[; ;ModbusMaster.c: 663: {
+[; ;ModbusMaster.c: 661: }
+[; ;ModbusMaster.c: 663: if (_postTransmission)
 "663
-{
-[; ;ModbusMaster.c: 664: _postTransmission();
+[e $ ! != __postTransmission -> -> 0 `i `*F41 1022  ]
+[; ;ModbusMaster.c: 664: {
 "664
-[e ( *U __postTransmission ..  ]
+{
+[; ;ModbusMaster.c: 665: _postTransmission();
 "665
+[e ( *U __postTransmission ..  ]
+"666
 }
 [e :U 1022 ]
-[; ;ModbusMaster.c: 665: }
-[; ;ModbusMaster.c: 668: millisReset();
-"668
+[; ;ModbusMaster.c: 666: }
+[; ;ModbusMaster.c: 669: millisReset();
+"669
 [e ( _millisReset ..  ]
-[; ;ModbusMaster.c: 670: u32StartTime = millis();
-"670
-[e = _u32StartTime ( _millis ..  ]
-[; ;ModbusMaster.c: 671: while (u8BytesLeft && !u8MBStatus)
+[; ;ModbusMaster.c: 671: u32StartTime = millis();
 "671
+[e = _u32StartTime ( _millis ..  ]
+[; ;ModbusMaster.c: 672: while (u8BytesLeft && !u8MBStatus)
+"672
 [e $U 1023  ]
 [e :U 1024 ]
-[; ;ModbusMaster.c: 672: {
-"672
+[; ;ModbusMaster.c: 673: {
+"673
 {
-[; ;ModbusMaster.c: 679: u8ModbusADU[u8ModbusADUSize++] = EUSART_Read();
-"679
-[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _EUSART_Read ..  ]
-[; ;ModbusMaster.c: 680: u8BytesLeft--;
+[; ;ModbusMaster.c: 680: u8ModbusADU[u8ModbusADUSize++] = EUSART_Read();
 "680
+[e = *U + &U _u8ModbusADU * -> ++ _u8ModbusADUSize -> -> 1 `i `uc `ux -> -> # *U &U _u8ModbusADU `ui `ux ( _EUSART_Read ..  ]
+[; ;ModbusMaster.c: 681: u8BytesLeft--;
+"681
 [e -- _u8BytesLeft -> -> 1 `i `uc ]
-[; ;ModbusMaster.c: 700: if (u8ModbusADUSize == 5)
-"700
-[e $ ! == -> _u8ModbusADUSize `i -> 5 `i 1026  ]
-[; ;ModbusMaster.c: 701: {
+[; ;ModbusMaster.c: 701: if (u8ModbusADUSize == 5)
 "701
+[e $ ! == -> _u8ModbusADUSize `i -> 5 `i 1026  ]
+[; ;ModbusMaster.c: 702: {
+"702
 {
-[; ;ModbusMaster.c: 703: if (u8ModbusADU[0] != _u8MBSlave)
-"703
-[e $ ! != -> *U + &U _u8ModbusADU * -> -> -> 0 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> __u8MBSlave `i 1027  ]
-[; ;ModbusMaster.c: 704: {
+[; ;ModbusMaster.c: 704: if (u8ModbusADU[0] != _u8MBSlave)
 "704
-{
-[; ;ModbusMaster.c: 705: u8MBStatus = 0xE0;
+[e $ ! != -> *U + &U _u8ModbusADU * -> -> -> 0 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> __u8MBSlave `i 1027  ]
+[; ;ModbusMaster.c: 705: {
 "705
-[e = _u8MBStatus -> -> 224 `i `uc ]
-[; ;ModbusMaster.c: 706: break;
+{
+[; ;ModbusMaster.c: 706: u8MBStatus = 0xE0;
 "706
-[e $U 1025  ]
+[e = _u8MBStatus -> -> 224 `i `uc ]
+[; ;ModbusMaster.c: 707: break;
 "707
+[e $U 1025  ]
+"708
 }
 [e :U 1027 ]
-[; ;ModbusMaster.c: 707: }
-[; ;ModbusMaster.c: 710: if ((u8ModbusADU[1] & 0x7F) != u8MBFunction)
-"710
-[e $ ! != & -> *U + &U _u8ModbusADU * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 127 `i -> _u8MBFunction `i 1028  ]
-[; ;ModbusMaster.c: 711: {
+[; ;ModbusMaster.c: 708: }
+[; ;ModbusMaster.c: 711: if ((u8ModbusADU[1] & 0x7F) != u8MBFunction)
 "711
-{
-[; ;ModbusMaster.c: 712: u8MBStatus = 0xE1;
+[e $ ! != & -> *U + &U _u8ModbusADU * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 127 `i -> _u8MBFunction `i 1028  ]
+[; ;ModbusMaster.c: 712: {
 "712
-[e = _u8MBStatus -> -> 225 `i `uc ]
-[; ;ModbusMaster.c: 713: break;
+{
+[; ;ModbusMaster.c: 713: u8MBStatus = 0xE1;
 "713
-[e $U 1025  ]
+[e = _u8MBStatus -> -> 225 `i `uc ]
+[; ;ModbusMaster.c: 714: break;
 "714
+[e $U 1025  ]
+"715
 }
 [e :U 1028 ]
-[; ;ModbusMaster.c: 714: }
-[; ;ModbusMaster.c: 717: if ((((u8ModbusADU[1]) >> (7)) & 0x01))
-"717
-[e $ ! != & >> -> *U + &U _u8ModbusADU * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 7 `i -> 1 `i -> 0 `i 1029  ]
-[; ;ModbusMaster.c: 718: {
+[; ;ModbusMaster.c: 715: }
+[; ;ModbusMaster.c: 718: if ((((u8ModbusADU[1]) >> (7)) & 0x01))
 "718
-{
-[; ;ModbusMaster.c: 719: u8MBStatus = u8ModbusADU[2];
+[e $ ! != & >> -> *U + &U _u8ModbusADU * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 7 `i -> 1 `i -> 0 `i 1029  ]
+[; ;ModbusMaster.c: 719: {
 "719
-[e = _u8MBStatus *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
-[; ;ModbusMaster.c: 720: break;
+{
+[; ;ModbusMaster.c: 720: u8MBStatus = u8ModbusADU[2];
 "720
-[e $U 1025  ]
+[e = _u8MBStatus *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+[; ;ModbusMaster.c: 721: break;
 "721
+[e $U 1025  ]
+"722
 }
 [e :U 1029 ]
-[; ;ModbusMaster.c: 721: }
-[; ;ModbusMaster.c: 724: switch(u8ModbusADU[1])
-"724
-[e $U 1031  ]
-[; ;ModbusMaster.c: 725: {
+[; ;ModbusMaster.c: 722: }
+[; ;ModbusMaster.c: 725: switch(u8ModbusADU[1])
 "725
-{
-[; ;ModbusMaster.c: 726: case 0x01:
+[e $U 1031  ]
+[; ;ModbusMaster.c: 726: {
 "726
-[e :U 1032 ]
+{
+[; ;ModbusMaster.c: 727: case 0x01:
 "727
-[e :U 1033 ]
+[e :U 1032 ]
 "728
-[e :U 1034 ]
+[e :U 1033 ]
 "729
-[e :U 1035 ]
+[e :U 1034 ]
 "730
-[e :U 1036 ]
-[; ;ModbusMaster.c: 727: case 0x02:
-[; ;ModbusMaster.c: 728: case 0x04:
-[; ;ModbusMaster.c: 729: case 0x03:
-[; ;ModbusMaster.c: 730: case 0x17:
-[; ;ModbusMaster.c: 731: u8BytesLeft = u8ModbusADU[2];
+[e :U 1035 ]
 "731
-[e = _u8BytesLeft *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
-[; ;ModbusMaster.c: 732: break;
+[e :U 1036 ]
+[; ;ModbusMaster.c: 728: case 0x02:
+[; ;ModbusMaster.c: 729: case 0x04:
+[; ;ModbusMaster.c: 730: case 0x03:
+[; ;ModbusMaster.c: 731: case 0x17:
+[; ;ModbusMaster.c: 732: u8BytesLeft = u8ModbusADU[2];
 "732
+[e = _u8BytesLeft *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+[; ;ModbusMaster.c: 733: break;
+"733
 [e $U 1030  ]
-[; ;ModbusMaster.c: 734: case 0x05:
-"734
-[e :U 1037 ]
+[; ;ModbusMaster.c: 735: case 0x05:
 "735
-[e :U 1038 ]
+[e :U 1037 ]
 "736
-[e :U 1039 ]
+[e :U 1038 ]
 "737
-[e :U 1040 ]
-[; ;ModbusMaster.c: 735: case 0x0F:
-[; ;ModbusMaster.c: 736: case 0x06:
-[; ;ModbusMaster.c: 737: case 0x10:
-[; ;ModbusMaster.c: 738: u8BytesLeft = 3;
+[e :U 1039 ]
 "738
-[e = _u8BytesLeft -> -> 3 `i `uc ]
-[; ;ModbusMaster.c: 739: break;
+[e :U 1040 ]
+[; ;ModbusMaster.c: 736: case 0x0F:
+[; ;ModbusMaster.c: 737: case 0x06:
+[; ;ModbusMaster.c: 738: case 0x10:
+[; ;ModbusMaster.c: 739: u8BytesLeft = 3;
 "739
+[e = _u8BytesLeft -> -> 3 `i `uc ]
+[; ;ModbusMaster.c: 740: break;
+"740
 [e $U 1030  ]
-[; ;ModbusMaster.c: 741: case 0x16:
-"741
-[e :U 1041 ]
-[; ;ModbusMaster.c: 742: u8BytesLeft = 5;
+[; ;ModbusMaster.c: 742: case 0x16:
 "742
-[e = _u8BytesLeft -> -> 5 `i `uc ]
-[; ;ModbusMaster.c: 743: break;
+[e :U 1041 ]
+[; ;ModbusMaster.c: 743: u8BytesLeft = 5;
 "743
-[e $U 1030  ]
+[e = _u8BytesLeft -> -> 5 `i `uc ]
+[; ;ModbusMaster.c: 744: break;
 "744
-}
-[; ;ModbusMaster.c: 744: }
 [e $U 1030  ]
-"724
+"745
+}
+[; ;ModbusMaster.c: 745: }
+[e $U 1030  ]
+"725
 [e :U 1031 ]
 [e [\ *U + &U _u8ModbusADU * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux , $ -> -> 1 `i `uc 1032
  , $ -> -> 2 `i `uc 1033
@@ -8876,215 +8879,215 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 16 `i `uc 1040
  , $ -> -> 22 `i `uc 1041
  1030 ]
-"744
-[e :U 1030 ]
 "745
+[e :U 1030 ]
+"746
 }
 [e :U 1026 ]
-[; ;ModbusMaster.c: 745: }
-[; ;ModbusMaster.c: 746: if ((millis() - u32StartTime) > 2000)
-"746
-[e $ ! > - ( _millis ..  _u32StartTime -> -> -> 2000 `i `l `ul 1042  ]
-[; ;ModbusMaster.c: 747: {
+[; ;ModbusMaster.c: 746: }
+[; ;ModbusMaster.c: 747: if ((millis() - u32StartTime) > 2000)
 "747
-{
-[; ;ModbusMaster.c: 748: u8MBStatus = 0xE2;
+[e $ ! > - ( _millis ..  _u32StartTime -> -> -> 2000 `i `l `ul 1042  ]
+[; ;ModbusMaster.c: 748: {
 "748
-[e = _u8MBStatus -> -> 226 `i `uc ]
+{
+[; ;ModbusMaster.c: 749: u8MBStatus = 0xE2;
 "749
-}
-[e :U 1042 ]
+[e = _u8MBStatus -> -> 226 `i `uc ]
 "750
 }
+[e :U 1042 ]
+"751
+}
 [e :U 1023 ]
-"671
+"672
 [e $ && != -> _u8BytesLeft `i -> -> -> 0 `i `uc `i ! != -> _u8MBStatus `i -> -> -> 0 `i `uc `i 1024  ]
 [e :U 1025 ]
-[; ;ModbusMaster.c: 749: }
 [; ;ModbusMaster.c: 750: }
-[; ;ModbusMaster.c: 753: if (!u8MBStatus && u8ModbusADUSize >= 5)
-"753
-[e $ ! && ! != -> _u8MBStatus `i -> -> -> 0 `i `uc `i >= -> _u8ModbusADUSize `i -> 5 `i 1043  ]
-[; ;ModbusMaster.c: 754: {
+[; ;ModbusMaster.c: 751: }
+[; ;ModbusMaster.c: 754: if (!u8MBStatus && u8ModbusADUSize >= 5)
 "754
+[e $ ! && ! != -> _u8MBStatus `i -> -> -> 0 `i `uc `i >= -> _u8ModbusADUSize `i -> 5 `i 1043  ]
+[; ;ModbusMaster.c: 755: {
+"755
 {
-[; ;ModbusMaster.c: 756: u16CRC = 0xFFFF;
-"756
-[e = _u16CRC -> 65535 `ui ]
-[; ;ModbusMaster.c: 757: for (i = 0; i < (u8ModbusADUSize - 2); i++)
+[; ;ModbusMaster.c: 757: u16CRC = 0xFFFF;
 "757
+[e = _u16CRC -> 65535 `ui ]
+[; ;ModbusMaster.c: 758: for (i = 0; i < (u8ModbusADUSize - 2); i++)
+"758
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 1047  ]
-"758
-[e :U 1044 ]
-[; ;ModbusMaster.c: 758: {
-{
-[; ;ModbusMaster.c: 759: u16CRC = crc16_update(u16CRC, u8ModbusADU[i]);
 "759
-[e = _u16CRC ( _crc16_update (2 , _u16CRC *U + &U _u8ModbusADU * -> _i `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+[e :U 1044 ]
+[; ;ModbusMaster.c: 759: {
+{
+[; ;ModbusMaster.c: 760: u16CRC = crc16_update(u16CRC, u8ModbusADU[i]);
 "760
+[e = _u16CRC ( _crc16_update (2 , _u16CRC *U + &U _u8ModbusADU * -> _i `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+"761
 }
-"757
+"758
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 1047 ]
 [e $ < -> _i `i - -> _u8ModbusADUSize `i -> 2 `i 1044  ]
 [e :U 1045 ]
-"760
+"761
 }
-[; ;ModbusMaster.c: 760: }
-[; ;ModbusMaster.c: 763: if (!u8MBStatus && (lowByte(u16CRC) != u8ModbusADU[u8ModbusADUSize - 2] ||
-[; ;ModbusMaster.c: 764: highByte(u16CRC) != u8ModbusADU[u8ModbusADUSize - 1]))
-"764
-[e $ ! && ! != -> _u8MBStatus `i -> -> -> 0 `i `uc `i || != -> ( _lowByte (1 _u16CRC `i -> *U + &U _u8ModbusADU * -> -> - -> _u8ModbusADUSize `i -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i != -> ( _highByte (1 _u16CRC `i -> *U + &U _u8ModbusADU * -> -> - -> _u8ModbusADUSize `i -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i 1048  ]
-[; ;ModbusMaster.c: 765: {
+[; ;ModbusMaster.c: 761: }
+[; ;ModbusMaster.c: 764: if (!u8MBStatus && (lowByte(u16CRC) != u8ModbusADU[u8ModbusADUSize - 2] ||
+[; ;ModbusMaster.c: 765: highByte(u16CRC) != u8ModbusADU[u8ModbusADUSize - 1]))
 "765
-{
-[; ;ModbusMaster.c: 766: u8MBStatus = 0xE3;
+[e $ ! && ! != -> _u8MBStatus `i -> -> -> 0 `i `uc `i || != -> ( _lowByte (1 _u16CRC `i -> *U + &U _u8ModbusADU * -> -> - -> _u8ModbusADUSize `i -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i != -> ( _highByte (1 _u16CRC `i -> *U + &U _u8ModbusADU * -> -> - -> _u8ModbusADUSize `i -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i 1048  ]
+[; ;ModbusMaster.c: 766: {
 "766
-[e = _u8MBStatus -> -> 227 `i `uc ]
+{
+[; ;ModbusMaster.c: 767: u8MBStatus = 0xE3;
 "767
-}
-[e :U 1048 ]
+[e = _u8MBStatus -> -> 227 `i `uc ]
 "768
 }
+[e :U 1048 ]
+"769
+}
 [e :U 1043 ]
-[; ;ModbusMaster.c: 767: }
 [; ;ModbusMaster.c: 768: }
-[; ;ModbusMaster.c: 771: if (!u8MBStatus)
-"771
-[e $ ! ! != -> _u8MBStatus `i -> -> -> 0 `i `uc `i 1049  ]
-[; ;ModbusMaster.c: 772: {
+[; ;ModbusMaster.c: 769: }
+[; ;ModbusMaster.c: 772: if (!u8MBStatus)
 "772
+[e $ ! ! != -> _u8MBStatus `i -> -> -> 0 `i `uc `i 1049  ]
+[; ;ModbusMaster.c: 773: {
+"773
 {
-[; ;ModbusMaster.c: 774: switch(u8ModbusADU[1])
-"774
-[e $U 1051  ]
-[; ;ModbusMaster.c: 775: {
+[; ;ModbusMaster.c: 775: switch(u8ModbusADU[1])
 "775
-{
-[; ;ModbusMaster.c: 776: case 0x01:
+[e $U 1051  ]
+[; ;ModbusMaster.c: 776: {
 "776
-[e :U 1052 ]
+{
+[; ;ModbusMaster.c: 777: case 0x01:
 "777
+[e :U 1052 ]
+"778
 [e :U 1053 ]
-[; ;ModbusMaster.c: 777: case 0x02:
-[; ;ModbusMaster.c: 779: for (i = 0; i < (u8ModbusADU[2] >> 1); i++)
-"779
+[; ;ModbusMaster.c: 778: case 0x02:
+[; ;ModbusMaster.c: 780: for (i = 0; i < (u8ModbusADU[2] >> 1); i++)
+"780
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 1057  ]
-"780
-[e :U 1054 ]
-[; ;ModbusMaster.c: 780: {
-{
-[; ;ModbusMaster.c: 781: if (i < 64)
 "781
-[e $ ! < -> _i `i -> 64 `i 1058  ]
-[; ;ModbusMaster.c: 782: {
-"782
+[e :U 1054 ]
+[; ;ModbusMaster.c: 781: {
 {
-[; ;ModbusMaster.c: 783: _u16ResponseBuffer[i] = word(u8ModbusADU[2 * i + 4], u8ModbusADU[2 * i + 3]);
+[; ;ModbusMaster.c: 782: if (i < 64)
+"782
+[e $ ! < -> _i `i -> 64 `i 1058  ]
+[; ;ModbusMaster.c: 783: {
 "783
-[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ( _word (2 , *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 4 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 3 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+{
+[; ;ModbusMaster.c: 784: _u16ResponseBuffer[i] = word(u8ModbusADU[2 * i + 4], u8ModbusADU[2 * i + 3]);
 "784
+[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ( _word (2 , *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 4 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 3 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+"785
 }
 [e :U 1058 ]
-[; ;ModbusMaster.c: 784: }
-[; ;ModbusMaster.c: 786: _u8ResponseBufferLength = i;
-"786
-[e = __u8ResponseBufferLength _i ]
+[; ;ModbusMaster.c: 785: }
+[; ;ModbusMaster.c: 787: _u8ResponseBufferLength = i;
 "787
+[e = __u8ResponseBufferLength _i ]
+"788
 }
-"779
+"780
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 1057 ]
 [e $ < -> _i `i >> -> *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 1 `i 1054  ]
 [e :U 1055 ]
-"787
+"788
 }
-[; ;ModbusMaster.c: 787: }
-[; ;ModbusMaster.c: 790: if (u8ModbusADU[2] % 2)
-"790
-[e $ ! != % -> *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 2 `i -> 0 `i 1059  ]
-[; ;ModbusMaster.c: 791: {
+[; ;ModbusMaster.c: 788: }
+[; ;ModbusMaster.c: 791: if (u8ModbusADU[2] % 2)
 "791
-{
-[; ;ModbusMaster.c: 792: if (i < 64)
+[e $ ! != % -> *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 2 `i -> 0 `i 1059  ]
+[; ;ModbusMaster.c: 792: {
 "792
-[e $ ! < -> _i `i -> 64 `i 1060  ]
-[; ;ModbusMaster.c: 793: {
-"793
 {
-[; ;ModbusMaster.c: 794: _u16ResponseBuffer[i] = word(0, u8ModbusADU[2 * i + 3]);
+[; ;ModbusMaster.c: 793: if (i < 64)
+"793
+[e $ ! < -> _i `i -> 64 `i 1060  ]
+[; ;ModbusMaster.c: 794: {
 "794
-[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ( _word (2 , -> -> 0 `i `uc *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 3 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+{
+[; ;ModbusMaster.c: 795: _u16ResponseBuffer[i] = word(0, u8ModbusADU[2 * i + 3]);
 "795
+[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ( _word (2 , -> -> 0 `i `uc *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 3 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+"796
 }
 [e :U 1060 ]
-[; ;ModbusMaster.c: 795: }
-[; ;ModbusMaster.c: 797: _u8ResponseBufferLength = i + 1;
-"797
-[e = __u8ResponseBufferLength -> + -> _i `i -> 1 `i `uc ]
+[; ;ModbusMaster.c: 796: }
+[; ;ModbusMaster.c: 798: _u8ResponseBufferLength = i + 1;
 "798
+[e = __u8ResponseBufferLength -> + -> _i `i -> 1 `i `uc ]
+"799
 }
 [e :U 1059 ]
-[; ;ModbusMaster.c: 798: }
-[; ;ModbusMaster.c: 799: break;
-"799
+[; ;ModbusMaster.c: 799: }
+[; ;ModbusMaster.c: 800: break;
+"800
 [e $U 1050  ]
-[; ;ModbusMaster.c: 801: case 0x04:
-"801
-[e :U 1061 ]
+[; ;ModbusMaster.c: 802: case 0x04:
 "802
-[e :U 1062 ]
+[e :U 1061 ]
 "803
+[e :U 1062 ]
+"804
 [e :U 1063 ]
-[; ;ModbusMaster.c: 802: case 0x03:
-[; ;ModbusMaster.c: 803: case 0x17:
-[; ;ModbusMaster.c: 805: for (i = 0; i < (u8ModbusADU[2] >> 1); i++)
-"805
+[; ;ModbusMaster.c: 803: case 0x03:
+[; ;ModbusMaster.c: 804: case 0x17:
+[; ;ModbusMaster.c: 806: for (i = 0; i < (u8ModbusADU[2] >> 1); i++)
+"806
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 1067  ]
-"806
-[e :U 1064 ]
-[; ;ModbusMaster.c: 806: {
-{
-[; ;ModbusMaster.c: 807: if (i < 64)
 "807
-[e $ ! < -> _i `i -> 64 `i 1068  ]
-[; ;ModbusMaster.c: 808: {
-"808
+[e :U 1064 ]
+[; ;ModbusMaster.c: 807: {
 {
-[; ;ModbusMaster.c: 809: _u16ResponseBuffer[i] = word(u8ModbusADU[2 * i + 3], u8ModbusADU[2 * i + 4]);
+[; ;ModbusMaster.c: 808: if (i < 64)
+"808
+[e $ ! < -> _i `i -> 64 `i 1068  ]
+[; ;ModbusMaster.c: 809: {
 "809
-[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ( _word (2 , *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 3 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 4 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+{
+[; ;ModbusMaster.c: 810: _u16ResponseBuffer[i] = word(u8ModbusADU[2 * i + 3], u8ModbusADU[2 * i + 4]);
 "810
+[e = *U + &U __u16ResponseBuffer * -> _i `ux -> -> # *U &U __u16ResponseBuffer `ui `ux ( _word (2 , *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 3 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux *U + &U _u8ModbusADU * -> -> + * -> 2 `i -> _i `i -> 4 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux ]
+"811
 }
 [e :U 1068 ]
-[; ;ModbusMaster.c: 810: }
-[; ;ModbusMaster.c: 812: _u8ResponseBufferLength = i;
-"812
-[e = __u8ResponseBufferLength _i ]
+[; ;ModbusMaster.c: 811: }
+[; ;ModbusMaster.c: 813: _u8ResponseBufferLength = i;
 "813
+[e = __u8ResponseBufferLength _i ]
+"814
 }
-"805
+"806
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 1067 ]
 [e $ < -> _i `i >> -> *U + &U _u8ModbusADU * -> -> -> 2 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux `i -> 1 `i 1064  ]
 [e :U 1065 ]
-"813
-}
-[; ;ModbusMaster.c: 813: }
-[; ;ModbusMaster.c: 814: break;
 "814
-[e $U 1050  ]
-"815
 }
-[; ;ModbusMaster.c: 815: }
+[; ;ModbusMaster.c: 814: }
+[; ;ModbusMaster.c: 815: break;
+"815
 [e $U 1050  ]
-"774
+"816
+}
+[; ;ModbusMaster.c: 816: }
+[e $U 1050  ]
+"775
 [e :U 1051 ]
 [e [\ *U + &U _u8ModbusADU * -> -> -> 1 `i `ui `ux -> -> # *U &U _u8ModbusADU `ui `ux , $ -> -> 1 `i `uc 1052
  , $ -> -> 2 `i `uc 1053
@@ -9092,26 +9095,26 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 3 `i `uc 1062
  , $ -> -> 23 `i `uc 1063
  1050 ]
-"815
-[e :U 1050 ]
 "816
+[e :U 1050 ]
+"817
 }
 [e :U 1049 ]
-[; ;ModbusMaster.c: 816: }
-[; ;ModbusMaster.c: 818: _u8TransmitBufferIndex = 0;
-"818
-[e = __u8TransmitBufferIndex -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 819: u16TransmitBufferLength = 0;
+[; ;ModbusMaster.c: 817: }
+[; ;ModbusMaster.c: 819: _u8TransmitBufferIndex = 0;
 "819
-[e = _u16TransmitBufferLength -> -> 0 `i `ui ]
-[; ;ModbusMaster.c: 820: _u8ResponseBufferIndex = 0;
+[e = __u8TransmitBufferIndex -> -> 0 `i `uc ]
+[; ;ModbusMaster.c: 820: u16TransmitBufferLength = 0;
 "820
-[e = __u8ResponseBufferIndex -> -> 0 `i `uc ]
-[; ;ModbusMaster.c: 821: return u8MBStatus;
+[e = _u16TransmitBufferLength -> -> 0 `i `ui ]
+[; ;ModbusMaster.c: 821: _u8ResponseBufferIndex = 0;
 "821
+[e = __u8ResponseBufferIndex -> -> 0 `i `uc ]
+[; ;ModbusMaster.c: 822: return u8MBStatus;
+"822
 [e ) _u8MBStatus ]
 [e $UE 973  ]
-[; ;ModbusMaster.c: 822: }
-"822
+[; ;ModbusMaster.c: 823: }
+"823
 [e :UE 973 ]
 }

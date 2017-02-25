@@ -1,3 +1,6 @@
+
+#include <xc.h>     
+#include "mcc_generated_files/mcc.h"
 #include "LED_Ctrl.h"
 
 //Variables and function for LedON
@@ -53,7 +56,7 @@ void LedON_Control_10msec(void)
     if(1==Led_ON)//check if Enable
     {   
       
-        if(LED_msec_Cnt == Blick_tickPoint)//toggle timer ON/OFF at beep points msec
+        if(LED_msec_Cnt >= Blick_tickPoint)//toggle timer ON/OFF at beep points msec
         {
             switch(LED_Color)//Toggle LED
             {

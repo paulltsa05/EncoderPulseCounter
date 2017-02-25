@@ -49,15 +49,8 @@
 
 #include <xc.h>
 #include "tmr0.h"
+#include "../main.h"
 
-
-/**
-  Section: Global Variables Definitions
-*/
-
-volatile uint16_t timer0ReloadVal16bit;
-
-unsigned long TimertickMsec=0;//arduino Like implementation for miilis())
 
 /**
   Section: TMR0 APIs
@@ -69,20 +62,17 @@ void TMR0_Initialize(void)
 {
     // Set TMR0 to the options selected in the User Interface
 
-    // T0OUTPS 1:2; T0EN disabled; T016BIT 16-bit; 
-    T0CON0 = 0x11;
+    // T0OUTPS 1:1; T0EN disabled; T016BIT 8-bit; 
+    T0CON0 = 0x00;
 
-    // T0CS FOSC/4; T0CKPS 1:64; T0ASYNC synchronised; 
-    T0CON1 = 0x46;
+    // T0CS FOSC/4; T0CKPS 1:512; T0ASYNC synchronised; 
+    T0CON1 = 0x49;
 
-    // TMR0H 253; 
-    TMR0H = 0xFD;
+    // TMR0H 19; 
+    TMR0H = 0x13;
 
-    // TMR0L 143; 
-    TMR0L = 0x8F;
-
-    // Load TMR0 value to the 16-bit reload variable
-    timer0ReloadVal16bit = (TMR0H << 8) | TMR0L;
+    // TMR0L 0; 
+    TMR0L = 0x00;
 
     // Clear Interrupt flag before enabling the interrupt
     PIR0bits.TMR0IF = 0;
@@ -109,41 +99,32 @@ void TMR0_StopTimer(void)
     T0CON0bits.T0EN = 0;
 }
 
-uint16_t TMR0_Read16bitTimer(void)
+uint8_t TMR0_Read8bitTimer(void)
 {
-    uint16_t readVal;
-    uint8_t readValLow;
-    uint8_t readValHigh;
+    uint8_t readVal;
 
-    readValLow  = TMR0L;
-    readValHigh = TMR0H;
-    readVal  = ((uint16_t)readValHigh << 8) + readValLow;
+    // read Timer0, low register only
+    readVal = TMR0L;
 
     return readVal;
 }
 
-void TMR0_Write16bitTimer(uint16_t timerVal)
+void TMR0_Write8bitTimer(uint8_t timerVal)
 {
-    // Write to the Timer0 register
-    TMR0H = timerVal >> 8;
-    TMR0L = (uint8_t) timerVal;
+    // Write to Timer0 registers, low register only
+    TMR0L = timerVal;
 }
 
-void TMR0_Reload16bit(void)
+void TMR0_Load8bitPeriod(uint8_t periodVal)
 {
-    // Write to the Timer0 register
-    TMR0H = timer0ReloadVal16bit >> 8;
-    TMR0L = (uint8_t) timer0ReloadVal16bit;
+   // Write to Timer0 registers, high register only
+   TMR0H = periodVal;
 }
 
 void TMR0_ISR(void)
 {
     // clear the TMR0 interrupt flag
     PIR0bits.TMR0IF = 0;
-    // Write to the Timer0 register
-    TMR0H = timer0ReloadVal16bit >> 8;
-    TMR0L = (uint8_t) timer0ReloadVal16bit;
-
     // ticker function call;
     // ticker is 1 -> Callback function gets called every time this ISR executes
     TMR0_CallBack();
@@ -154,8 +135,6 @@ void TMR0_ISR(void)
 void TMR0_CallBack(void)
 {
     // Add your custom callback code here
-    TimertickMsec=TimertickMsec+10;
-//    Timer0_tick10msecFunc();
 
     if(TMR0_InterruptHandler)
     {
@@ -169,16 +148,8 @@ void TMR0_SetInterruptHandler(void* InterruptHandler){
 
 void TMR0_DefaultInterruptHandler(void){
     // add your TMR0 interrupt custom code
+    Timer0_tick10msecFunc();    
     // or set custom function using TMR0_SetInterruptHandler()
-}
-
-unsigned long millis(void)//arduino Like implementation for miilis())
-{
-    return TimertickMsec;
-}
-void millisReset(void)//arduino Like implementation for miilis())
-{
-    TimertickMsec=0;
 }
 
 /**

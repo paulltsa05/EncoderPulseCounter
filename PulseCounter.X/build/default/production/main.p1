@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"76 mcc_generated_files/mcc.h
+"75 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "341 /opt/microchip/xc8/v1.41/include/pic16f18344.h
 [s S26 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -20,8 +20,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR5_StopTimer `(v ~T0 @X0 0 ef ]
 "39 ModbusManager.h
 [v _ModbusMasterSetup `(v ~T0 @X0 0 ef ]
+"22 LED_Ctrl.h
+[v _LedONStartConfig `(uc ~T0 @X0 0 ef3`uc`uc`uc ]
+"20
+[v _LedONStatusBusy `(uc ~T0 @X0 0 ef ]
 "128 mcc_generated_files/tmr3.h
 [v _TMR3_StartTimer `(v ~T0 @X0 0 ef ]
+"128 mcc_generated_files/tmr5.h
+[v _TMR5_StartTimer `(v ~T0 @X0 0 ef ]
 "460 /opt/microchip/xc8/v1.41/include/pic16f18344.h
 [s S32 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S32 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
@@ -30,9 +36,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S31 . . ]
 "471
 [v _PORTCbits `VS31 ~T0 @X0 0 e@14 ]
-"128 mcc_generated_files/tmr5.h
-[v _TMR5_StartTimer `(v ~T0 @X0 0 ef ]
-"24 LED_Ctrl.h
+"23 LED_Ctrl.h
 [v _LedON_Control_10msec `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -7340,8 +7344,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 192: extern unsigned char __resetbits;
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
-[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 332: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -7372,24 +7376,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
-[; ;tmr5.h: 99: void TMR5_Initialize(void);
-[; ;tmr5.h: 128: void TMR5_StartTimer(void);
-[; ;tmr5.h: 160: void TMR5_StopTimer(void);
-[; ;tmr5.h: 195: uint16_t TMR5_ReadTimer(void);
-[; ;tmr5.h: 234: void TMR5_WriteTimer(uint16_t timerVal);
-[; ;tmr5.h: 270: void TMR5_Reload(void);
-[; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
-[; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
-[; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
-[; ;tmr3.h: 99: void TMR3_Initialize(void);
-[; ;tmr3.h: 128: void TMR3_StartTimer(void);
-[; ;tmr3.h: 160: void TMR3_StopTimer(void);
-[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
-[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
-[; ;tmr3.h: 270: void TMR3_Reload(void);
-[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
-[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
-[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
 [; ;ccp1.h: 78: typedef union CCPR1Reg_tag
 [; ;ccp1.h: 79: {
 [; ;ccp1.h: 80: struct
@@ -7405,7 +7391,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp1.h: 121: void CCP1_Initialize(void);
 [; ;ccp1.h: 137: void CCP1_CaptureISR(void);
 [; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
-[; ;ccp1.h: 159: void EncA_PulseEdgeEvent(uint16_t capturedValue);
 [; ;ccp2.h: 78: typedef union CCPR2Reg_tag
 [; ;ccp2.h: 79: {
 [; ;ccp2.h: 80: struct
@@ -7421,23 +7406,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
-[; ;ccp2.h: 159: void EncB_PulseEdgeEvent(uint16_t capturedValue);
-[; ;eusart.h: 94: void EUSART_Initialize(void);
-[; ;eusart.h: 114: uint8_t EUSART_Read(void);
-[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
-[; ;tmr0.h: 105: void TMR0_Initialize(void);
-[; ;tmr0.h: 134: void TMR0_StartTimer(void);
-[; ;tmr0.h: 166: void TMR0_StopTimer(void);
-[; ;tmr0.h: 202: uint16_t TMR0_Read16bitTimer(void);
-[; ;tmr0.h: 241: void TMR0_Write16bitTimer(uint16_t timerVal);
-[; ;tmr0.h: 277: void TMR0_Reload16bit(void);
-[; ;tmr0.h: 295: void TMR0_ISR(void);
-[; ;tmr0.h: 313: void TMR0_CallBack(void);
-[; ;tmr0.h: 331: void TMR0_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr0.h: 349: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 367: void TMR0_DefaultInterruptHandler(void);
-[; ;tmr0.h: 370: uint32_t millis(void);
-[; ;tmr0.h: 372: void millisReset(void);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -7458,15 +7426,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 225: bool ADC_IsConversionDone();
 [; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;mcc.h: 76: void SYSTEM_Initialize(void);
-[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 102: void WDT_Initialize(void);
+[; ;eusart.h: 94: void EUSART_Initialize(void);
+[; ;eusart.h: 114: uint8_t EUSART_Read(void);
+[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;tmr0.h: 105: void TMR0_Initialize(void);
+[; ;tmr0.h: 134: void TMR0_StartTimer(void);
+[; ;tmr0.h: 166: void TMR0_StopTimer(void);
+[; ;tmr0.h: 201: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 240: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 277: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 296: void TMR0_ISR(void);
+[; ;tmr0.h: 314: void TMR0_CallBack(void);
+[; ;tmr0.h: 332: void TMR0_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr0.h: 350: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 368: void TMR0_DefaultInterruptHandler(void);
+[; ;tmr5.h: 99: void TMR5_Initialize(void);
+[; ;tmr5.h: 128: void TMR5_StartTimer(void);
+[; ;tmr5.h: 160: void TMR5_StopTimer(void);
+[; ;tmr5.h: 195: uint16_t TMR5_ReadTimer(void);
+[; ;tmr5.h: 234: void TMR5_WriteTimer(uint16_t timerVal);
+[; ;tmr5.h: 270: void TMR5_Reload(void);
+[; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
+[; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
+[; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
+[; ;tmr3.h: 99: void TMR3_Initialize(void);
+[; ;tmr3.h: 128: void TMR3_StartTimer(void);
+[; ;tmr3.h: 160: void TMR3_StopTimer(void);
+[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
+[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
+[; ;tmr3.h: 270: void TMR3_Reload(void);
+[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
+[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
+[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void WDT_Initialize(void);
 "30 ModbusManager.h
 [v _EncPulseCntResult `uc ~T0 @X0 1 e ]
 [; ;ModbusManager.h: 30: unsigned char EncPulseCntResult;
@@ -7487,375 +7481,474 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ModbusManager.h: 41: void MB_getEPC_PLC_Control(void);
 [; ;ModbusManager.h: 42: void MB_SendEncPulseOpState(void);
 [; ;ModbusManager.h: 43: void MB_SendEncPulseCntResult(void);
-[; ;main.h: 19: void EncINX_PulseRisingEvent();
-[; ;main.h: 21: void Timer0_tick10msecFunc();
-[; ;LED_Ctrl.h: 21: extern char LedONStatusBusy(void);
-[; ;LED_Ctrl.h: 23: extern char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
-[; ;LED_Ctrl.h: 24: extern void LedON_Control_10msec(void);
-"54 main.c
+[; ;LED_Ctrl.h: 20: char LedONStatusBusy(void);
+[; ;LED_Ctrl.h: 22: char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
+[; ;LED_Ctrl.h: 23: void LedON_Control_10msec(void);
+[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t *capturedValue);
+[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+[; ;main.h: 21: void Timer0_tick10msecFunc(void);
+[; ;main.h: 23: uint32_t millis(void);
+[; ;main.h: 25: void millisReset(void);
+"55 main.c
 [v _OldEncPulseOpState `ui ~T0 @X0 1 e ]
 [i _OldEncPulseOpState
 -> -> 0 `i `ui
 ]
-[; ;main.c: 54: unsigned int OldEncPulseOpState=0;
-[; ;main.c: 56: void EPC_StateMachineControlLoop();
-"58
-[v _main `(v ~T0 @X0 1 ef ]
+[; ;main.c: 55: unsigned int OldEncPulseOpState=0;
+"57
+[v _PulseTime_uSec `ui ~T0 @X0 1 e ]
+[i _PulseTime_uSec
+-> -> 0 `i `ui
+]
+[; ;main.c: 57: unsigned int PulseTime_uSec=0;
 "59
+[v _TimertickMsec `ul ~T0 @X0 1 e ]
+[i _TimertickMsec
+-> -> -> 0 `i `l `ul
+]
+[; ;main.c: 59: uint32_t TimertickMsec=0;
+[; ;main.c: 63: void getStateOfPulse(uint16_t *capturevalue);
+[; ;main.c: 64: void EPC_StateMachineControlLoop();
+"66
+[v _main `(v ~T0 @X0 1 ef ]
+"67
 {
-[; ;main.c: 58: void main(void)
-[; ;main.c: 59: {
+[; ;main.c: 66: void main(void)
+[; ;main.c: 67: {
 [e :U _main ]
 [f ]
-[; ;main.c: 61: SYSTEM_Initialize();
-"61
+[; ;main.c: 69: SYSTEM_Initialize();
+"69
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 67: (INTCONbits.GIE = 1);
-"67
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 70: (INTCONbits.PEIE = 1);
-"70
-[e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 77: TMR3_WriteTimer(0);
-"77
-[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 78: TMR3_StopTimer();
+[; ;main.c: 78: (INTCONbits.GIE = 1);
 "78
-[e ( _TMR3_StopTimer ..  ]
-[; ;main.c: 79: TMR5_WriteTimer(0);
-"79
-[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 80: TMR5_StopTimer();
-"80
-[e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 82: ModbusMasterSetup();
-"82
-[e ( _ModbusMasterSetup ..  ]
-[; ;main.c: 83: EncPulseOpState=0;
-"83
-[e = _EncPulseOpState -> -> 0 `i `ui ]
-[; ;main.c: 85: while (1)
-"85
-[e :U 933 ]
-[; ;main.c: 86: {
-"86
-{
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 81: (INTCONbits.PEIE = 1);
+"81
+[e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 88: TMR3_WriteTimer(0);
+"88
+[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 89: TMR3_StopTimer();
 "89
-}
-[e :U 932 ]
-"85
-[e $U 933  ]
-[e :U 934 ]
-[; ;main.c: 89: }
-[; ;main.c: 90: }
+[e ( _TMR3_StopTimer ..  ]
+[; ;main.c: 90: TMR5_WriteTimer(0);
 "90
+[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 91: TMR5_StopTimer();
+"91
+[e ( _TMR5_StopTimer ..  ]
+[; ;main.c: 93: ModbusMasterSetup();
+"93
+[e ( _ModbusMasterSetup ..  ]
+[; ;main.c: 94: EncPulseOpState=0;
+"94
+[e = _EncPulseOpState -> -> 0 `i `ui ]
+[; ;main.c: 100: LedONStartConfig(0, 4, 10);
+"100
+[e ( _LedONStartConfig (3 , , -> -> 0 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
+[; ;main.c: 101: while(LedONStatusBusy());
+"101
+[e $U 932  ]
+[e :U 933 ]
+[e :U 932 ]
+[e $ != -> ( _LedONStatusBusy ..  `i -> -> -> 0 `i `uc `i 933  ]
+[e :U 934 ]
+[; ;main.c: 102: LedONStartConfig(1, 4, 10);
+"102
+[e ( _LedONStartConfig (3 , , -> -> 1 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
+[; ;main.c: 103: while(LedONStatusBusy());
+"103
+[e $U 935  ]
+[e :U 936 ]
+[e :U 935 ]
+[e $ != -> ( _LedONStatusBusy ..  `i -> -> -> 0 `i `uc `i 936  ]
+[e :U 937 ]
+[; ;main.c: 104: LedONStartConfig(2, 4, 10);
+"104
+[e ( _LedONStartConfig (3 , , -> -> 2 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
+[; ;main.c: 105: while(LedONStatusBusy());
+"105
+[e $U 938  ]
+[e :U 939 ]
+[e :U 938 ]
+[e $ != -> ( _LedONStatusBusy ..  `i -> -> -> 0 `i `uc `i 939  ]
+[e :U 940 ]
+[; ;main.c: 109: while (1)
+"109
+[e :U 942 ]
+[; ;main.c: 110: {
+"110
+{
+"114
+}
+[e :U 941 ]
+"109
+[e $U 942  ]
+[e :U 943 ]
+[; ;main.c: 114: }
+[; ;main.c: 115: }
+"115
 [e :UE 931 ]
 }
-"92
+"117
 [v _EPC_StateMachineControlLoop `(v ~T0 @X0 1 ef ]
-"93
+"118
 {
-[; ;main.c: 92: void EPC_StateMachineControlLoop()
-[; ;main.c: 93: {
+[; ;main.c: 117: void EPC_StateMachineControlLoop()
+[; ;main.c: 118: {
 [e :U _EPC_StateMachineControlLoop ]
 [f ]
-[; ;main.c: 94: switch (EncPulseOpState)
-"94
-[e $U 937  ]
-[; ;main.c: 95: {
-"95
-{
-[; ;main.c: 96: case 0 : if(EncPulseOpState != OldEncPulseOpState)
-"96
-[e :U 938 ]
-[e $ ! != _EncPulseOpState _OldEncPulseOpState 939  ]
-[; ;main.c: 97: {
-"97
-{
-"100
-}
-[; ;main.c: 100: }
-[e $U 940  ]
-"101
-[e :U 939 ]
-[; ;main.c: 101: else
-[; ;main.c: 102: {
-"102
-{
-"104
-}
-[e :U 940 ]
-[; ;main.c: 104: }
-[; ;main.c: 106: OldEncPulseOpState=EncPulseOpState;
-"106
-[e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 107: break;
-"107
-[e $U 936  ]
-[; ;main.c: 108: case 1 : if(EncPulseOpState != OldEncPulseOpState)
-"108
-[e :U 941 ]
-[e $ ! != _EncPulseOpState _OldEncPulseOpState 942  ]
-[; ;main.c: 109: {
-"109
-{
-"112
-}
-[; ;main.c: 112: }
-[e $U 943  ]
-"113
-[e :U 942 ]
-[; ;main.c: 113: else
-[; ;main.c: 114: {
-"114
-{
-"116
-}
-[e :U 943 ]
-[; ;main.c: 116: }
-[; ;main.c: 118: OldEncPulseOpState=EncPulseOpState;
-"118
-[e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 120: break;
+[; ;main.c: 119: switch (EncPulseOpState)
+"119
+[e $U 946  ]
+[; ;main.c: 120: {
 "120
-[e $U 936  ]
-[; ;main.c: 121: case 2 : if(EncPulseOpState != OldEncPulseOpState)
+{
+[; ;main.c: 121: case 0 : if(EncPulseOpState != OldEncPulseOpState)
 "121
-[e :U 944 ]
-[e $ ! != _EncPulseOpState _OldEncPulseOpState 945  ]
+[e :U 947 ]
+[e $ ! != _EncPulseOpState _OldEncPulseOpState 948  ]
 [; ;main.c: 122: {
 "122
 {
 "125
 }
 [; ;main.c: 125: }
-[e $U 946  ]
+[e $U 949  ]
 "126
-[e :U 945 ]
+[e :U 948 ]
 [; ;main.c: 126: else
 [; ;main.c: 127: {
 "127
 {
 "129
 }
-[e :U 946 ]
+[e :U 949 ]
 [; ;main.c: 129: }
 [; ;main.c: 131: OldEncPulseOpState=EncPulseOpState;
 "131
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 133: break;
+[; ;main.c: 132: break;
+"132
+[e $U 945  ]
+[; ;main.c: 133: case 1 : if(EncPulseOpState != OldEncPulseOpState)
 "133
-[e $U 936  ]
-[; ;main.c: 134: case 3 : if(EncPulseOpState != OldEncPulseOpState)
-"134
-[e :U 947 ]
-[e $ ! != _EncPulseOpState _OldEncPulseOpState 948  ]
-[; ;main.c: 135: {
-"135
-{
-"138
-}
-[; ;main.c: 138: }
-[e $U 949  ]
-"139
-[e :U 948 ]
-[; ;main.c: 139: else
-[; ;main.c: 140: {
-"140
-{
-"142
-}
-[e :U 949 ]
-[; ;main.c: 142: }
-[; ;main.c: 144: OldEncPulseOpState=EncPulseOpState;
-"144
-[e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 146: break;
-"146
-[e $U 936  ]
-[; ;main.c: 147: case 4 : if(EncPulseOpState != OldEncPulseOpState)
-"147
 [e :U 950 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 951  ]
-[; ;main.c: 148: {
-"148
+[; ;main.c: 134: {
+"134
 {
-"151
+"137
 }
-[; ;main.c: 151: }
+[; ;main.c: 137: }
 [e $U 952  ]
-"152
+"138
 [e :U 951 ]
-[; ;main.c: 152: else
-[; ;main.c: 153: {
-"153
+[; ;main.c: 138: else
+[; ;main.c: 139: {
+"139
 {
-"155
+"141
 }
 [e :U 952 ]
-[; ;main.c: 155: }
-[; ;main.c: 157: OldEncPulseOpState=EncPulseOpState;
-"157
+[; ;main.c: 141: }
+[; ;main.c: 143: OldEncPulseOpState=EncPulseOpState;
+"143
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 159: break;
-"159
-[e $U 936  ]
-[; ;main.c: 160: case 16 : if(EncPulseOpState != OldEncPulseOpState)
-"160
+[; ;main.c: 145: break;
+"145
+[e $U 945  ]
+[; ;main.c: 146: case 2 : if(EncPulseOpState != OldEncPulseOpState)
+"146
 [e :U 953 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 954  ]
-[; ;main.c: 161: {
-"161
+[; ;main.c: 147: {
+"147
 {
-"164
+"150
 }
-[; ;main.c: 164: }
+[; ;main.c: 150: }
 [e $U 955  ]
-"165
+"151
 [e :U 954 ]
-[; ;main.c: 165: else
-[; ;main.c: 166: {
-"166
+[; ;main.c: 151: else
+[; ;main.c: 152: {
+"152
 {
-"168
+"154
 }
 [e :U 955 ]
-[; ;main.c: 168: }
-[; ;main.c: 170: OldEncPulseOpState=EncPulseOpState;
-"170
+[; ;main.c: 154: }
+[; ;main.c: 156: OldEncPulseOpState=EncPulseOpState;
+"156
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 172: break;
-"172
-[e $U 936  ]
-[; ;main.c: 173: default: break;
-"173
+[; ;main.c: 158: break;
+"158
+[e $U 945  ]
+[; ;main.c: 159: case 3 : if(EncPulseOpState != OldEncPulseOpState)
+"159
 [e :U 956 ]
-[e $U 936  ]
-"174
-}
-[; ;main.c: 174: }
-[e $U 936  ]
-"94
-[e :U 937 ]
-[e [\ _EncPulseOpState , $ -> -> 0 `i `ui 938
- , $ -> -> 1 `i `ui 941
- , $ -> -> 2 `i `ui 944
- , $ -> -> 3 `i `ui 947
- , $ -> -> 4 `i `ui 950
- , $ -> -> 16 `i `ui 953
- 956 ]
-"174
-[e :U 936 ]
-[; ;main.c: 175: }
-"175
-[e :UE 935 ]
-}
-"178
-[v _EncA_PulseEdgeEvent `(v ~T0 @X0 1 ef1`ui ]
-"179
+[e $ ! != _EncPulseOpState _OldEncPulseOpState 957  ]
+[; ;main.c: 160: {
+"160
 {
-[; ;main.c: 178: void EncA_PulseEdgeEvent(uint16_t capturedValue)
-[; ;main.c: 179: {
-[e :U _EncA_PulseEdgeEvent ]
-"178
-[v _capturedValue `ui ~T0 @X0 1 r1 ]
-"179
-[f ]
-[; ;main.c: 180: TMR3_WriteTimer(0);
-"180
-[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 181: TMR3_StartTimer();
-"181
-[e ( _TMR3_StartTimer ..  ]
-[; ;main.c: 182: if(PORTCbits.RC5)
-"182
-[e $ ! != -> . . _PORTCbits 0 5 `i -> -> -> 0 `i `Vuc `i 958  ]
-[; ;main.c: 183: {
-"183
-{
-"185
+"163
 }
-[; ;main.c: 185: }
-[e $U 959  ]
-"186
+[; ;main.c: 163: }
+[e $U 958  ]
+"164
+[e :U 957 ]
+[; ;main.c: 164: else
+[; ;main.c: 165: {
+"165
+{
+"167
+}
 [e :U 958 ]
-[; ;main.c: 186: else
-[; ;main.c: 187: {
-"187
+[; ;main.c: 167: }
+[; ;main.c: 169: OldEncPulseOpState=EncPulseOpState;
+"169
+[e = _OldEncPulseOpState _EncPulseOpState ]
+[; ;main.c: 171: break;
+"171
+[e $U 945  ]
+[; ;main.c: 172: case 4 : if(EncPulseOpState != OldEncPulseOpState)
+"172
+[e :U 959 ]
+[e $ ! != _EncPulseOpState _OldEncPulseOpState 960  ]
+[; ;main.c: 173: {
+"173
+{
+"176
+}
+[; ;main.c: 176: }
+[e $U 961  ]
+"177
+[e :U 960 ]
+[; ;main.c: 177: else
+[; ;main.c: 178: {
+"178
+{
+"180
+}
+[e :U 961 ]
+[; ;main.c: 180: }
+[; ;main.c: 182: OldEncPulseOpState=EncPulseOpState;
+"182
+[e = _OldEncPulseOpState _EncPulseOpState ]
+[; ;main.c: 184: break;
+"184
+[e $U 945  ]
+[; ;main.c: 185: case 16 : if(EncPulseOpState != OldEncPulseOpState)
+"185
+[e :U 962 ]
+[e $ ! != _EncPulseOpState _OldEncPulseOpState 963  ]
+[; ;main.c: 186: {
+"186
 {
 "189
 }
-[e :U 959 ]
 [; ;main.c: 189: }
-[; ;main.c: 191: }
+[e $U 964  ]
+"190
+[e :U 963 ]
+[; ;main.c: 190: else
+[; ;main.c: 191: {
 "191
-[e :UE 957 ]
+{
+"193
 }
-"192
-[v _EncB_PulseEdgeEvent `(v ~T0 @X0 1 ef1`ui ]
-"193
-{
-[; ;main.c: 192: void EncB_PulseEdgeEvent(uint16_t capturedValue)
-[; ;main.c: 193: {
-[e :U _EncB_PulseEdgeEvent ]
-"192
-[v _capturedValue `ui ~T0 @X0 1 r1 ]
-"193
-[f ]
-[; ;main.c: 194: TMR5_WriteTimer(0);
-"194
-[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 195: TMR5_StartTimer();
+[e :U 964 ]
+[; ;main.c: 193: }
+[; ;main.c: 195: OldEncPulseOpState=EncPulseOpState;
 "195
-[e ( _TMR5_StartTimer ..  ]
-[; ;main.c: 196: if(PORTCbits.RC4)
-"196
-[e $ ! != -> . . _PORTCbits 0 4 `i -> -> -> 0 `i `Vuc `i 961  ]
-[; ;main.c: 197: {
+[e = _OldEncPulseOpState _EncPulseOpState ]
+[; ;main.c: 197: break;
 "197
-{
+[e $U 945  ]
+[; ;main.c: 198: default: break;
+"198
+[e :U 965 ]
+[e $U 945  ]
 "199
 }
 [; ;main.c: 199: }
-[e $U 962  ]
+[e $U 945  ]
+"119
+[e :U 946 ]
+[e [\ _EncPulseOpState , $ -> -> 0 `i `ui 947
+ , $ -> -> 1 `i `ui 950
+ , $ -> -> 2 `i `ui 953
+ , $ -> -> 3 `i `ui 956
+ , $ -> -> 4 `i `ui 959
+ , $ -> -> 16 `i `ui 962
+ 965 ]
+"199
+[e :U 945 ]
+[; ;main.c: 200: }
 "200
-[e :U 961 ]
-[; ;main.c: 200: else
-[; ;main.c: 201: {
-"201
-{
+[e :UE 944 ]
+}
 "203
-}
-[e :U 962 ]
-[; ;main.c: 203: }
-[; ;main.c: 205: }
-"205
-[e :UE 960 ]
-}
-"207
-[v _EncINX_PulseRisingEvent `(v ~T0 @X0 1 ef ]
-"208
+[v _EncA_PulseEdgeEvent `(v ~T0 @X0 1 ef1`*ui ]
+"204
 {
-[; ;main.c: 207: void EncINX_PulseRisingEvent()
-[; ;main.c: 208: {
+[; ;main.c: 203: void EncA_PulseEdgeEvent(uint16_t *capturedValue)
+[; ;main.c: 204: {
+[e :U _EncA_PulseEdgeEvent ]
+"203
+[v _capturedValue `*ui ~T0 @X0 1 r1 ]
+"204
+[f ]
+[; ;main.c: 207: }
+"207
+[e :UE 966 ]
+}
+"208
+[v _EncB_PulseEdgeEvent `(v ~T0 @X0 1 ef1`*ui ]
+"209
+{
+[; ;main.c: 208: void EncB_PulseEdgeEvent(uint16_t *capturedValue)
+[; ;main.c: 209: {
+[e :U _EncB_PulseEdgeEvent ]
+"208
+[v _capturedValue `*ui ~T0 @X0 1 r1 ]
+"209
+[f ]
+[; ;main.c: 212: }
+"212
+[e :UE 967 ]
+}
+"214
+[v _getStateOfPulse `(v ~T0 @X0 1 ef1`*ui ]
+"215
+{
+[; ;main.c: 214: void getStateOfPulse(uint16_t *capturevalue)
+[; ;main.c: 215: {
+[e :U _getStateOfPulse ]
+"214
+[v _capturevalue `*ui ~T0 @X0 1 r1 ]
+"215
+[f ]
+[; ;main.c: 216: TMR3_WriteTimer(0);
+"216
+[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 217: TMR3_StartTimer();
+"217
+[e ( _TMR3_StartTimer ..  ]
+[; ;main.c: 218: TMR5_WriteTimer(0);
+"218
+[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 219: TMR5_StartTimer();
+"219
+[e ( _TMR5_StartTimer ..  ]
+[; ;main.c: 220: PulseTime_uSec=capturevalue;
+"220
+[e = _PulseTime_uSec -> _capturevalue `ui ]
+[; ;main.c: 221: if(PORTCbits.RC5)
+"221
+[e $ ! != -> . . _PORTCbits 0 5 `i -> -> -> 0 `i `Vuc `i 969  ]
+[; ;main.c: 222: {
+"222
+{
+[; ;main.c: 223: if(PORTCbits.RC4)
+"223
+[e $ ! != -> . . _PORTCbits 0 4 `i -> -> -> 0 `i `Vuc `i 970  ]
+[; ;main.c: 224: {
+"224
+{
+[; ;main.c: 225: EncPulseOpState=3;
+"225
+[e = _EncPulseOpState -> -> 3 `i `ui ]
+"226
+}
+[; ;main.c: 226: }
+[e $U 971  ]
+"227
+[e :U 970 ]
+[; ;main.c: 227: else
+[; ;main.c: 228: {
+"228
+{
+[; ;main.c: 229: EncPulseOpState=2;
+"229
+[e = _EncPulseOpState -> -> 2 `i `ui ]
+"230
+}
+[e :U 971 ]
+"231
+}
+[; ;main.c: 230: }
+[; ;main.c: 231: }
+[e $U 972  ]
+"232
+[e :U 969 ]
+[; ;main.c: 232: else
+[; ;main.c: 233: {
+"233
+{
+[; ;main.c: 234: if(PORTCbits.RC4)
+"234
+[e $ ! != -> . . _PORTCbits 0 4 `i -> -> -> 0 `i `Vuc `i 973  ]
+[; ;main.c: 235: {
+"235
+{
+[; ;main.c: 236: EncPulseOpState=4;
+"236
+[e = _EncPulseOpState -> -> 4 `i `ui ]
+"237
+}
+[; ;main.c: 237: }
+[e $U 974  ]
+"238
+[e :U 973 ]
+[; ;main.c: 238: else
+[; ;main.c: 239: {
+"239
+{
+[; ;main.c: 240: EncPulseOpState=1;
+"240
+[e = _EncPulseOpState -> -> 1 `i `ui ]
+"241
+}
+[e :U 974 ]
+"242
+}
+[e :U 972 ]
+[; ;main.c: 241: }
+[; ;main.c: 242: }
+[; ;main.c: 244: }
+"244
+[e :UE 968 ]
+}
+"246
+[v _EncINX_PulseRisingEvent `(v ~T0 @X0 1 ef ]
+"247
+{
+[; ;main.c: 246: void EncINX_PulseRisingEvent()
+[; ;main.c: 247: {
 [e :U _EncINX_PulseRisingEvent ]
 [f ]
-[; ;main.c: 210: }
-"210
-[e :UE 963 ]
+[; ;main.c: 249: }
+"249
+[e :UE 975 ]
 }
-"212
+"251
 [v _Timer0_tick10msecFunc `(v ~T0 @X0 1 ef ]
-"213
+"252
 {
-[; ;main.c: 212: void Timer0_tick10msecFunc()
-[; ;main.c: 213: {
+[; ;main.c: 251: void Timer0_tick10msecFunc(void)
+[; ;main.c: 252: {
 [e :U _Timer0_tick10msecFunc ]
 [f ]
-[; ;main.c: 214: LedON_Control_10msec();
-"214
+[; ;main.c: 253: LedON_Control_10msec();
+"253
 [e ( _LedON_Control_10msec ..  ]
-[; ;main.c: 215: }
-"215
-[e :UE 964 ]
+[; ;main.c: 255: TimertickMsec=TimertickMsec+10;
+"255
+[e = _TimertickMsec + _TimertickMsec -> -> -> 10 `i `l `ul ]
+[; ;main.c: 256: }
+"256
+[e :UE 976 ]
 }

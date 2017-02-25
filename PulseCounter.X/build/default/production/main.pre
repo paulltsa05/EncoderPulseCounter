@@ -9674,10 +9674,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 344 "mcc_generated_files/pin_manager.h"
+# 332 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 356
+# 344
 void PIN_MANAGER_IOC(void);
 
 # 13 "/opt/microchip/xc8/v1.41/include/stdint.h"
@@ -9776,6 +9776,132 @@ typedef unsigned char bool;
 # 110 "mcc_generated_files/interrupt_manager.h"
 void interrupt INTERRUPT_InterruptManager(void);
 
+# 78 "mcc_generated_files/ccp1.h"
+typedef union CCPR1Reg_tag
+{
+struct
+{
+uint8_t ccpr1l;
+uint8_t ccpr1h;
+};
+struct
+{
+uint16_t ccpr1_16Bit;
+};
+} CCP_PERIOD_REG_T ;
+
+# 121
+void CCP1_Initialize(void);
+
+# 137
+void CCP1_CaptureISR(void);
+
+# 158
+void CCP1_CallBack(uint16_t capturedValue);
+
+# 78 "mcc_generated_files/ccp2.h"
+typedef union CCPR2Reg_tag
+{
+struct
+{
+uint8_t ccpr2l;
+uint8_t ccpr2h;
+};
+struct
+{
+uint16_t ccpr2_16Bit;
+};
+} CCP_PERIOD_REG_T ;
+
+# 121
+void CCP2_Initialize(void);
+
+# 137
+void CCP2_CaptureISR(void);
+
+# 158
+void CCP2_CallBack(uint16_t capturedValue);
+
+# 71 "mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+# 76
+typedef struct
+{
+adc_result_t adcResult1;
+adc_result_t adcResult2;
+} adc_sync_double_result_t;
+
+# 94
+typedef enum
+{
+TEMP_ANA2 = 0x2,
+channel_AVSS = 0x3C,
+channel_Temp = 0x3D,
+channel_DAC1 = 0x3E,
+channel_FVR = 0x3F
+} adc_channel_t;
+
+# 136
+void ADC_Initialize(void);
+
+# 166
+void ADC_SelectChannel(adc_channel_t channel);
+
+# 193
+void ADC_StartConversion();
+
+# 225
+bool ADC_IsConversionDone();
+
+# 258
+adc_result_t ADC_GetConversionResult(void);
+
+# 288
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+
+# 94 "mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+
+# 114
+uint8_t EUSART_Read(void);
+
+# 134
+void EUSART_Write(uint8_t txData);
+
+# 105 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 134
+void TMR0_StartTimer(void);
+
+# 166
+void TMR0_StopTimer(void);
+
+# 201
+uint8_t TMR0_Read8bitTimer(void);
+
+# 240
+void TMR0_Write8bitTimer(uint8_t timerVal);
+
+# 277
+void TMR0_Load8bitPeriod(uint8_t periodVal);
+
+# 296
+void TMR0_ISR(void);
+
+# 314
+void TMR0_CallBack(void);
+
+# 332
+void TMR0_SetInterruptHandler(void *InterruptHandler);
+
+# 350
+extern void (*TMR0_InterruptHandler)(void);
+
+# 368
+void TMR0_DefaultInterruptHandler(void);
+
 # 99 "mcc_generated_files/tmr5.h"
 void TMR5_Initialize(void);
 
@@ -9830,164 +9956,13 @@ uint8_t TMR3_CheckGateValueStatus(void);
 # 386
 bool TMR3_HasOverflowOccured(void);
 
-# 78 "mcc_generated_files/ccp1.h"
-typedef union CCPR1Reg_tag
-{
-struct
-{
-uint8_t ccpr1l;
-uint8_t ccpr1h;
-};
-struct
-{
-uint16_t ccpr1_16Bit;
-};
-} CCP_PERIOD_REG_T ;
-
-# 121
-void CCP1_Initialize(void);
-
-# 137
-void CCP1_CaptureISR(void);
-
-# 158
-void CCP1_CallBack(uint16_t capturedValue);
-void EncA_PulseEdgeEvent(uint16_t capturedValue);
-
-# 78 "mcc_generated_files/ccp2.h"
-typedef union CCPR2Reg_tag
-{
-struct
-{
-uint8_t ccpr2l;
-uint8_t ccpr2h;
-};
-struct
-{
-uint16_t ccpr2_16Bit;
-};
-} CCP_PERIOD_REG_T ;
-
-# 121
-void CCP2_Initialize(void);
-
-# 137
-void CCP2_CaptureISR(void);
-
-# 158
-void CCP2_CallBack(uint16_t capturedValue);
-void EncB_PulseEdgeEvent(uint16_t capturedValue);
-
-# 94 "mcc_generated_files/eusart.h"
-void EUSART_Initialize(void);
-
-# 114
-uint8_t EUSART_Read(void);
-
-# 134
-void EUSART_Write(uint8_t txData);
-
-# 105 "mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-
-# 134
-void TMR0_StartTimer(void);
-
-# 166
-void TMR0_StopTimer(void);
-
-# 202
-uint16_t TMR0_Read16bitTimer(void);
-
-# 241
-void TMR0_Write16bitTimer(uint16_t timerVal);
-
-# 277
-void TMR0_Reload16bit(void);
-
-# 295
-void TMR0_ISR(void);
-
-# 313
-void TMR0_CallBack(void);
-
-# 331
-void TMR0_SetInterruptHandler(void *InterruptHandler);
-
-# 349
-extern void (*TMR0_InterruptHandler)(void);
-
-# 367
-void TMR0_DefaultInterruptHandler(void);
-
-
-uint32_t millis(void);
-
-void millisReset(void);
-
-# 71 "mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-# 76
-typedef struct
-{
-adc_result_t adcResult1;
-adc_result_t adcResult2;
-} adc_sync_double_result_t;
-
-# 94
-typedef enum
-{
-TEMP_ANA2 = 0x2,
-channel_AVSS = 0x3C,
-channel_Temp = 0x3D,
-channel_DAC1 = 0x3E,
-channel_FVR = 0x3F
-} adc_channel_t;
-
-# 136
-void ADC_Initialize(void);
-
-# 166
-void ADC_SelectChannel(adc_channel_t channel);
-
-# 193
-void ADC_StartConversion();
-
-# 225
-bool ADC_IsConversionDone();
-
-# 258
-adc_result_t ADC_GetConversionResult(void);
-
-# 288
-adc_result_t ADC_GetConversion(adc_channel_t channel);
-
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT_ISR(void);
-
-# 296
-void INT_CallBack(void);
-
-# 319
-void INT_SetInterruptHandler(void* InterruptHandler);
-
-# 343
-extern void (*INT_InterruptHandler)(void);
-
-# 367
-void INT_DefaultInterruptHandler(void);
-
-# 76 "mcc_generated_files/mcc.h"
+# 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 89
+# 88
 void OSCILLATOR_Initialize(void);
 
-# 102
+# 101
 void WDT_Initialize(void);
 
 # 30 "ModbusManager.h"
@@ -10006,20 +9981,32 @@ void MB_getEPC_PLC_Control(void);
 void MB_SendEncPulseOpState(void);
 void MB_SendEncPulseCntResult(void);
 
-# 19 "main.h"
-void EncINX_PulseRisingEvent();
+# 20 "LED_Ctrl.h"
+char LedONStatusBusy(void);
 
-void Timer0_tick10msecFunc();
+char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
+void LedON_Control_10msec(void);
 
-# 21 "LED_Ctrl.h"
-extern char LedONStatusBusy(void);
+# 18 "main.h"
+void EncA_PulseEdgeEvent(uint16_t *capturedValue);
+void EncB_PulseEdgeEvent(uint16_t *capturedValue);
 
-extern char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
-extern void LedON_Control_10msec(void);
+void Timer0_tick10msecFunc(void);
 
-# 54 "main.c"
+uint32_t millis(void);
+
+void millisReset(void);
+
+# 55 "main.c"
 unsigned int OldEncPulseOpState=0;
 
+unsigned int PulseTime_uSec=0;
+
+uint32_t TimertickMsec=0;
+
+
+
+void getStateOfPulse(uint16_t *capturevalue);
 void EPC_StateMachineControlLoop();
 
 void main(void)
@@ -10027,13 +10014,13 @@ void main(void)
 
 SYSTEM_Initialize();
 
-# 67
+# 78
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 77
+# 88
 TMR3_WriteTimer(0);
 TMR3_StopTimer();
 TMR5_WriteTimer(0);
@@ -10042,8 +10029,19 @@ TMR5_StopTimer();
 ModbusMasterSetup();
 EncPulseOpState=0;
 
+# 100
+LedONStartConfig(0, 4, 10);
+while(LedONStatusBusy());
+LedONStartConfig(1, 4, 10);
+while(LedONStatusBusy());
+LedONStartConfig(2, 4, 10);
+while(LedONStatusBusy());
+
+
+
 while (1)
 {
+
 
 
 }
@@ -10135,31 +10133,45 @@ default: break;
 }
 
 
-void EncA_PulseEdgeEvent(uint16_t capturedValue)
+void EncA_PulseEdgeEvent(uint16_t *capturedValue)
+{
+
+
+}
+void EncB_PulseEdgeEvent(uint16_t *capturedValue)
+{
+
+
+}
+
+void getStateOfPulse(uint16_t *capturevalue)
 {
 TMR3_WriteTimer(0);
 TMR3_StartTimer();
-if(PORTCbits.RC5)
-{
-
-}
-else
-{
-
-}
-
-}
-void EncB_PulseEdgeEvent(uint16_t capturedValue)
-{
 TMR5_WriteTimer(0);
 TMR5_StartTimer();
+PulseTime_uSec=capturevalue;
+if(PORTCbits.RC5)
+{
 if(PORTCbits.RC4)
 {
-
+EncPulseOpState=3;
 }
 else
 {
-
+EncPulseOpState=2;
+}
+}
+else
+{
+if(PORTCbits.RC4)
+{
+EncPulseOpState=4;
+}
+else
+{
+EncPulseOpState=1;
+}
 }
 
 }
@@ -10169,8 +10181,10 @@ void EncINX_PulseRisingEvent()
 
 }
 
-void Timer0_tick10msecFunc()
+void Timer0_tick10msecFunc(void)
 {
 LedON_Control_10msec();
+
+TimertickMsec=TimertickMsec+10;
 }
 

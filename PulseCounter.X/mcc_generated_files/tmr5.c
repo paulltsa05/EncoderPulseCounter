@@ -64,8 +64,8 @@ void TMR5_Initialize(void)
 {
     //Set the Timer to the options selected in the GUI
 
-    //T5CKPS 1:8; T5SOSC T5CKI_enabled; T5SYNC synchronize; TMR5CS FOSC/4; TMR5ON off; 
-    T5CON = 0x30;
+    //T5CKPS 1:1; T5SOSC T5CKI_enabled; T5SYNC synchronize; TMR5CS FOSC/4; TMR5ON off; 
+    T5CON = 0x00;
 
     //T5GSS T5G; TMR5GE disabled; T5GTM disabled; T5GPOL low; T5GGO_nDONE done; T5GSPM disabled; 
     T5GCON = 0x00;

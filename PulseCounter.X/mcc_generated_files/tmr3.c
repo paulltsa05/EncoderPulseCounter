@@ -64,8 +64,8 @@ void TMR3_Initialize(void)
 {
     //Set the Timer to the options selected in the GUI
 
-    //T3CKPS 1:8; T3SOSC T3CKI_enabled; T3SYNC synchronize; TMR3CS FOSC/4; TMR3ON off; 
-    T3CON = 0x30;
+    //T3CKPS 1:1; T3SOSC T3CKI_enabled; T3SYNC synchronize; TMR3CS FOSC/4; TMR3ON off; 
+    T3CON = 0x00;
 
     //T3GSS T3G; TMR3GE disabled; T3GTM disabled; T3GPOL low; T3GGO_nDONE done; T3GSPM disabled; 
     T3GCON = 0x00;

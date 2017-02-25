@@ -49,6 +49,7 @@
 
 #include <xc.h>
 #include "ccp1.h"
+#include "../main.h"
 
 
 /**
@@ -100,6 +101,7 @@ void CCP1_CaptureISR(void)
 void CCP1_CallBack(uint16_t capturedValue)
 {
     // Add your code here
+    EncA_PulseEdgeEvent(capturedValue);
     
     
 }

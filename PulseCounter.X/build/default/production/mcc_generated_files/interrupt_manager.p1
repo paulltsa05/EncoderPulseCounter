@@ -15,10 +15,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S33 . . ]
 "528
 [v _PIR0bits `VS33 ~T0 @X0 0 e@16 ]
-"295 mcc_generated_files/tmr0.h
+"296 mcc_generated_files/tmr0.h
 [v _TMR0_ISR `(v ~T0 @X0 0 ef ]
-"272 mcc_generated_files/ext_int.h
-[v _INT_ISR `(v ~T0 @X0 0 ef ]
 "341 /opt/microchip/xc8/v1.41/include/pic16f18344.h
 [s S26 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S26 . INTEDG . PEIE GIE ]
@@ -7354,8 +7352,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 192: extern unsigned char __resetbits;
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
-[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 332: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -7385,24 +7383,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;tmr5.h: 99: void TMR5_Initialize(void);
-[; ;tmr5.h: 128: void TMR5_StartTimer(void);
-[; ;tmr5.h: 160: void TMR5_StopTimer(void);
-[; ;tmr5.h: 195: uint16_t TMR5_ReadTimer(void);
-[; ;tmr5.h: 234: void TMR5_WriteTimer(uint16_t timerVal);
-[; ;tmr5.h: 270: void TMR5_Reload(void);
-[; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
-[; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
-[; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
-[; ;tmr3.h: 99: void TMR3_Initialize(void);
-[; ;tmr3.h: 128: void TMR3_StartTimer(void);
-[; ;tmr3.h: 160: void TMR3_StopTimer(void);
-[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
-[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
-[; ;tmr3.h: 270: void TMR3_Reload(void);
-[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
-[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
-[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
 [; ;ccp1.h: 78: typedef union CCPR1Reg_tag
 [; ;ccp1.h: 79: {
 [; ;ccp1.h: 80: struct
@@ -7418,7 +7398,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp1.h: 121: void CCP1_Initialize(void);
 [; ;ccp1.h: 137: void CCP1_CaptureISR(void);
 [; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
-[; ;ccp1.h: 159: void EncA_PulseEdgeEvent(uint16_t capturedValue);
 [; ;ccp2.h: 78: typedef union CCPR2Reg_tag
 [; ;ccp2.h: 79: {
 [; ;ccp2.h: 80: struct
@@ -7434,23 +7413,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
-[; ;ccp2.h: 159: void EncB_PulseEdgeEvent(uint16_t capturedValue);
-[; ;eusart.h: 94: void EUSART_Initialize(void);
-[; ;eusart.h: 114: uint8_t EUSART_Read(void);
-[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
-[; ;tmr0.h: 105: void TMR0_Initialize(void);
-[; ;tmr0.h: 134: void TMR0_StartTimer(void);
-[; ;tmr0.h: 166: void TMR0_StopTimer(void);
-[; ;tmr0.h: 202: uint16_t TMR0_Read16bitTimer(void);
-[; ;tmr0.h: 241: void TMR0_Write16bitTimer(uint16_t timerVal);
-[; ;tmr0.h: 277: void TMR0_Reload16bit(void);
-[; ;tmr0.h: 295: void TMR0_ISR(void);
-[; ;tmr0.h: 313: void TMR0_CallBack(void);
-[; ;tmr0.h: 331: void TMR0_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr0.h: 349: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 367: void TMR0_DefaultInterruptHandler(void);
-[; ;tmr0.h: 370: uint32_t millis(void);
-[; ;tmr0.h: 372: void millisReset(void);
 [; ;adc.h: 71: typedef uint16_t adc_result_t;
 [; ;adc.h: 76: typedef struct
 [; ;adc.h: 77: {
@@ -7471,15 +7433,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 225: bool ADC_IsConversionDone();
 [; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;mcc.h: 76: void SYSTEM_Initialize(void);
-[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 102: void WDT_Initialize(void);
+[; ;eusart.h: 94: void EUSART_Initialize(void);
+[; ;eusart.h: 114: uint8_t EUSART_Read(void);
+[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;tmr0.h: 105: void TMR0_Initialize(void);
+[; ;tmr0.h: 134: void TMR0_StartTimer(void);
+[; ;tmr0.h: 166: void TMR0_StopTimer(void);
+[; ;tmr0.h: 201: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 240: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 277: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 296: void TMR0_ISR(void);
+[; ;tmr0.h: 314: void TMR0_CallBack(void);
+[; ;tmr0.h: 332: void TMR0_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr0.h: 350: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 368: void TMR0_DefaultInterruptHandler(void);
+[; ;tmr5.h: 99: void TMR5_Initialize(void);
+[; ;tmr5.h: 128: void TMR5_StartTimer(void);
+[; ;tmr5.h: 160: void TMR5_StopTimer(void);
+[; ;tmr5.h: 195: uint16_t TMR5_ReadTimer(void);
+[; ;tmr5.h: 234: void TMR5_WriteTimer(uint16_t timerVal);
+[; ;tmr5.h: 270: void TMR5_Reload(void);
+[; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
+[; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
+[; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
+[; ;tmr3.h: 99: void TMR3_Initialize(void);
+[; ;tmr3.h: 128: void TMR3_StartTimer(void);
+[; ;tmr3.h: 160: void TMR3_StopTimer(void);
+[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
+[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
+[; ;tmr3.h: 270: void TMR3_Reload(void);
+[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
+[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
+[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void WDT_Initialize(void);
 [v F3 `(v ~T0 @X0 1 tf ]
 "51 mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager `IF3 ~T0 @X0 1 e ]
@@ -7504,60 +7492,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 933  ]
 "58
 [e :U 932 ]
-[; ;interrupt_manager.c: 58: else if(PIE0bits.INTE == 1 && PIR0bits.INTF == 1)
-[e $ ! && == -> . . _PIE0bits 0 0 `i -> 1 `i == -> . . _PIR0bits 0 0 `i -> 1 `i 934  ]
+[; ;interrupt_manager.c: 58: else if(INTCONbits.PEIE == 1 && PIE4bits.CCP2IE == 1 && PIR4bits.CCP2IF == 1)
+[e $ ! && && == -> . . _INTCONbits 0 2 `i -> 1 `i == -> . . _PIE4bits 0 1 `i -> 1 `i == -> . . _PIR4bits 0 1 `i -> 1 `i 934  ]
 [; ;interrupt_manager.c: 59: {
 "59
 {
-[; ;interrupt_manager.c: 60: INT_ISR();
+[; ;interrupt_manager.c: 60: CCP2_CaptureISR();
 "60
-[e ( _INT_ISR ..  ]
+[e ( _CCP2_CaptureISR ..  ]
 "61
 }
 [; ;interrupt_manager.c: 61: }
 [e $U 935  ]
 "62
 [e :U 934 ]
-[; ;interrupt_manager.c: 62: else if(INTCONbits.PEIE == 1 && PIE4bits.CCP2IE == 1 && PIR4bits.CCP2IF == 1)
-[e $ ! && && == -> . . _INTCONbits 0 2 `i -> 1 `i == -> . . _PIE4bits 0 1 `i -> 1 `i == -> . . _PIR4bits 0 1 `i -> 1 `i 936  ]
+[; ;interrupt_manager.c: 62: else if(INTCONbits.PEIE == 1 && PIE4bits.CCP1IE == 1 && PIR4bits.CCP1IF == 1)
+[e $ ! && && == -> . . _INTCONbits 0 2 `i -> 1 `i == -> . . _PIE4bits 0 0 `i -> 1 `i == -> . . _PIR4bits 0 0 `i -> 1 `i 936  ]
 [; ;interrupt_manager.c: 63: {
 "63
 {
-[; ;interrupt_manager.c: 64: CCP2_CaptureISR();
+[; ;interrupt_manager.c: 64: CCP1_CaptureISR();
 "64
-[e ( _CCP2_CaptureISR ..  ]
+[e ( _CCP1_CaptureISR ..  ]
 "65
 }
 [; ;interrupt_manager.c: 65: }
 [e $U 937  ]
 "66
 [e :U 936 ]
-[; ;interrupt_manager.c: 66: else if(INTCONbits.PEIE == 1 && PIE4bits.CCP1IE == 1 && PIR4bits.CCP1IF == 1)
-[e $ ! && && == -> . . _INTCONbits 0 2 `i -> 1 `i == -> . . _PIE4bits 0 0 `i -> 1 `i == -> . . _PIR4bits 0 0 `i -> 1 `i 938  ]
+[; ;interrupt_manager.c: 66: else
 [; ;interrupt_manager.c: 67: {
 "67
 {
-[; ;interrupt_manager.c: 68: CCP1_CaptureISR();
-"68
-[e ( _CCP1_CaptureISR ..  ]
 "69
 }
-[; ;interrupt_manager.c: 69: }
-[e $U 939  ]
-"70
-[e :U 938 ]
-[; ;interrupt_manager.c: 70: else
-[; ;interrupt_manager.c: 71: {
-"71
-{
-"73
-}
-[e :U 939 ]
 [e :U 937 ]
 [e :U 935 ]
 [e :U 933 ]
-[; ;interrupt_manager.c: 73: }
-[; ;interrupt_manager.c: 74: }
-"74
+[; ;interrupt_manager.c: 69: }
+[; ;interrupt_manager.c: 70: }
+"70
 [e :UE 931 ]
 }

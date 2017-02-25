@@ -7385,9 +7385,53 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 225: bool ADC_IsConversionDone();
 [; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;pin_manager.h: 344: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 356: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 332: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 344: void PIN_MANAGER_IOC(void);
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
+[; ;ccp1.h: 78: typedef union CCPR1Reg_tag
+[; ;ccp1.h: 79: {
+[; ;ccp1.h: 80: struct
+[; ;ccp1.h: 81: {
+[; ;ccp1.h: 82: uint8_t ccpr1l;
+[; ;ccp1.h: 83: uint8_t ccpr1h;
+[; ;ccp1.h: 84: };
+[; ;ccp1.h: 85: struct
+[; ;ccp1.h: 86: {
+[; ;ccp1.h: 87: uint16_t ccpr1_16Bit;
+[; ;ccp1.h: 88: };
+[; ;ccp1.h: 89: } CCP_PERIOD_REG_T ;
+[; ;ccp1.h: 121: void CCP1_Initialize(void);
+[; ;ccp1.h: 137: void CCP1_CaptureISR(void);
+[; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
+[; ;ccp2.h: 78: typedef union CCPR2Reg_tag
+[; ;ccp2.h: 79: {
+[; ;ccp2.h: 80: struct
+[; ;ccp2.h: 81: {
+[; ;ccp2.h: 82: uint8_t ccpr2l;
+[; ;ccp2.h: 83: uint8_t ccpr2h;
+[; ;ccp2.h: 84: };
+[; ;ccp2.h: 85: struct
+[; ;ccp2.h: 86: {
+[; ;ccp2.h: 87: uint16_t ccpr2_16Bit;
+[; ;ccp2.h: 88: };
+[; ;ccp2.h: 89: } CCP_PERIOD_REG_T ;
+[; ;ccp2.h: 121: void CCP2_Initialize(void);
+[; ;ccp2.h: 137: void CCP2_CaptureISR(void);
+[; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
+[; ;eusart.h: 94: void EUSART_Initialize(void);
+[; ;eusart.h: 114: uint8_t EUSART_Read(void);
+[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;tmr0.h: 105: void TMR0_Initialize(void);
+[; ;tmr0.h: 134: void TMR0_StartTimer(void);
+[; ;tmr0.h: 166: void TMR0_StopTimer(void);
+[; ;tmr0.h: 201: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 240: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 277: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 296: void TMR0_ISR(void);
+[; ;tmr0.h: 314: void TMR0_CallBack(void);
+[; ;tmr0.h: 332: void TMR0_SetInterruptHandler(void *InterruptHandler);
+[; ;tmr0.h: 350: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 368: void TMR0_DefaultInterruptHandler(void);
 [; ;tmr5.h: 99: void TMR5_Initialize(void);
 [; ;tmr5.h: 128: void TMR5_StartTimer(void);
 [; ;tmr5.h: 160: void TMR5_StopTimer(void);
@@ -7406,63 +7450,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
 [; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
 [; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
-[; ;ccp1.h: 78: typedef union CCPR1Reg_tag
-[; ;ccp1.h: 79: {
-[; ;ccp1.h: 80: struct
-[; ;ccp1.h: 81: {
-[; ;ccp1.h: 82: uint8_t ccpr1l;
-[; ;ccp1.h: 83: uint8_t ccpr1h;
-[; ;ccp1.h: 84: };
-[; ;ccp1.h: 85: struct
-[; ;ccp1.h: 86: {
-[; ;ccp1.h: 87: uint16_t ccpr1_16Bit;
-[; ;ccp1.h: 88: };
-[; ;ccp1.h: 89: } CCP_PERIOD_REG_T ;
-[; ;ccp1.h: 121: void CCP1_Initialize(void);
-[; ;ccp1.h: 137: void CCP1_CaptureISR(void);
-[; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
-[; ;ccp1.h: 159: void EncA_PulseEdgeEvent(uint16_t capturedValue);
-[; ;ccp2.h: 78: typedef union CCPR2Reg_tag
-[; ;ccp2.h: 79: {
-[; ;ccp2.h: 80: struct
-[; ;ccp2.h: 81: {
-[; ;ccp2.h: 82: uint8_t ccpr2l;
-[; ;ccp2.h: 83: uint8_t ccpr2h;
-[; ;ccp2.h: 84: };
-[; ;ccp2.h: 85: struct
-[; ;ccp2.h: 86: {
-[; ;ccp2.h: 87: uint16_t ccpr2_16Bit;
-[; ;ccp2.h: 88: };
-[; ;ccp2.h: 89: } CCP_PERIOD_REG_T ;
-[; ;ccp2.h: 121: void CCP2_Initialize(void);
-[; ;ccp2.h: 137: void CCP2_CaptureISR(void);
-[; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
-[; ;ccp2.h: 159: void EncB_PulseEdgeEvent(uint16_t capturedValue);
-[; ;eusart.h: 94: void EUSART_Initialize(void);
-[; ;eusart.h: 114: uint8_t EUSART_Read(void);
-[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
-[; ;tmr0.h: 105: void TMR0_Initialize(void);
-[; ;tmr0.h: 134: void TMR0_StartTimer(void);
-[; ;tmr0.h: 166: void TMR0_StopTimer(void);
-[; ;tmr0.h: 202: uint16_t TMR0_Read16bitTimer(void);
-[; ;tmr0.h: 241: void TMR0_Write16bitTimer(uint16_t timerVal);
-[; ;tmr0.h: 277: void TMR0_Reload16bit(void);
-[; ;tmr0.h: 295: void TMR0_ISR(void);
-[; ;tmr0.h: 313: void TMR0_CallBack(void);
-[; ;tmr0.h: 331: void TMR0_SetInterruptHandler(void *InterruptHandler);
-[; ;tmr0.h: 349: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 367: void TMR0_DefaultInterruptHandler(void);
-[; ;tmr0.h: 370: uint32_t millis(void);
-[; ;tmr0.h: 372: void millisReset(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT_ISR(void);
-[; ;ext_int.h: 296: void INT_CallBack(void);
-[; ;ext_int.h: 319: void INT_SetInterruptHandler(void* InterruptHandler);
-[; ;ext_int.h: 343: extern void (*INT_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT_DefaultInterruptHandler(void);
-[; ;mcc.h: 76: void SYSTEM_Initialize(void);
-[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 102: void WDT_Initialize(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void WDT_Initialize(void);
 "64 mcc_generated_files/adc.c
 [v _ADC_Initialize `(v ~T0 @X0 1 ef ]
 "65
@@ -7575,9 +7565,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.c: 118: ADCON0bits.ADON = 1;
 "118
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-[; ;adc.c: 120: _delay((unsigned long)((5)*(32000000/4000000.0)));
+[; ;adc.c: 120: _delay((unsigned long)((5)*(4000000/4000000.0)));
 "120
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
 [; ;adc.c: 123: ADCON0bits.ADGO = 1;
 "123
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]

@@ -1,6 +1,7 @@
  build/default/production/ModbusMaster.d  \
  build/default/production/ModbusMaster.p1:  \
  ModbusMaster.c  \
+main.h  \
 crc16.h  \
 ModbusMaster.h  \
 mcc_generated_files/tmr0.h  \
