@@ -46,7 +46,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "158
 [v _CCP1_CallBack `(v ~T0 @X0 0 ef1`ui ]
 "18 mcc_generated_files/../main.h
-[v _EncA_PulseEdgeEvent `(v ~T0 @X0 0 ef1`*ui ]
+[v _EncA_PulseEdgeEvent `(v ~T0 @X0 0 ef1`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -7397,8 +7397,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp1.h: 121: void CCP1_Initialize(void);
 [; ;ccp1.h: 137: void CCP1_CaptureISR(void);
 [; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
-[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t *capturedValue);
-[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t capturedValue);
+[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t capturedValue);
 [; ;main.h: 21: void Timer0_tick10msecFunc(void);
 [; ;main.h: 23: uint32_t millis(void);
 [; ;main.h: 25: void millisReset(void);
@@ -7475,7 +7475,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;ccp1.c: 104: EncA_PulseEdgeEvent(capturedValue);
 "104
-[e ( _EncA_PulseEdgeEvent (1 -> _capturedValue `*ui ]
+[e ( _EncA_PulseEdgeEvent (1 _capturedValue ]
 [; ;ccp1.c: 107: }
 "107
 [e :UE 929 ]

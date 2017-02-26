@@ -15,8 +15,8 @@ extern "C" {
 
 
 //Interrupt Function callback
-void EncA_PulseEdgeEvent(uint16_t *capturedValue);
-void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+void EncA_PulseEdgeEvent(uint16_t capturedValue);
+void EncB_PulseEdgeEvent(uint16_t capturedValue);
 
 void Timer0_tick10msecFunc(void);    
 

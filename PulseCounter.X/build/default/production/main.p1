@@ -24,6 +24,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LedONStartConfig `(uc ~T0 @X0 0 ef3`uc`uc`uc ]
 "20
 [v _LedONStatusBusy `(uc ~T0 @X0 0 ef ]
+"63 main.c
+[v _getStateOfPulse `(v ~T0 @X0 0 ef1`ui ]
 "128 mcc_generated_files/tmr3.h
 [v _TMR3_StartTimer `(v ~T0 @X0 0 ef ]
 "128 mcc_generated_files/tmr5.h
@@ -7484,8 +7486,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LED_Ctrl.h: 20: char LedONStatusBusy(void);
 [; ;LED_Ctrl.h: 22: char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, unsigned char LedONNumBlink);
 [; ;LED_Ctrl.h: 23: void LedON_Control_10msec(void);
-[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t *capturedValue);
-[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t capturedValue);
+[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t capturedValue);
 [; ;main.h: 21: void Timer0_tick10msecFunc(void);
 [; ;main.h: 23: uint32_t millis(void);
 [; ;main.h: 25: void millisReset(void);
@@ -7507,275 +7509,275 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> -> 0 `i `l `ul
 ]
 [; ;main.c: 59: uint32_t TimertickMsec=0;
-[; ;main.c: 63: void getStateOfPulse(uint16_t *capturevalue);
-[; ;main.c: 64: void EPC_StateMachineControlLoop();
-"66
-[v _main `(v ~T0 @X0 1 ef ]
+[; ;main.c: 63: void getStateOfPulse(uint16_t capturevalue);
+[; ;main.c: 65: void EPC_StateMachineControlLoop();
 "67
+[v _main `(v ~T0 @X0 1 ef ]
+"68
 {
-[; ;main.c: 66: void main(void)
-[; ;main.c: 67: {
+[; ;main.c: 67: void main(void)
+[; ;main.c: 68: {
 [e :U _main ]
 [f ]
-[; ;main.c: 69: SYSTEM_Initialize();
-"69
+[; ;main.c: 70: SYSTEM_Initialize();
+"70
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 78: (INTCONbits.GIE = 1);
-"78
+[; ;main.c: 79: (INTCONbits.GIE = 1);
+"79
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 81: (INTCONbits.PEIE = 1);
-"81
+[; ;main.c: 82: (INTCONbits.PEIE = 1);
+"82
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 88: TMR3_WriteTimer(0);
-"88
-[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 89: TMR3_StopTimer();
+[; ;main.c: 89: TMR3_WriteTimer(0);
 "89
-[e ( _TMR3_StopTimer ..  ]
-[; ;main.c: 90: TMR5_WriteTimer(0);
+[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 90: TMR3_StopTimer();
 "90
-[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 91: TMR5_StopTimer();
+[e ( _TMR3_StopTimer ..  ]
+[; ;main.c: 91: TMR5_WriteTimer(0);
 "91
+[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 92: TMR5_StopTimer();
+"92
 [e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 93: ModbusMasterSetup();
-"93
-[e ( _ModbusMasterSetup ..  ]
-[; ;main.c: 94: EncPulseOpState=0;
+[; ;main.c: 94: ModbusMasterSetup();
 "94
+[e ( _ModbusMasterSetup ..  ]
+[; ;main.c: 95: EncPulseOpState=0;
+"95
 [e = _EncPulseOpState -> -> 0 `i `ui ]
-[; ;main.c: 100: LedONStartConfig(0, 4, 10);
-"100
-[e ( _LedONStartConfig (3 , , -> -> 0 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
-[; ;main.c: 101: while(LedONStatusBusy());
+[; ;main.c: 101: LedONStartConfig(0, 4, 10);
 "101
+[e ( _LedONStartConfig (3 , , -> -> 0 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
+[; ;main.c: 102: while(LedONStatusBusy());
+"102
 [e $U 932  ]
 [e :U 933 ]
 [e :U 932 ]
 [e $ != -> ( _LedONStatusBusy ..  `i -> -> -> 0 `i `uc `i 933  ]
 [e :U 934 ]
-[; ;main.c: 102: LedONStartConfig(1, 4, 10);
-"102
-[e ( _LedONStartConfig (3 , , -> -> 1 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
-[; ;main.c: 103: while(LedONStatusBusy());
+[; ;main.c: 103: LedONStartConfig(1, 4, 10);
 "103
+[e ( _LedONStartConfig (3 , , -> -> 1 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
+[; ;main.c: 104: while(LedONStatusBusy());
+"104
 [e $U 935  ]
 [e :U 936 ]
 [e :U 935 ]
 [e $ != -> ( _LedONStatusBusy ..  `i -> -> -> 0 `i `uc `i 936  ]
 [e :U 937 ]
-[; ;main.c: 104: LedONStartConfig(2, 4, 10);
-"104
-[e ( _LedONStartConfig (3 , , -> -> 2 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
-[; ;main.c: 105: while(LedONStatusBusy());
+[; ;main.c: 105: LedONStartConfig(2, 4, 10);
 "105
+[e ( _LedONStartConfig (3 , , -> -> 2 `i `uc -> -> 4 `i `uc -> -> 10 `i `uc ]
+[; ;main.c: 106: while(LedONStatusBusy());
+"106
 [e $U 938  ]
 [e :U 939 ]
 [e :U 938 ]
 [e $ != -> ( _LedONStatusBusy ..  `i -> -> -> 0 `i `uc `i 939  ]
 [e :U 940 ]
-[; ;main.c: 109: while (1)
-"109
-[e :U 942 ]
-[; ;main.c: 110: {
+[; ;main.c: 110: while (1)
 "110
+[e :U 942 ]
+[; ;main.c: 111: {
+"111
 {
-"114
+"115
 }
 [e :U 941 ]
-"109
+"110
 [e $U 942  ]
 [e :U 943 ]
-[; ;main.c: 114: }
 [; ;main.c: 115: }
-"115
+[; ;main.c: 116: }
+"116
 [e :UE 931 ]
 }
-"117
-[v _EPC_StateMachineControlLoop `(v ~T0 @X0 1 ef ]
 "118
+[v _EPC_StateMachineControlLoop `(v ~T0 @X0 1 ef ]
+"119
 {
-[; ;main.c: 117: void EPC_StateMachineControlLoop()
-[; ;main.c: 118: {
+[; ;main.c: 118: void EPC_StateMachineControlLoop()
+[; ;main.c: 119: {
 [e :U _EPC_StateMachineControlLoop ]
 [f ]
-[; ;main.c: 119: switch (EncPulseOpState)
-"119
-[e $U 946  ]
-[; ;main.c: 120: {
+[; ;main.c: 120: switch (EncPulseOpState)
 "120
-{
-[; ;main.c: 121: case 0 : if(EncPulseOpState != OldEncPulseOpState)
+[e $U 946  ]
+[; ;main.c: 121: {
 "121
+{
+[; ;main.c: 122: case 0 : if(EncPulseOpState != OldEncPulseOpState)
+"122
 [e :U 947 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 948  ]
-[; ;main.c: 122: {
-"122
+[; ;main.c: 123: {
+"123
 {
-"125
-}
-[; ;main.c: 125: }
-[e $U 949  ]
 "126
-[e :U 948 ]
-[; ;main.c: 126: else
-[; ;main.c: 127: {
+}
+[; ;main.c: 126: }
+[e $U 949  ]
 "127
+[e :U 948 ]
+[; ;main.c: 127: else
+[; ;main.c: 128: {
+"128
 {
-"129
+"130
 }
 [e :U 949 ]
-[; ;main.c: 129: }
-[; ;main.c: 131: OldEncPulseOpState=EncPulseOpState;
-"131
-[e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 132: break;
+[; ;main.c: 130: }
+[; ;main.c: 132: OldEncPulseOpState=EncPulseOpState;
 "132
-[e $U 945  ]
-[; ;main.c: 133: case 1 : if(EncPulseOpState != OldEncPulseOpState)
+[e = _OldEncPulseOpState _EncPulseOpState ]
+[; ;main.c: 133: break;
 "133
+[e $U 945  ]
+[; ;main.c: 134: case 1 : if(EncPulseOpState != OldEncPulseOpState)
+"134
 [e :U 950 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 951  ]
-[; ;main.c: 134: {
-"134
+[; ;main.c: 135: {
+"135
 {
-"137
-}
-[; ;main.c: 137: }
-[e $U 952  ]
 "138
-[e :U 951 ]
-[; ;main.c: 138: else
-[; ;main.c: 139: {
+}
+[; ;main.c: 138: }
+[e $U 952  ]
 "139
+[e :U 951 ]
+[; ;main.c: 139: else
+[; ;main.c: 140: {
+"140
 {
-"141
+"142
 }
 [e :U 952 ]
-[; ;main.c: 141: }
-[; ;main.c: 143: OldEncPulseOpState=EncPulseOpState;
-"143
+[; ;main.c: 142: }
+[; ;main.c: 144: OldEncPulseOpState=EncPulseOpState;
+"144
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 145: break;
-"145
-[e $U 945  ]
-[; ;main.c: 146: case 2 : if(EncPulseOpState != OldEncPulseOpState)
+[; ;main.c: 146: break;
 "146
+[e $U 945  ]
+[; ;main.c: 147: case 2 : if(EncPulseOpState != OldEncPulseOpState)
+"147
 [e :U 953 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 954  ]
-[; ;main.c: 147: {
-"147
+[; ;main.c: 148: {
+"148
 {
-"150
-}
-[; ;main.c: 150: }
-[e $U 955  ]
 "151
-[e :U 954 ]
-[; ;main.c: 151: else
-[; ;main.c: 152: {
+}
+[; ;main.c: 151: }
+[e $U 955  ]
 "152
+[e :U 954 ]
+[; ;main.c: 152: else
+[; ;main.c: 153: {
+"153
 {
-"154
+"155
 }
 [e :U 955 ]
-[; ;main.c: 154: }
-[; ;main.c: 156: OldEncPulseOpState=EncPulseOpState;
-"156
+[; ;main.c: 155: }
+[; ;main.c: 157: OldEncPulseOpState=EncPulseOpState;
+"157
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 158: break;
-"158
-[e $U 945  ]
-[; ;main.c: 159: case 3 : if(EncPulseOpState != OldEncPulseOpState)
+[; ;main.c: 159: break;
 "159
+[e $U 945  ]
+[; ;main.c: 160: case 3 : if(EncPulseOpState != OldEncPulseOpState)
+"160
 [e :U 956 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 957  ]
-[; ;main.c: 160: {
-"160
+[; ;main.c: 161: {
+"161
 {
-"163
-}
-[; ;main.c: 163: }
-[e $U 958  ]
 "164
-[e :U 957 ]
-[; ;main.c: 164: else
-[; ;main.c: 165: {
+}
+[; ;main.c: 164: }
+[e $U 958  ]
 "165
+[e :U 957 ]
+[; ;main.c: 165: else
+[; ;main.c: 166: {
+"166
 {
-"167
+"168
 }
 [e :U 958 ]
-[; ;main.c: 167: }
-[; ;main.c: 169: OldEncPulseOpState=EncPulseOpState;
-"169
+[; ;main.c: 168: }
+[; ;main.c: 170: OldEncPulseOpState=EncPulseOpState;
+"170
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 171: break;
-"171
-[e $U 945  ]
-[; ;main.c: 172: case 4 : if(EncPulseOpState != OldEncPulseOpState)
+[; ;main.c: 172: break;
 "172
+[e $U 945  ]
+[; ;main.c: 173: case 4 : if(EncPulseOpState != OldEncPulseOpState)
+"173
 [e :U 959 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 960  ]
-[; ;main.c: 173: {
-"173
+[; ;main.c: 174: {
+"174
 {
-"176
-}
-[; ;main.c: 176: }
-[e $U 961  ]
 "177
-[e :U 960 ]
-[; ;main.c: 177: else
-[; ;main.c: 178: {
+}
+[; ;main.c: 177: }
+[e $U 961  ]
 "178
+[e :U 960 ]
+[; ;main.c: 178: else
+[; ;main.c: 179: {
+"179
 {
-"180
+"181
 }
 [e :U 961 ]
-[; ;main.c: 180: }
-[; ;main.c: 182: OldEncPulseOpState=EncPulseOpState;
-"182
+[; ;main.c: 181: }
+[; ;main.c: 183: OldEncPulseOpState=EncPulseOpState;
+"183
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 184: break;
-"184
-[e $U 945  ]
-[; ;main.c: 185: case 16 : if(EncPulseOpState != OldEncPulseOpState)
+[; ;main.c: 185: break;
 "185
+[e $U 945  ]
+[; ;main.c: 186: case 16 : if(EncPulseOpState != OldEncPulseOpState)
+"186
 [e :U 962 ]
 [e $ ! != _EncPulseOpState _OldEncPulseOpState 963  ]
-[; ;main.c: 186: {
-"186
+[; ;main.c: 187: {
+"187
 {
-"189
-}
-[; ;main.c: 189: }
-[e $U 964  ]
 "190
-[e :U 963 ]
-[; ;main.c: 190: else
-[; ;main.c: 191: {
+}
+[; ;main.c: 190: }
+[e $U 964  ]
 "191
+[e :U 963 ]
+[; ;main.c: 191: else
+[; ;main.c: 192: {
+"192
 {
-"193
+"194
 }
 [e :U 964 ]
-[; ;main.c: 193: }
-[; ;main.c: 195: OldEncPulseOpState=EncPulseOpState;
-"195
+[; ;main.c: 194: }
+[; ;main.c: 196: OldEncPulseOpState=EncPulseOpState;
+"196
 [e = _OldEncPulseOpState _EncPulseOpState ]
-[; ;main.c: 197: break;
-"197
-[e $U 945  ]
-[; ;main.c: 198: default: break;
+[; ;main.c: 198: break;
 "198
+[e $U 945  ]
+[; ;main.c: 199: default: break;
+"199
 [e :U 965 ]
 [e $U 945  ]
-"199
+"200
 }
-[; ;main.c: 199: }
+[; ;main.c: 200: }
 [e $U 945  ]
-"119
+"120
 [e :U 946 ]
 [e [\ _EncPulseOpState , $ -> -> 0 `i `ui 947
  , $ -> -> 1 `i `ui 950
@@ -7784,171 +7786,177 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 4 `i `ui 959
  , $ -> -> 16 `i `ui 962
  965 ]
-"199
-[e :U 945 ]
-[; ;main.c: 200: }
 "200
+[e :U 945 ]
+[; ;main.c: 201: }
+"201
 [e :UE 944 ]
 }
-"203
-[v _EncA_PulseEdgeEvent `(v ~T0 @X0 1 ef1`*ui ]
 "204
+[v _EncA_PulseEdgeEvent `(v ~T0 @X0 1 ef1`ui ]
+"205
 {
-[; ;main.c: 203: void EncA_PulseEdgeEvent(uint16_t *capturedValue)
-[; ;main.c: 204: {
+[; ;main.c: 204: void EncA_PulseEdgeEvent(uint16_t capturedValue)
+[; ;main.c: 205: {
 [e :U _EncA_PulseEdgeEvent ]
-"203
-[v _capturedValue `*ui ~T0 @X0 1 r1 ]
 "204
+[v _capturedValue `ui ~T0 @X0 1 r1 ]
+"205
 [f ]
-[; ;main.c: 207: }
-"207
+[; ;main.c: 206: getStateOfPulse(capturedValue);
+"206
+[e ( _getStateOfPulse (1 _capturedValue ]
+[; ;main.c: 208: }
+"208
 [e :UE 966 ]
 }
-"208
-[v _EncB_PulseEdgeEvent `(v ~T0 @X0 1 ef1`*ui ]
 "209
+[v _EncB_PulseEdgeEvent `(v ~T0 @X0 1 ef1`ui ]
+"210
 {
-[; ;main.c: 208: void EncB_PulseEdgeEvent(uint16_t *capturedValue)
-[; ;main.c: 209: {
+[; ;main.c: 209: void EncB_PulseEdgeEvent(uint16_t capturedValue)
+[; ;main.c: 210: {
 [e :U _EncB_PulseEdgeEvent ]
-"208
-[v _capturedValue `*ui ~T0 @X0 1 r1 ]
 "209
+[v _capturedValue `ui ~T0 @X0 1 r1 ]
+"210
 [f ]
-[; ;main.c: 212: }
-"212
+[; ;main.c: 211: getStateOfPulse(capturedValue);
+"211
+[e ( _getStateOfPulse (1 _capturedValue ]
+[; ;main.c: 213: }
+"213
 [e :UE 967 ]
 }
-"214
-[v _getStateOfPulse `(v ~T0 @X0 1 ef1`*ui ]
 "215
-{
-[; ;main.c: 214: void getStateOfPulse(uint16_t *capturevalue)
-[; ;main.c: 215: {
-[e :U _getStateOfPulse ]
-"214
-[v _capturevalue `*ui ~T0 @X0 1 r1 ]
-"215
-[f ]
-[; ;main.c: 216: TMR3_WriteTimer(0);
+[v _getStateOfPulse `(v ~T0 @X0 1 ef1`ui ]
 "216
-[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 217: TMR3_StartTimer();
-"217
-[e ( _TMR3_StartTimer ..  ]
-[; ;main.c: 218: TMR5_WriteTimer(0);
-"218
-[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
-[; ;main.c: 219: TMR5_StartTimer();
-"219
-[e ( _TMR5_StartTimer ..  ]
-[; ;main.c: 220: PulseTime_uSec=capturevalue;
-"220
-[e = _PulseTime_uSec -> _capturevalue `ui ]
-[; ;main.c: 221: if(PORTCbits.RC5)
-"221
-[e $ ! != -> . . _PORTCbits 0 5 `i -> -> -> 0 `i `Vuc `i 969  ]
-[; ;main.c: 222: {
-"222
 {
-[; ;main.c: 223: if(PORTCbits.RC4)
+[; ;main.c: 215: void getStateOfPulse(uint16_t capturevalue)
+[; ;main.c: 216: {
+[e :U _getStateOfPulse ]
+"215
+[v _capturevalue `ui ~T0 @X0 1 r1 ]
+"216
+[f ]
+[; ;main.c: 217: TMR3_WriteTimer(0);
+"217
+[e ( _TMR3_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 218: TMR3_StartTimer();
+"218
+[e ( _TMR3_StartTimer ..  ]
+[; ;main.c: 219: TMR5_WriteTimer(0);
+"219
+[e ( _TMR5_WriteTimer (1 -> -> 0 `i `ui ]
+[; ;main.c: 220: TMR5_StartTimer();
+"220
+[e ( _TMR5_StartTimer ..  ]
+[; ;main.c: 221: PulseTime_uSec=capturevalue;
+"221
+[e = _PulseTime_uSec _capturevalue ]
+[; ;main.c: 223: if(PORTCbits.RC5)
 "223
-[e $ ! != -> . . _PORTCbits 0 4 `i -> -> -> 0 `i `Vuc `i 970  ]
+[e $ ! != -> . . _PORTCbits 0 5 `i -> -> -> 0 `i `Vuc `i 969  ]
 [; ;main.c: 224: {
 "224
 {
-[; ;main.c: 225: EncPulseOpState=3;
+[; ;main.c: 225: if(PORTCbits.RC4)
 "225
-[e = _EncPulseOpState -> -> 3 `i `ui ]
+[e $ ! != -> . . _PORTCbits 0 4 `i -> -> -> 0 `i `Vuc `i 970  ]
+[; ;main.c: 226: {
 "226
-}
-[; ;main.c: 226: }
-[e $U 971  ]
-"227
-[e :U 970 ]
-[; ;main.c: 227: else
-[; ;main.c: 228: {
-"228
 {
-[; ;main.c: 229: EncPulseOpState=2;
+[; ;main.c: 227: EncPulseOpState=3;
+"227
+[e = _EncPulseOpState -> -> 3 `i `ui ]
+"228
+}
+[; ;main.c: 228: }
+[e $U 971  ]
 "229
-[e = _EncPulseOpState -> -> 2 `i `ui ]
+[e :U 970 ]
+[; ;main.c: 229: else
+[; ;main.c: 230: {
 "230
+{
+[; ;main.c: 231: EncPulseOpState=2;
+"231
+[e = _EncPulseOpState -> -> 2 `i `ui ]
+"232
 }
 [e :U 971 ]
-"231
-}
-[; ;main.c: 230: }
-[; ;main.c: 231: }
-[e $U 972  ]
-"232
-[e :U 969 ]
-[; ;main.c: 232: else
-[; ;main.c: 233: {
 "233
-{
-[; ;main.c: 234: if(PORTCbits.RC4)
+}
+[; ;main.c: 232: }
+[; ;main.c: 233: }
+[e $U 972  ]
 "234
-[e $ ! != -> . . _PORTCbits 0 4 `i -> -> -> 0 `i `Vuc `i 973  ]
+[e :U 969 ]
+[; ;main.c: 234: else
 [; ;main.c: 235: {
 "235
 {
-[; ;main.c: 236: EncPulseOpState=4;
+[; ;main.c: 236: if(PORTCbits.RC4)
 "236
-[e = _EncPulseOpState -> -> 4 `i `ui ]
+[e $ ! != -> . . _PORTCbits 0 4 `i -> -> -> 0 `i `Vuc `i 973  ]
+[; ;main.c: 237: {
 "237
-}
-[; ;main.c: 237: }
-[e $U 974  ]
-"238
-[e :U 973 ]
-[; ;main.c: 238: else
-[; ;main.c: 239: {
-"239
 {
-[; ;main.c: 240: EncPulseOpState=1;
+[; ;main.c: 238: EncPulseOpState=4;
+"238
+[e = _EncPulseOpState -> -> 4 `i `ui ]
+"239
+}
+[; ;main.c: 239: }
+[e $U 974  ]
 "240
-[e = _EncPulseOpState -> -> 1 `i `ui ]
+[e :U 973 ]
+[; ;main.c: 240: else
+[; ;main.c: 241: {
 "241
+{
+[; ;main.c: 242: EncPulseOpState=1;
+"242
+[e = _EncPulseOpState -> -> 1 `i `ui ]
+"243
 }
 [e :U 974 ]
-"242
+"244
 }
 [e :U 972 ]
-[; ;main.c: 241: }
-[; ;main.c: 242: }
+[; ;main.c: 243: }
 [; ;main.c: 244: }
-"244
+[; ;main.c: 246: }
+"246
 [e :UE 968 ]
 }
-"246
+"248
 [v _EncINX_PulseRisingEvent `(v ~T0 @X0 1 ef ]
-"247
+"249
 {
-[; ;main.c: 246: void EncINX_PulseRisingEvent()
-[; ;main.c: 247: {
+[; ;main.c: 248: void EncINX_PulseRisingEvent()
+[; ;main.c: 249: {
 [e :U _EncINX_PulseRisingEvent ]
 [f ]
-[; ;main.c: 249: }
-"249
+[; ;main.c: 251: }
+"251
 [e :UE 975 ]
 }
-"251
+"253
 [v _Timer0_tick10msecFunc `(v ~T0 @X0 1 ef ]
-"252
+"254
 {
-[; ;main.c: 251: void Timer0_tick10msecFunc(void)
-[; ;main.c: 252: {
+[; ;main.c: 253: void Timer0_tick10msecFunc(void)
+[; ;main.c: 254: {
 [e :U _Timer0_tick10msecFunc ]
 [f ]
-[; ;main.c: 253: LedON_Control_10msec();
-"253
-[e ( _LedON_Control_10msec ..  ]
-[; ;main.c: 255: TimertickMsec=TimertickMsec+10;
+[; ;main.c: 255: LedON_Control_10msec();
 "255
+[e ( _LedON_Control_10msec ..  ]
+[; ;main.c: 257: TimertickMsec=TimertickMsec+10;
+"257
 [e = _TimertickMsec + _TimertickMsec -> -> -> 10 `i `l `ul ]
-[; ;main.c: 256: }
-"256
+[; ;main.c: 258: }
+"258
 [e :UE 976 ]
 }

@@ -7391,8 +7391,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 332: void TMR0_SetInterruptHandler(void *InterruptHandler);
 [; ;tmr0.h: 350: extern void (*TMR0_InterruptHandler)(void);
 [; ;tmr0.h: 368: void TMR0_DefaultInterruptHandler(void);
-[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t *capturedValue);
-[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+[; ;main.h: 18: void EncA_PulseEdgeEvent(uint16_t capturedValue);
+[; ;main.h: 19: void EncB_PulseEdgeEvent(uint16_t capturedValue);
 [; ;main.h: 21: void Timer0_tick10msecFunc(void);
 [; ;main.h: 23: uint32_t millis(void);
 [; ;main.h: 25: void millisReset(void);

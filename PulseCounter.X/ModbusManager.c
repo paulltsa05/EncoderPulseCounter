@@ -32,12 +32,12 @@
 
 void preTransmission_App()
 {
-  RS485_TXEN_RB6_SetHigh();
+    RS485_TXEN_RB6_SetHigh();
 }
 
 void postTransmission_App()
 {
-  RS485_TXEN_RB6_SetLow();
+    RS485_TXEN_RB6_SetLow();
 }
 
 void ModbusMasterSetup(void)

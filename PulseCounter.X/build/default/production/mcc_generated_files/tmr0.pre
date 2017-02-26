@@ -9801,8 +9801,8 @@ extern void (*TMR0_InterruptHandler)(void);
 void TMR0_DefaultInterruptHandler(void);
 
 # 18 "mcc_generated_files/../main.h"
-void EncA_PulseEdgeEvent(uint16_t *capturedValue);
-void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+void EncA_PulseEdgeEvent(uint16_t capturedValue);
+void EncB_PulseEdgeEvent(uint16_t capturedValue);
 
 void Timer0_tick10msecFunc(void);
 

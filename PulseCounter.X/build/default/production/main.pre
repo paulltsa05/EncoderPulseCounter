@@ -9988,8 +9988,8 @@ char LedONStartConfig(unsigned char LEDColor, unsigned char LedONDurationSec, un
 void LedON_Control_10msec(void);
 
 # 18 "main.h"
-void EncA_PulseEdgeEvent(uint16_t *capturedValue);
-void EncB_PulseEdgeEvent(uint16_t *capturedValue);
+void EncA_PulseEdgeEvent(uint16_t capturedValue);
+void EncB_PulseEdgeEvent(uint16_t capturedValue);
 
 void Timer0_tick10msecFunc(void);
 
@@ -10006,7 +10006,8 @@ uint32_t TimertickMsec=0;
 
 
 
-void getStateOfPulse(uint16_t *capturevalue);
+void getStateOfPulse(uint16_t capturevalue);
+
 void EPC_StateMachineControlLoop();
 
 void main(void)
@@ -10014,13 +10015,13 @@ void main(void)
 
 SYSTEM_Initialize();
 
-# 78
+# 79
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 88
+# 89
 TMR3_WriteTimer(0);
 TMR3_StopTimer();
 TMR5_WriteTimer(0);
@@ -10029,7 +10030,7 @@ TMR5_StopTimer();
 ModbusMasterSetup();
 EncPulseOpState=0;
 
-# 100
+# 101
 LedONStartConfig(0, 4, 10);
 while(LedONStatusBusy());
 LedONStartConfig(1, 4, 10);
@@ -10133,24 +10134,25 @@ default: break;
 }
 
 
-void EncA_PulseEdgeEvent(uint16_t *capturedValue)
+void EncA_PulseEdgeEvent(uint16_t capturedValue)
 {
-
+getStateOfPulse(capturedValue);
 
 }
-void EncB_PulseEdgeEvent(uint16_t *capturedValue)
+void EncB_PulseEdgeEvent(uint16_t capturedValue)
 {
-
+getStateOfPulse(capturedValue);
 
 }
 
-void getStateOfPulse(uint16_t *capturevalue)
+void getStateOfPulse(uint16_t capturevalue)
 {
 TMR3_WriteTimer(0);
 TMR3_StartTimer();
 TMR5_WriteTimer(0);
 TMR5_StartTimer();
 PulseTime_uSec=capturevalue;
+
 if(PORTCbits.RC5)
 {
 if(PORTCbits.RC4)

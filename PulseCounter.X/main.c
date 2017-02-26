@@ -60,7 +60,8 @@ uint32_t TimertickMsec=0;
 
 
 
-void getStateOfPulse(uint16_t *capturevalue);
+void getStateOfPulse(uint16_t capturevalue);
+
 void EPC_StateMachineControlLoop();
 
 void main(void)
@@ -120,7 +121,7 @@ void EPC_StateMachineControlLoop() //call the statemachine in main loop
     {
         case IDLE       :   if(EncPulseOpState != OldEncPulseOpState)//entry
                             {   //Entry code here
-            
+                                
             
                             }
                             else
@@ -200,27 +201,28 @@ void EPC_StateMachineControlLoop() //call the statemachine in main loop
 }
 
 //Interrupt trigger function call
-void EncA_PulseEdgeEvent(uint16_t *capturedValue)// ISR callback function
+void EncA_PulseEdgeEvent(uint16_t capturedValue)// ISR callback function
 {
- //   getStateOfPulse(&captureValue);
+    getStateOfPulse(capturedValue);
     
 }
-void EncB_PulseEdgeEvent(uint16_t *capturedValue)// ISR callback function
+void EncB_PulseEdgeEvent(uint16_t capturedValue)// ISR callback function
 {
-//    getStateOfPulse(&captureValue);
+    getStateOfPulse(capturedValue);
     
 }
 
-void getStateOfPulse(uint16_t *capturevalue)
+void getStateOfPulse(uint16_t capturevalue)
 {
     TMR3_WriteTimer(0);
     TMR3_StartTimer();//Start if not started TMR3    
     TMR5_WriteTimer(0);
     TMR5_StartTimer();//Start if not started TMR5    
     PulseTime_uSec=capturevalue;
-    if(ENC_A_RC5_GetValue())// rising uses timer 3 & CCP1
+    
+    if(ENC_A_RC5_GetValue())// rising uses timer 3 & CCP1 Enc A
     {
-        if(ENC_B_RC4_GetValue())// rising uses timer 5 & CCP2
+        if(ENC_B_RC4_GetValue())// rising uses timer 5 & CCP2 Enc B
         {
             EncPulseOpState=EnAHiEnBHi;
         } 

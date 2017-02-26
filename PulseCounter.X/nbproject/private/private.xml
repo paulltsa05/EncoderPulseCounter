@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp2.c</file>
+            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr3.c</file>
+            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp1.c</file>
             <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/main.c</file>
-            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/pin_manager.h</file>
-            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/tmr0.c</file>
+            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusManager.c</file>
+            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/ModbusManager.h</file>
+            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp2.h</file>
             <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/main.h</file>
-            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/LED_Ctrl.c</file>
+            <file>file:/home/kpit/MPLABXProjects/EncoderPulseCounter/PulseCounter.X/mcc_generated_files/ccp1.h</file>
         </group>
     </open-files>
 </project-private>
