@@ -2,7 +2,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "75 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"341 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"341 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [s S26 :1 `uc 1 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S26 . INTEDG . PEIE GIE ]
 "340
@@ -30,7 +30,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR3_StartTimer `(v ~T0 @X0 0 ef ]
 "128 mcc_generated_files/tmr5.h
 [v _TMR5_StartTimer `(v ~T0 @X0 0 ef ]
-"460 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"460 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [s S32 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S32 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
 "459
@@ -44,7 +44,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f18344.h: 49: extern volatile unsigned char INDF0 @ 0x000;
-"51 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [; ;pic16f18344.h: 51: asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
 [; ;pic16f18344.h: 54: typedef union {
@@ -7378,21 +7378,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 110: void interrupt INTERRUPT_InterruptManager(void);
-[; ;ccp1.h: 78: typedef union CCPR1Reg_tag
-[; ;ccp1.h: 79: {
-[; ;ccp1.h: 80: struct
-[; ;ccp1.h: 81: {
-[; ;ccp1.h: 82: uint8_t ccpr1l;
-[; ;ccp1.h: 83: uint8_t ccpr1h;
-[; ;ccp1.h: 84: };
-[; ;ccp1.h: 85: struct
-[; ;ccp1.h: 86: {
-[; ;ccp1.h: 87: uint16_t ccpr1_16Bit;
-[; ;ccp1.h: 88: };
-[; ;ccp1.h: 89: } CCP_PERIOD_REG_T ;
-[; ;ccp1.h: 121: void CCP1_Initialize(void);
-[; ;ccp1.h: 137: void CCP1_CaptureISR(void);
-[; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
+[; ;eusart.h: 94: void EUSART_Initialize(void);
+[; ;eusart.h: 114: uint8_t EUSART_Read(void);
+[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;tmr3.h: 99: void TMR3_Initialize(void);
+[; ;tmr3.h: 128: void TMR3_StartTimer(void);
+[; ;tmr3.h: 160: void TMR3_StopTimer(void);
+[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
+[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
+[; ;tmr3.h: 270: void TMR3_Reload(void);
+[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
+[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
+[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
 [; ;ccp2.h: 78: typedef union CCPR2Reg_tag
 [; ;ccp2.h: 79: {
 [; ;ccp2.h: 80: struct
@@ -7408,29 +7405,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ccp2.h: 121: void CCP2_Initialize(void);
 [; ;ccp2.h: 137: void CCP2_CaptureISR(void);
 [; ;ccp2.h: 158: void CCP2_CallBack(uint16_t capturedValue);
-[; ;adc.h: 71: typedef uint16_t adc_result_t;
-[; ;adc.h: 76: typedef struct
-[; ;adc.h: 77: {
-[; ;adc.h: 78: adc_result_t adcResult1;
-[; ;adc.h: 79: adc_result_t adcResult2;
-[; ;adc.h: 80: } adc_sync_double_result_t;
-[; ;adc.h: 94: typedef enum
-[; ;adc.h: 95: {
-[; ;adc.h: 96: TEMP_ANA2 = 0x2,
-[; ;adc.h: 97: channel_AVSS = 0x3C,
-[; ;adc.h: 98: channel_Temp = 0x3D,
-[; ;adc.h: 99: channel_DAC1 = 0x3E,
-[; ;adc.h: 100: channel_FVR = 0x3F
-[; ;adc.h: 101: } adc_channel_t;
-[; ;adc.h: 136: void ADC_Initialize(void);
-[; ;adc.h: 166: void ADC_SelectChannel(adc_channel_t channel);
-[; ;adc.h: 193: void ADC_StartConversion();
-[; ;adc.h: 225: bool ADC_IsConversionDone();
-[; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
-[; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;eusart.h: 94: void EUSART_Initialize(void);
-[; ;eusart.h: 114: uint8_t EUSART_Read(void);
-[; ;eusart.h: 134: void EUSART_Write(uint8_t txData);
+[; ;ccp1.h: 78: typedef union CCPR1Reg_tag
+[; ;ccp1.h: 79: {
+[; ;ccp1.h: 80: struct
+[; ;ccp1.h: 81: {
+[; ;ccp1.h: 82: uint8_t ccpr1l;
+[; ;ccp1.h: 83: uint8_t ccpr1h;
+[; ;ccp1.h: 84: };
+[; ;ccp1.h: 85: struct
+[; ;ccp1.h: 86: {
+[; ;ccp1.h: 87: uint16_t ccpr1_16Bit;
+[; ;ccp1.h: 88: };
+[; ;ccp1.h: 89: } CCP_PERIOD_REG_T ;
+[; ;ccp1.h: 121: void CCP1_Initialize(void);
+[; ;ccp1.h: 137: void CCP1_CaptureISR(void);
+[; ;ccp1.h: 158: void CCP1_CallBack(uint16_t capturedValue);
 [; ;tmr0.h: 105: void TMR0_Initialize(void);
 [; ;tmr0.h: 134: void TMR0_StartTimer(void);
 [; ;tmr0.h: 166: void TMR0_StopTimer(void);
@@ -7451,15 +7440,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr5.h: 309: void TMR5_StartSinglePulseAcquisition(void);
 [; ;tmr5.h: 348: uint8_t TMR5_CheckGateValueStatus(void);
 [; ;tmr5.h: 386: bool TMR5_HasOverflowOccured(void);
-[; ;tmr3.h: 99: void TMR3_Initialize(void);
-[; ;tmr3.h: 128: void TMR3_StartTimer(void);
-[; ;tmr3.h: 160: void TMR3_StopTimer(void);
-[; ;tmr3.h: 195: uint16_t TMR3_ReadTimer(void);
-[; ;tmr3.h: 234: void TMR3_WriteTimer(uint16_t timerVal);
-[; ;tmr3.h: 270: void TMR3_Reload(void);
-[; ;tmr3.h: 309: void TMR3_StartSinglePulseAcquisition(void);
-[; ;tmr3.h: 348: uint8_t TMR3_CheckGateValueStatus(void);
-[; ;tmr3.h: 386: bool TMR3_HasOverflowOccured(void);
+[; ;adc.h: 71: typedef uint16_t adc_result_t;
+[; ;adc.h: 76: typedef struct
+[; ;adc.h: 77: {
+[; ;adc.h: 78: adc_result_t adcResult1;
+[; ;adc.h: 79: adc_result_t adcResult2;
+[; ;adc.h: 80: } adc_sync_double_result_t;
+[; ;adc.h: 94: typedef enum
+[; ;adc.h: 95: {
+[; ;adc.h: 96: TEMP_ANA2 = 0x2,
+[; ;adc.h: 97: channel_AVSS = 0x3C,
+[; ;adc.h: 98: channel_Temp = 0x3D,
+[; ;adc.h: 99: channel_DAC1 = 0x3E,
+[; ;adc.h: 100: channel_FVR = 0x3F
+[; ;adc.h: 101: } adc_channel_t;
+[; ;adc.h: 136: void ADC_Initialize(void);
+[; ;adc.h: 166: void ADC_SelectChannel(adc_channel_t channel);
+[; ;adc.h: 193: void ADC_StartConversion();
+[; ;adc.h: 225: bool ADC_IsConversionDone();
+[; ;adc.h: 258: adc_result_t ADC_GetConversionResult(void);
+[; ;adc.h: 288: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;mcc.h: 75: void SYSTEM_Initialize(void);
 [; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
 [; ;mcc.h: 101: void WDT_Initialize(void);

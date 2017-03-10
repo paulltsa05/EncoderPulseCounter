@@ -49,7 +49,6 @@
 
 #include <xc.h>
 #include "tmr0.h"
-#include "../main.h"
 
 
 /**
@@ -113,7 +112,7 @@ void TMR0_Write8bitTimer(uint8_t timerVal)
 {
     // Write to Timer0 registers, low register only
     TMR0L = timerVal;
-}
+ }
 
 void TMR0_Load8bitPeriod(uint8_t periodVal)
 {
@@ -148,7 +147,6 @@ void TMR0_SetInterruptHandler(void* InterruptHandler){
 
 void TMR0_DefaultInterruptHandler(void){
     // add your TMR0 interrupt custom code
-    Timer0_tick10msecFunc();    
     // or set custom function using TMR0_SetInterruptHandler()
 }
 

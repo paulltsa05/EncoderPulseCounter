@@ -157,7 +157,6 @@ void CCP1_CaptureISR(void);
 */
  void CCP1_CallBack(uint16_t capturedValue);
 
-
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

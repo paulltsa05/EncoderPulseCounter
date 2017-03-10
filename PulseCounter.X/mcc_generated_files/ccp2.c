@@ -49,8 +49,6 @@
 
 #include <xc.h>
 #include "ccp2.h"
-#include "../main.h"
-
 
 /**
   Section: Capture Module APIs:
@@ -95,14 +93,11 @@ void CCP2_CaptureISR(void)
     
     // Return 16bit captured value
     CCP2_CallBack(module.ccpr2_16Bit);
-    //EncB_PulseEdgeEvent(module.ccpr2_16Bit);
 }
 
 void CCP2_CallBack(uint16_t capturedValue)
 {
     // Add your code here
-    EncB_PulseEdgeEvent(capturedValue);
-    
 }
 /**
  End of File

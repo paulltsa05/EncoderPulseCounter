@@ -5,7 +5,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F48 `(v ~T0 @X0 0 tf ]
 "178 ModbusMaster.h
 [v _ModbusMasterTransaction `(uc ~T0 @X0 0 ef1`uc ]
-"553 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"553 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [s S47 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S47 . TMR1IF TMR2IF BCL1IF SSP1IF TXIF RCIF ADIF TMR1GIF ]
 "552
@@ -248,7 +248,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f18344.h: 49: extern volatile unsigned char INDF0 @ 0x000;
-"51 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [; ;pic16f18344.h: 51: asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
 [; ;pic16f18344.h: 54: typedef union {

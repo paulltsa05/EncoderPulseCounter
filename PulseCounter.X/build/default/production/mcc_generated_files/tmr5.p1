@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [v F7701 `(v ~T0 @X0 0 tf ]
-"7662 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"7662 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [v _T5CON `Vuc ~T0 @X0 0 e@1050 ]
 "7733
 [v _T5GCON `Vuc ~T0 @X0 0 e@1051 ]
@@ -18,7 +18,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR4bits `VS41 ~T0 @X0 0 e@20 ]
 "128 mcc_generated_files/tmr5.h
 [v _TMR5_StartTimer `(v ~T0 @X0 0 ef ]
-"7668 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"7668 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [s S375 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :2 `uc 1 ]
 [n S375 . TMR5ON . T5SYNC T5SOSC T5CKPS TMR5CS ]
 "7676
@@ -44,7 +44,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f18344.h: 49: extern volatile unsigned char INDF0 @ 0x000;
-"51 /opt/microchip/xc8/v1.41/include/pic16f18344.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f18344.h
 [; ;pic16f18344.h: 51: asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
 [; ;pic16f18344.h: 54: typedef union {
